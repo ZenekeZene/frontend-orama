@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>La ruleta del despido</h1>
+    <roulette></roulette>
+    <spinner></spinner>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Roulette from "@/components/Roulette.vue";
+import Spinner from "@/components/Spinner.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    Roulette,
+    Spinner
   }
 };
 </script>
+<style lang="scss" scoped>
+.home {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+</style>
