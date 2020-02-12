@@ -64,7 +64,7 @@ export default {
         var mousePos = stage.getPointerPosition();
         var x = star.x() - mousePos.x;
         var y = star.y() - mousePos.y;
-        star.rotation(-0.5 * Math.PI + Math.atan(y / x));
+        star.rotation(-0.2 * Math.PI + Math.atan(y / x));
 
         if (mousePos.x <= stage.width() / 2) {
           star.rotate(Math.PI);
