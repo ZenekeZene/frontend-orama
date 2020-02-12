@@ -171,22 +171,10 @@ function addWedge(n) {
   wheel.add(wedge);
 }
 
-function minsize(text, maxheight, fontname, maxfontsize) {
+function minsize(text, maxfontsize) {
   text = text.split("\n").join("");
   var len = Math.floor(text.length / 4);
   return maxfontsize - len * 5;
-  /*
-var height = getTextWidth(text, fontname, maxfontsize, true, true);
-log("[minsize] height: " + height + " maxfontsize: " + maxfontsize + " maxheight: " + maxheight);
-while(height >= maxheight && maxfontsize > 5){
-log("[minsize] height: " + height + " maxfontsize: " + maxfontsize + " maxheight: " + maxheight);
-maxfontsize = maxfontsize - 5;
-height = getTextWidth(text, fontname, maxfontsize, true, true);
-}
-
-log("minsize: " + text.split('\n').join("[N]") + " max height: " + maxheight + " fontname: " + fontname + " maxfontsize: " + maxfontsize + " height: " + height);
-*/
-  return maxfontsize;
 }
 
 function animate(frame) {

@@ -17,7 +17,7 @@ body {
 
 body {
   color: white;
-  font-family: 'Fredoka One', sans-serif;
+  font-family: "Fredoka One", sans-serif;
   letter-spacing: 3px;
 }
 
@@ -27,14 +27,12 @@ canvas {
 
 button {
   padding: 1rem;
-  position: absolute;
-  bottom: 1rem;
   background-color: white;
   border: none;
-  max-width: 375px;
+  max-width: calc(375px - 2rem);
   -webkit-appearance: none;
   border-radius: 14px;
-  width: 89%;
+  width: 100%;
   font-size: 1.5rem;
   text-transform: uppercase;
   border-bottom: 5px solid grey;
@@ -47,5 +45,53 @@ button {
 
   &:active {
     border-bottom-width: 0;
+  }
+}
+
+input[type="text"],
+textarea {
+  padding: 1rem;
+  padding-right: 3rem;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  border-bottom: 3px solid white;
+  display: block;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0 1rem 0;
+
+  &__clear {
+    position: absolute;
+    right: 3rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  &__delete {
+    padding: 1rem;
+    border: 1px solid white;
+  }
+
+  &.--title {
+    font-size: 2rem;
+
+    textarea {
+      font-size: 1rem;
+      min-height: 4rem;
+    }
+
+    .input__clear {
+      right: 0;
+    }
   }
 }

@@ -2,6 +2,7 @@
   <div id="container"></div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex';
 export default {
   name: "Wheel",
   data() {
@@ -20,11 +21,13 @@ export default {
       wheel: null,
       pointer: null,
       finished: false,
-      players: ["Miguel", "Héctor", "Jorge", "Cris", "Arantxa", "Eider"],
       numWedges: 0,
 	  pointerY: 160,
 	  wheelY: 320,
     };
+  },
+  computed: {
+	...mapState(['players']),
   },
   props: {
 	  forceAngularVelocity: {
@@ -221,9 +224,8 @@ export default {
       // activate / deactivate wedges based on point intersection
       const shape = this.stage.getIntersection({
         x: this.stage.width() / 2,
-        y: 400
+        y: 200
       });
-
 
       if (this.controlled) {
         if (this.angularVelocities.length > 10) {
