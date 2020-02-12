@@ -1,20 +1,24 @@
 <template>
   <div class="home">
     <h1>La ruleta del<span>despido</span></h1>
-    <roulette></roulette>
-    <spinner></spinner>
+    <!--<roulette></roulette>
+    <spinner></spinner>-->
+    <wheel></wheel>
   </div>
 </template>
 
 <script>
 import Roulette from "@/components/Roulette.vue";
 import Spinner from "@/components/Spinner.vue";
+import Wheel from "@/components/Wheel.vue";
+
 
 export default {
   name: "Home",
   components: {
     Roulette,
-    Spinner
+    Spinner,
+    Wheel,
   }
 };
 </script>
