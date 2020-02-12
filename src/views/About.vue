@@ -73,8 +73,9 @@ export default {
 .about {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  height: 100%;
   padding: 1rem;
 }
 
@@ -84,8 +85,7 @@ p {
 }
 
 .save {
-  position: absolute;
-  bottom: 1rem;
+  margin-top: auto;
 }
 
 .list {
