@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>La ruleta del despido</h1>
+    <h1>La ruleta del<span>despido</span></h1>
     <roulette></roulette>
     <spinner></spinner>
   </div>
@@ -25,5 +25,16 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  h1 {
+    position: absolute;
+    top: 3rem;
+    text-align: center;
+
+    span {
+      display: block;
+      text-transform: uppercase;
+    }
+  }
 }
 </style>

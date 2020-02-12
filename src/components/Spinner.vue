@@ -19,22 +19,18 @@ export default {
     });
 
     var animatedLayer = new Konva.Layer();
-    var star = new Konva.Star({
+    var star = new Konva.Arrow({
       x: stage.width() / 2,
       y: stage.height() / 2,
-      outerRadius: 80,
-      innerRadius: 40,
-      stroke: "#005500",
-      fill: "#b5ff88",
-      strokeWidth: 4,
-      numPoints: 5,
-      lineJoin: "round",
-      shadowOffsetX: 5,
-      shadowOffsetY: 5,
-      shadowBlur: 10,
-      shadowColor: "black",
-      shadowOpacity: 0.5,
-      opacity: 0.8
+      pointerWidth: 5,
+      points: [0, 0, 20, 20],
+      fill: "black",
+      scale: {
+        x: 10,
+        y: 10
+      },
+      offsetX: 13,
+      offsetY: 13
     });
 
     // custom properties
@@ -68,7 +64,7 @@ export default {
         var mousePos = stage.getPointerPosition();
         var x = star.x() - mousePos.x;
         var y = star.y() - mousePos.y;
-        star.rotation(0.5 * Math.PI + Math.atan(y / x));
+        star.rotation(-0.5 * Math.PI + Math.atan(y / x));
 
         if (mousePos.x <= stage.width() / 2) {
           star.rotate(Math.PI);

@@ -8,15 +8,7 @@ export default {
   name: "Roulette",
   data() {
     return {
-      options: [
-        "Héctor",
-        "Jorge",
-        "Millo",
-        "Eider",
-        "Eneko",
-        "Miguel",
-        "Arantxa"
-      ],
+      options: ["Héctor", "Jorge", "Cris", "Eider", "Miguel", "Arantxa"],
       startAngle: 0,
       arc: 0,
       spinTimeout: null,
@@ -75,7 +67,7 @@ export default {
         let insideRadius = 0;
 
         this.ctx = canvas.getContext("2d");
-        this.ctx.clearRect(0, 0, 500, 500);
+        this.ctx.clearRect(0, 0, 350, 350);
 
         this.ctx.font = "16px Helvetica, Arial";
 
