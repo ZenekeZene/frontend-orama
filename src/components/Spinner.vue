@@ -14,8 +14,8 @@ export default {
     Konva.angleDeg = false;
     var stage = new Konva.Stage({
       container: "container",
-      width: 500,
-      height: 500
+      width: 200,
+      height: 200
     });
 
     var animatedLayer = new Konva.Layer();

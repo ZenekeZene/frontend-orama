@@ -69,7 +69,7 @@ export default {
         this.ctx = canvas.getContext("2d");
         this.ctx.clearRect(0, 0, 350, 350);
 
-        this.ctx.font = "16px Helvetica, Arial";
+        this.ctx.font = "25px Helvetica, Arial";
 
         for (let i = 0; i < this.options.length; i++) {
           let angle = this.startAngle + i * this.arc;
