@@ -22,11 +22,25 @@ export default {
       finished: false,
       players: ["Miguel", "Héctor", "Jorge", "Cris", "Arantxa", "Eider"],
       numWedges: 0,
+	  pointerY: 160,
+	  wheelY: 320,
     };
+  },
+  props: {
+	  forceAngularVelocity: {
+		  type: Number,
+		  default: 0,
+	  },
+  },
+  watch: {
+	  forceAngularVelocity(newValue) {
+		  this.angularVelocity = this.forceAngularVelocity;
+	  },
   },
   mounted() {
     Konva.angleDeg = false;
     this.numWedges = this.players.length;
+	this.angularVelocity = this.forceAngularVelocity;
     this.init();
   },
   methods: {
@@ -39,25 +53,40 @@ export default {
       this.layer = new Konva.Layer();
       this.wheel = new Konva.Group({
         x: this.stage.width() / 2,
-        y: 410
+        y: this.wheelY,
       });
 
       for (var n = 0; n < this.numWedges; n++) {
         this.addWedge(n);
       }
+
+	  const center = new Konva.Circle({
+        x: this.stage.width() / 2,
+        y: this.wheelY,
+        radius: 20,
+        fill: '#2b2b2b',
+		opacity: 1,
+      });
+
       this.pointer = new Konva.Wedge({
         fill: "black",
         lineJoin: "round",
         angle: 1,
         radius: 30,
         x: this.stage.width() / 2,
-        y: 200,
-        rotation: -90
+        y: this.pointerY,
+        rotation: -90,
+		shadowColor: 'black',
+		shadowOffsetX: 3,
+		shadowOffsetY: 3,
+		shadowBlur: 2,
+		shadowOpacity: 0.5
       });
 
       // add components to the stage
       this.layer.add(this.wheel);
       this.layer.add(this.pointer);
+	  this.layer.add(center);
       this.stage.add(this.layer);
 
       // bind events
@@ -227,12 +256,12 @@ export default {
           shape &&
           (!this.activeWedge || shape._id !== this.activeWedge._id)
         ) {
-          this.pointer.y(220);
+          this.pointer.y(this.pointerY - 10);
 
           new Konva.Tween({
             node: this.pointer,
             duration: 0.3,
-            y: 230,
+            y: this.pointerY,
             easing: Konva.Easings.ElasticEaseOut
           }).play();
 

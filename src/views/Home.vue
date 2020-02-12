@@ -3,7 +3,8 @@
     <h1>La ruleta del<span>despido</span></h1>
     <!--<roulette></roulette>
     <spinner></spinner>-->
-    <wheel></wheel>
+    <wheel :forceAngularVelocity="angularVelocity"></wheel>
+    <button @click="angularVelocity = Math.random() * (20 - 10) + 10">Lanzar</button>
   </div>
 </template>
 
@@ -19,7 +20,12 @@ export default {
     Roulette,
     Spinner,
     Wheel,
-  }
+  },
+  data() {
+    return {
+      angularVelocity: 0,
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -32,7 +38,7 @@ export default {
 
   h1 {
     position: absolute;
-    top: 3rem;
+    top: 2rem;
     text-align: center;
 
     span {
