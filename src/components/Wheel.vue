@@ -6,7 +6,7 @@ export default {
   name: "Wheel",
   data() {
     return {
-      width: window.innerWidth,
+      width: 375,
       height: window.innerHeight,
       angularVelocity: 0,
       angularVelocities: [],
