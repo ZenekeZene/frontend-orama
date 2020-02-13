@@ -1,0 +1,37 @@
+$icomoon-font-path: "../fonts/paint" !default;
+@import '../fonts/paint/style';
+$font-icons: 'paint';
+
+@mixin icon($name: '') {
+	[class^="icon-#{$name}"],
+	[class*=" icon-#{$name}"] {
+		@content;
+	}
+}
+
+$duration: 250ms;
+$ease: ease-in;
+
+@include icon('forward') {
+	transition: transform $duration $ease;
+
+	&:before {
+		display: inline-block;
+	}
+	
+	&.--down:before {
+		transform: rotate(90deg);
+	}
+
+	&.--left:before {
+		transform: rotate(180deg);
+	}
+
+	&.--up:before {
+		transform: rotate(-90deg);
+	}
+}
+
+.icon-save:before {
+	font-size: 1.4rem;
+}
