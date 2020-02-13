@@ -187,7 +187,7 @@ button {
     width: 1.95rem;
   }
 
-  @media screen and (max-height: 300px) {
+  @media screen and (max-height: 400px) {
     display: none;
   }
 }
