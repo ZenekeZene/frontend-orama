@@ -1,14 +1,14 @@
 <template>
   <div class="home">
-    <h1>{{ title }}</span></h1>
+    <h1>{{ title }}</h1>
     <wheel :forceAngularVelocity="angularVelocity"></wheel>
     <button class="edit" @click="goToEdit">Editar</button>
-    <button @click="angularVelocity = Math.random() * (20 - 10) + 10">Lanzar</button>
+    <button @click="angularVelocity = calculateAngularVelocity()">Lanzar</button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 import Wheel from "@/components/Wheel.vue";
 
 export default {
@@ -17,33 +17,41 @@ export default {
     Wheel,
   },
   computed: {
-    ...mapState(['title']),
+    ...mapState(["title"]),
   },
   data() {
     return {
       angularVelocity: 0,
+      minAngularVelocity: 10,
+      maxAngularVelocity: 20,
     };
   },
   methods: {
     goToEdit() {
-      this.$router.push('about');
+      this.$router.push("about");
+    },
+    calculateAngularVelocity() {
+      return (
+        Math.random() * (this.minAngularVelocity - this.maxAngularVelocity) +
+        this.maxAngularVelocity
+      );
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 .home {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
 
   h1 {
     position: absolute;
     top: 2rem;
-    text-align: center;
     width: calc(100vw - 2rem);
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -56,8 +64,8 @@ export default {
 
   .edit {
     position: absolute;
-    right: 1rem;
     top: 4.5rem;
+    right: 1rem;
     width: 3rem;
     height: 3rem;
     padding: 0;

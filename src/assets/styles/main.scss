@@ -26,22 +26,22 @@ canvas {
 }
 
 button {
-  padding: 1rem;
-  background-color: white;
-  border: none;
-  max-width: calc(375px - 2rem);
   -webkit-appearance: none;
-  border-radius: 14px;
+  max-width: calc(375px - 2rem);
   width: 100%;
+  padding: 1rem;
   font-size: 1.5rem;
-  text-transform: uppercase;
-  border-bottom: 5px solid grey;
   font-weight: 900;
-  outline: none;
-  transition: border-bottom-width 250ms ease-in;
   font-family: inherit;
+  text-transform: uppercase;
   letter-spacing: inherit;
   color: #2b2b2b;
+  background-color: white;
+  border-radius: 14px;
+  border: none;
+  border-bottom: 5px solid grey;
+  transition: border-bottom-width 250ms ease-in;
+  outline: none;
 
   &:active {
     border-bottom-width: 0;
@@ -50,17 +50,16 @@ button {
 
 input[type="text"],
 textarea {
-  padding: 1rem;
-  padding-right: 3rem;
   -webkit-appearance: none;
-  border: none;
-  background: transparent;
-  border-bottom: 3px solid white;
   display: block;
-  outline: none;
-  color: white;
-  font-size: 1rem;
   width: 100%;
+  padding: 1rem 3rem 1rem 1rem;
+  font-size: 1rem;
+  color: white;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid white;
+  outline: none;
 }
 
 .input {
@@ -79,7 +78,6 @@ textarea {
 
   &__delete {
     padding: 1rem;
-    border: 1px solid white;
   }
 
   &.--title {
@@ -96,4 +94,15 @@ textarea {
   }
 }
 
+h1 {
+  font-size: 1.5rem;
+}
+
 @import 'icons/icons.scss';
+
+@include icon('') {
+	&:active {
+		color: #e49541;
+		transition: all 250ms ease-in;
+	}
+}

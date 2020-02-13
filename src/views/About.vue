@@ -1,6 +1,12 @@
 <template>
   <div class="about">
+    <span @click="goBack()" class="icon-forward --left"></span>
     <h1>Editar</h1>
+    <span
+      @click="save()"
+      class="icon-save"
+      :class="{ '--not-saved': haveBeenChanges, '--disabled': !isEnabledToSave }"
+    ></span>
     <p>Título:</p>
     <div class="input --title">
       <textarea rows="1" :ref="'title'" type="text" v-model="titleLocal"></textarea>
@@ -9,46 +15,57 @@
     <p>Opciones:</p>
     <ul class="list">
       <li class="input" v-for="(player, index) in playersLocal" :key="`player-${index}`">
-        <input :ref="`player-${index}`" type="text" v-model="playersLocal[index]">
+        <input :ref="`player-${index}`" type="text" v-model="playersLocal[index]" />
         <span class="input__clear" @click="clearInput(index)">X</span>
-        <span class="input__delete" @click="deletePlayer(index)"></span>
+        <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
       </li>
       <button class="add" :class="{ '--disabled': !isEnabledToAdd }" @click="addPlayer()">+</button>
     </ul>
-    <button class="save" :class="{ '--disabled': !isEnabledToSave }" @click="save()">Guardar</button>
   </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from "vuex";
 export default {
-  name: 'About',
+  name: "About",
   data() {
     return {
       playersLocal: [],
-      titleLocal: '',
-    }
+      titleLocal: ""
+    };
   },
   mounted() {
-    this.playersLocal = [...this.players];
+    this.playersLocal = this.players.slice();
     this.titleLocal = this.title;
   },
   computed: {
-    ...mapState(['players', 'title']),
+    ...mapState(["players", "title"]),
     isEnabledToAdd() {
-      return this.playersLocal.every(player => player !== '');
+      return this.playersLocal.every(player => player !== "");
     },
     isEnabledToSave() {
-      return this.playersLocal.every(player => player !== '') && this.playersLocal.length > 1;
+      return (
+        this.titleLocal.length > 0 &&
+        this.playersLocal.every(player => player !== "") &&
+        this.playersLocal.length > 1
+      );
     },
+    haveBeenChanges() {
+      const diffPlayers = this.playersLocal.filter(x => this.players.includes(x));
+      return (
+        this.playersLocal.length !== this.players.length ||
+        this.playersLocal.length != diffPlayers.length ||
+        this.titleLocal !== this.title
+      );
+    }
   },
   methods: {
-    ...mapMutations(['setPlayers', 'setTitle']),
+    ...mapMutations(["setPlayers", "setTitle"]),
     clearTitle() {
-      this.titleLocal = '';
+      this.titleLocal = "";
       this.$refs[`title`].focus();
     },
     clearInput(index) {
-      this.playersLocal.splice(index, 1, '');
+      this.playersLocal.splice(index, 1, "");
       this.$refs[`player-${index}`][0].focus();
     },
     deletePlayer(index) {
@@ -56,15 +73,19 @@ export default {
     },
     addPlayer() {
       if (this.isEnabledToAdd) {
-        this.playersLocal.push('');
+        this.playersLocal.push("");
       }
     },
     save() {
       if (this.isEnabledToAdd) {
         this.setTitle({ title: this.titleLocal });
         this.setPlayers({ players: this.playersLocal });
-        this.$router.push('/');
       }
+    },
+    goBack() {
+      if (this.haveBeenChanges) {
+      }
+      $router.back();
     },
   },
 };
@@ -106,10 +127,39 @@ button {
   font-size: 2rem;
   line-height: 3rem;
   padding: 0;
-
 }
 
 .--disabled {
   opacity: 0.5;
+}
+
+.icon-forward,
+.icon-save {
+  position: absolute;
+  top: 0;
+  padding: 1rem;
+}
+
+.icon-forward {
+  left: 0;
+}
+
+.icon-save {
+  right: 0;
+
+  &.--not-saved {
+    &:after {
+      $size: 0.5rem;
+      content: "";
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      display: inline-block;
+      width: $size;
+      height: $size;
+      background-color: orange;
+      border-radius: 50%;
+    }
+  }
 }
 </style>
