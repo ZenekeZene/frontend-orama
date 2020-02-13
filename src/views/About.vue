@@ -9,7 +9,7 @@
     ></span>
     <p>Título:</p>
     <div class="input --title">
-      <textarea rows="1" :ref="'title'" type="text" v-model="titleLocal"></textarea>
+      <textarea rows="1" maxlength="42" ref="'title'" type="text" v-model="titleLocal"></textarea>
       <span class="input__clear" @click="clearTitle">X</span>
     </div>
     <p>Opciones:</p>
@@ -19,9 +19,18 @@
         <span class="input__clear" @click="clearInput(index)">X</span>
         <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
       </li>
-      <button class="add" :class="{ '--disabled': !isEnabledToAdd }" @click="addPlayer()">+</button>
     </ul>
-    <v-dialog name="save-dialog" :adaptive="true" :pivotY="0" width="320" height="auto" transition="fadeInDown">hello, world!</v-dialog>
+    <button class="add" :class="{ '--disabled': !isEnabledToAdd }" @click="addPlayer(playersLocal.length)">
+      <span class="icon-plus"></span>
+    </button>
+    <v-dialog
+      name="save-dialog"
+      :adaptive="true"
+      :pivotY="0"
+      width="320"
+      height="auto"
+      transition="fadeInDown"
+    >hello, world!</v-dialog>
   </div>
 </template>
 <script>
@@ -31,7 +40,7 @@ export default {
   data() {
     return {
       playersLocal: [],
-      titleLocal: "",
+      titleLocal: ""
     };
   },
   mounted() {
@@ -74,9 +83,12 @@ export default {
     deletePlayer(index) {
       this.playersLocal.splice(index, 1);
     },
-    addPlayer() {
+    addPlayer(index) {
       if (this.isEnabledToAdd) {
         this.playersLocal.push("");
+        this.$nextTick(() => {
+          this.$refs[`player-${index}`][0].focus();
+        });
       }
     },
     save() {
@@ -97,18 +109,18 @@ export default {
               title: "No guardar",
               handler: () => {
                 this.$router.back();
-              },
+              }
             },
             {
               title: "Cancelar", // Button title
               default: true,
               handler: () => {
-                this.$modal.hide('dialog');
+                this.$modal.hide("dialog");
               }
             },
             {
               title: "Guardar",
-              class: 'v-dialog-save',
+              class: "v-dialog-save",
               handler: () => {
                 this.save();
                 this.$router.back();
@@ -122,8 +134,8 @@ export default {
     },
     getCopyOfPlayersState() {
       return this.players.slice();
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -145,10 +157,9 @@ p {
   margin-top: auto;
 }
 
-.list { 
+.list {
   width: 100%;
-  max-height: 57vh;
-  overflow-y: auto;
+  max-height: 62vh;
 }
 
 button {
@@ -156,13 +167,19 @@ button {
 }
 
 .add {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 4rem;
   height: 4rem;
-  margin: 1rem auto;
-  font-size: 2rem;
-  line-height: 3rem;
+  margin: 0;
   padding: 0;
+  font-size: 2rem;
+  border-radius: 50%;
+
+  [class^="icon-"] {
+    width: 1.95rem;
+  }
 }
 
 .--disabled {
@@ -185,11 +202,11 @@ button {
 
   &.--not-saved {
     &:after {
-      $size: 0.5rem;
+      $size: 0.8rem;
       content: "";
       position: absolute;
-      top: 0.8rem;
-      left: 0.8rem;
+      top: 0.2rem;
+      left: 0.2rem;
       display: inline-block;
       width: $size;
       height: $size;

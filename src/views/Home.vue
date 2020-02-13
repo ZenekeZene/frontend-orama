@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <h1>{{ title }}</h1>
+    <textarea rows="1" maxlength="42" type="text" v-model="title" disabled></textarea>
     <wheel :forceAngularVelocity="angularVelocity"></wheel>
-    <button class="edit" @click="goToEdit">Editar</button>
+    <button class="edit" @click="goToEdit"><span class="icon-pencil2"></span></button>
     <button @click="angularVelocity = calculateAngularVelocity()">Lanzar</button>
   </div>
 </template>
@@ -64,19 +64,39 @@ export default {
 
   .edit {
     position: absolute;
-    top: 4.5rem;
+    top: 6.5rem;
     right: 1rem;
     width: 3rem;
     height: 3rem;
     padding: 0;
     letter-spacing: 1px;
-    border-radius: 50%;
     font-size: 0.5rem;
+    color: white;
+    border-bottom: none;
+    border-radius: 132px;
+background: #2b2b2b;
+box-shadow:  5px 5px 11px #111111, 
+             -5px -5px 11px #454545;
+
+    [class^='icon-'] {
+      color: white;
+      font-size: 1.5rem;
+    }
   }
 
   button:last-child {
     position: absolute;
     bottom: 1rem;
+  }
+
+  textarea {
+    position: absolute;
+    top: 1rem;
+    min-height: 3rem;
+    padding: 0 1rem;
+    font-size: 1.7rem;
+    border-bottom: none;
+    font-family: inherit;
   }
 }
 </style>
