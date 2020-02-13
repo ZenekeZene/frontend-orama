@@ -176,6 +176,7 @@ button {
   justify-content: center;
   width: 4rem;
   height: 4rem;
+  min-height: 4rem;
   margin: 0;
   margin-top: 1rem;
   padding: 0;
