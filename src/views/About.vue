@@ -16,7 +16,7 @@
     <ul class="list">
       <li class="input" v-for="(player, index) in playersLocal" :key="`player-${index}`">
         <input :ref="`player-${index}`" type="text" v-model="playersLocal[index]" />
-        <span class="input__clear" @click="clearInput(index)">X</span>
+        <span v-if="playersLocal[index].length > 0"  class="input__clear" @click="clearInput(index)">X</span>
         <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
       </li>
     </ul>
@@ -151,6 +151,9 @@ export default {
 p {
   width: 100%;
   text-align: left;
+  font-family: Helvetica;
+  font-weight: 700;
+  letter-spacing: initial;
 }
 
 .save {
@@ -159,7 +162,8 @@ p {
 
 .list {
   width: 100%;
-  max-height: 62vh;
+  max-height: 57vh;
+  overflow-y: auto;
 }
 
 button {
@@ -173,6 +177,7 @@ button {
   width: 4rem;
   height: 4rem;
   margin: 0;
+  margin-top: 1rem;
   padding: 0;
   font-size: 2rem;
   border-radius: 50%;

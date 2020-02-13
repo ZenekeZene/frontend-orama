@@ -60,7 +60,7 @@ textarea {
   color: white;
   background: transparent;
   border: none;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #404040;
   outline: none;
 }
 
@@ -83,6 +83,7 @@ textarea {
   }
 
   &.--title {
+    margin-bottom: 2rem;
     font-size: 2rem;
 
     textarea {
