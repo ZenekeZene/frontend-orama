@@ -1,26 +1,43 @@
 <template>
   <div class="about">
-    <span @click="goBack()" class="icon-forward --left"></span>
+    <span
+      @click="goBack()"
+      class="icon-forward --left"
+      :class="{ '--disabled': !isEnabledToAdd }"
+    ></span>
     <h1>Editar</h1>
     <span
       @click="save()"
       class="icon-save"
-      :class="{ '--not-saved': haveBeenChanges, '--disabled': !isEnabledToSave }"
+      :class="{
+        '--not-saved': haveBeenChanges,
+        '--disabled': !isEnabledToSave,
+      }"
     ></span>
     <p>Título:</p>
     <div class="input --title">
-      <textarea rows="1" maxlength="42" ref="'title'" type="text" v-model="titleLocal"></textarea>
+      <textarea rows="1" maxlength="42" ref="title" type="text" v-model="titleLocal"></textarea>
       <span class="input__clear" @click="clearTitle">X</span>
     </div>
     <p>Opciones:</p>
     <ul class="list">
-      <li class="input" v-for="(player, index) in playersLocal" :key="`player-${index}`">
-        <input :ref="`player-${index}`" type="text" v-model="playersLocal[index]" />
-        <span v-if="playersLocal[index].length > 0"  class="input__clear" @click="clearInput(index)">X</span>
+      <li class="input"
+        v-for="(player, index) in playersLocal" :key="`player-${index}`"
+      >
+        <input :ref="`player-${index}`" type="text" maxlength="20" v-model="playersLocal[index]" />
+        <span
+          v-if="playersLocal[index].length > 0"
+          class="input__clear"
+          @click="clearInput(index)"
+        >X</span>
         <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
       </li>
     </ul>
-    <button class="add" :class="{ '--disabled': !isEnabledToAdd }" @click="addPlayer(playersLocal.length)">
+    <button
+      class="add"
+      :class="{ '--disabled': !isEnabledToAdd }"
+      @click="addPlayer(playersLocal.length)"
+    >
       <span class="icon-plus"></span>
     </button>
     <v-dialog
@@ -30,7 +47,7 @@
       width="320"
       height="auto"
       transition="fadeInDown"
-    >hello, world!</v-dialog>
+    ></v-dialog>
   </div>
 </template>
 <script>
@@ -74,7 +91,7 @@ export default {
     ...mapMutations(["setPlayers", "setTitle"]),
     clearTitle() {
       this.titleLocal = "";
-      this.$refs[`title`].focus();
+      this.$refs["title"].focus();
     },
     clearInput(index) {
       this.playersLocal.splice(index, 1, "");
@@ -99,41 +116,46 @@ export default {
       }
     },
     goBack() {
-      if (this.haveBeenChanges) {
-        this.$modal.show("dialog", {
-          title: "¿Quieres guardar los cambios?!",
-          text: "Tus cambios se perderán si no los guardas.",
-          adaptive: true,
-          buttons: [
-            {
-              title: "No guardar",
-              handler: () => {
-                this.$router.back();
-              }
-            },
-            {
-              title: "Cancelar", // Button title
-              default: true,
-              handler: () => {
-                this.$modal.hide("dialog");
-              }
-            },
-            {
-              title: "Guardar",
-              class: "v-dialog-save",
-              handler: () => {
-                this.save();
-                this.$router.back();
-              }
-            }
-          ]
-        });
-      } else {
-        this.$router.back();
+      if (this.isEnabledToAdd) {
+        if (this.haveBeenChanges) {
+          this.handleDialog();
+        } else {
+          this.$router.back();
+        }
       }
     },
     getCopyOfPlayersState() {
       return this.players.slice();
+    },
+    handleDialog() {
+      this.$modal.show("dialog", {
+        title: "¿Quieres guardar los cambios?!",
+        text: "Tus cambios se perderán si no los guardas.",
+        adaptive: true,
+        buttons: [
+          {
+            title: "No guardar",
+            handler: () => {
+              this.$router.back();
+            }
+          },
+          {
+            title: "Cancelar",
+            default: true,
+            handler: () => {
+              this.$modal.hide("dialog");
+            }
+          },
+          {
+            title: "Guardar",
+            class: "v-dialog-save",
+            handler: () => {
+              this.save();
+              this.$router.back();
+            }
+          }
+        ]
+      });
     }
   }
 };

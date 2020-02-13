@@ -2,7 +2,7 @@
   <div id="container"></div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Wheel",
   data() {
@@ -10,6 +10,7 @@ export default {
       width: 375,
       height: window.innerHeight,
       angularVelocity: 0,
+      angularVelocityInitial: 0,
       angularVelocities: [],
       lastRotation: 0,
       controlled: false,
@@ -22,28 +23,28 @@ export default {
       pointer: null,
       finished: false,
       numWedges: 0,
-	  pointerY: 160,
-	  wheelY: 320,
+      pointerY: 160,
+      wheelY: 320
     };
   },
   computed: {
-	...mapState(['players']),
+    ...mapState(["players"])
   },
   props: {
-	  forceAngularVelocity: {
-		  type: Number,
-		  default: 0,
-	  },
+    forceAngularVelocity: {
+      type: Number,
+      default: 0
+    }
   },
   watch: {
-	  forceAngularVelocity(newValue) {
-		  this.angularVelocity = this.forceAngularVelocity;
-	  },
+    forceAngularVelocity(newValue) {
+      this.angularVelocity = this.forceAngularVelocity;
+    }
   },
   mounted() {
     Konva.angleDeg = false;
     this.numWedges = this.players.length;
-	this.angularVelocity = this.forceAngularVelocity;
+    this.angularVelocity = this.forceAngularVelocity;
     this.init();
   },
   methods: {
@@ -56,19 +57,19 @@ export default {
       this.layer = new Konva.Layer();
       this.wheel = new Konva.Group({
         x: this.stage.width() / 2,
-        y: this.wheelY,
+        y: this.wheelY
       });
 
       for (var n = 0; n < this.numWedges; n++) {
         this.addWedge(n);
       }
 
-	  const center = new Konva.Circle({
+      const center = new Konva.Circle({
         x: this.stage.width() / 2,
         y: this.wheelY,
         radius: 20,
-        fill: '#2b2b2b',
-		opacity: 1,
+        fill: "#2b2b2b",
+        opacity: 1
       });
 
       this.pointer = new Konva.Wedge({
@@ -79,17 +80,17 @@ export default {
         x: this.stage.width() / 2,
         y: this.pointerY,
         rotation: -90,
-		shadowColor: 'black',
-		shadowOffsetX: 3,
-		shadowOffsetY: 3,
-		shadowBlur: 2,
-		shadowOpacity: 0.5
+        shadowColor: "black",
+        shadowOffsetX: 3,
+        shadowOffsetY: 3,
+        shadowBlur: 2,
+        shadowOpacity: 0.5
       });
 
       // add components to the stage
       this.layer.add(this.wheel);
       this.layer.add(this.pointer);
-	  this.layer.add(center);
+      this.layer.add(center);
       this.stage.add(this.layer);
 
       // bind events
@@ -105,11 +106,12 @@ export default {
         () => {
           this.controlled = false;
           this.angularVelocity = this.getAverageAngularVelocity() * 5;
+          this.angularVelocityInitial = this.angularVelocity;
 
           if (this.angularVelocity > 20) {
             this.angularVelocity = 20;
           } else if (this.angularVelocity < -20) {
-            this.angularVelocity = -20;
+            this.angularVelocity = 0;
           }
 
           this.angularVelocities = [];
@@ -144,7 +146,7 @@ export default {
       }, 1000);
     },
     byte2Hex(n) {
-      const nybHexString = "0123456789ABCDEF";
+      const nybHexString = "02468ACE";
       return (
         String(nybHexString.substr((n >> 4) & 0x0f, 1)) +
         nybHexString.substr(n & 0x0f, 1)
@@ -189,21 +191,24 @@ export default {
       const wedgeBackground = new Konva.Wedge({
         radius: this.width / 2,
         angle: angle,
-		fill: this.getColor(n, this.numWedges),
-        fillPriority: 'red',
+        fill: this.getColor(n, this.numWedges),
+        fillPriority: "red"
       });
 
       wedge.add(wedgeBackground);
 
+      const A = (180 - angle) / 2;
+      const cMini = (90 - A) / 2;
+      console.log(cMini);
+
       const text = new Konva.Text({
-        text: this.players[n],
+        text: `        ${this.players[n]}`,
         fontFamily: "Helvetica",
-        fontSize: this.width * 0.05,
+        fontSize: 30 - (this.players[n].length * 0.9),
         fill: "white",
-        align: "center",
-        rotation: (Math.PI + angle) / 2,
-        x: this.width / 2 - 20,
-        y: this.width / this.numWedges,
+        align: "left",
+        rotation: cMini * 2,
+        offsetY: 12, // Font height
         listening: false
       });
 
@@ -240,7 +245,7 @@ export default {
         if (diff > 0.0001) {
           this.wheel.rotate(diff);
         } else if (!this.finished && !this.controlled) {
-          if (shape) {
+          if (shape && this.angularVelocityInitial > 5) {
             const text = shape
               .getParent()
               .findOne("Text")

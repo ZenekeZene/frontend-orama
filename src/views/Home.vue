@@ -74,9 +74,9 @@ export default {
     color: white;
     border-bottom: none;
     border-radius: 132px;
-background: #2b2b2b;
-box-shadow:  5px 5px 11px #111111, 
-             -5px -5px 11px #454545;
+    background: #2b2b2b;
+    box-shadow:  5px 5px 11px #111111, 
+                -5px -5px 11px #454545;
 
     [class^='icon-'] {
       color: white;
@@ -92,7 +92,7 @@ box-shadow:  5px 5px 11px #111111,
   textarea {
     position: absolute;
     top: 1rem;
-    min-height: 3rem;
+    min-height: 4rem;
     padding: 0 1rem;
     font-size: 1.7rem;
     border-bottom: none;
