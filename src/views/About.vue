@@ -92,7 +92,6 @@ export default {
           title: "¿Quieres guardar los cambios?!",
           text: "Tus cambios se perderán si no los guardas.",
           adaptive: true,
-          classes: 'custom-modal',
           buttons: [
             {
               title: "No guardar",
