@@ -146,7 +146,7 @@ export default {
       }, 1000);
     },
     byte2Hex(n) {
-      const nybHexString = "02468ACE";
+      const nybHexString = "0123456789ABCDEF";
       return (
         String(nybHexString.substr((n >> 4) & 0x0f, 1)) +
         nybHexString.substr(n & 0x0f, 1)
