@@ -162,7 +162,7 @@ p {
 
 .list {
   width: 100%;
-  max-height: 57vh;
+  max-height: 55vh;
   overflow-y: auto;
 }
 
@@ -184,6 +184,10 @@ button {
 
   [class^="icon-"] {
     width: 1.95rem;
+  }
+
+  @media screen and (max-height: 300px) {
+    display: none;
   }
 }
 
