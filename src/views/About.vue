@@ -97,7 +97,7 @@ export default {
               title: "No guardar",
               handler: () => {
                 this.$router.back();
-              }
+              },
             },
             {
               title: "Cancelar", // Button title
