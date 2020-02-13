@@ -3,6 +3,8 @@
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
+import randomColor from 'randomcolor';
+
 export default {
   name: "Wheel",
   data() {
@@ -24,7 +26,9 @@ export default {
       finished: false,
       numWedges: 0,
       pointerY: 160,
-      wheelY: 320
+      wheelY: 320,
+      randomColorVendor: randomColor,
+      palette: [],
     };
   },
   computed: {
@@ -45,6 +49,7 @@ export default {
     Konva.angleDeg = false;
     this.numWedges = this.players.length;
     this.angularVelocity = this.forceAngularVelocity;
+    this.palette = this.getPalette(this.getRandom(['blue', 'pink', 'yellow', 'orange', 'purple']));
     this.init();
   },
   methods: {
@@ -155,17 +160,18 @@ export default {
     RGB2Color(r, g, b) {
       return "#" + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
     },
-    getColor(item, maxitem) {
-      const phase = 0;
-      const center = 128;
-      const width = 127;
-      const frequency = (Math.PI * 2) / maxitem;
-
-      const red = Math.sin(frequency * item + 2 + phase) * width + center;
-      const green = Math.sin(frequency * item + 0 + phase) * width + center;
-      const blue = Math.sin(frequency * item + 4 + phase) * width + center;
-
-      return this.RGB2Color(red, green, blue);
+    getPalette(hue) {
+      return this.randomColorVendor({
+        hue: hue,
+        count: this.numWedges,
+        format: 'hsl',
+      });
+    },
+    getRandom(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    },
+    getColor() {
+      return this.getRandom(this.palette);
     },
     getAverageAngularVelocity() {
       let total = 0;
@@ -188,10 +194,13 @@ export default {
         rotation: (2 * n * Math.PI) / this.numWedges
       });
 
+      let colorText = 'white';
+      const randomColor = this.getColor(n, this.numWedges);
+      if (Number(randomColor.split(',')[2].split('%')[0]) > 70) colorText = 'black';
       const wedgeBackground = new Konva.Wedge({
         radius: this.width / 2,
         angle: angle,
-        fill: this.getColor(n, this.numWedges),
+        fill: randomColor,
         fillPriority: "red"
       });
 
@@ -199,13 +208,12 @@ export default {
 
       const A = (180 - angle) / 2;
       const cMini = (90 - A) / 2;
-      console.log(cMini);
 
       const text = new Konva.Text({
         text: `        ${this.players[n]}`,
         fontFamily: "Helvetica",
         fontSize: 30 - (this.players[n].length * 0.9),
-        fill: "white",
+        fill: colorText,
         align: "left",
         rotation: cMini * 2,
         offsetY: 12, // Font height
