@@ -21,6 +21,7 @@
       </li>
       <button class="add" :class="{ '--disabled': !isEnabledToAdd }" @click="addPlayer()">+</button>
     </ul>
+    <v-dialog name="save-dialog" :adaptive="true" :pivotY="0" width="320" height="auto" transition="fadeInDown">hello, world!</v-dialog>
   </div>
 </template>
 <script>
@@ -30,11 +31,11 @@ export default {
   data() {
     return {
       playersLocal: [],
-      titleLocal: ""
+      titleLocal: "",
     };
   },
   mounted() {
-    this.playersLocal = this.players.slice();
+    this.playersLocal = this.getCopyOfPlayersState();
     this.titleLocal = this.title;
   },
   computed: {
@@ -50,7 +51,9 @@ export default {
       );
     },
     haveBeenChanges() {
-      const diffPlayers = this.playersLocal.filter(x => this.players.includes(x));
+      const diffPlayers = this.playersLocal.filter(x =>
+        this.players.includes(x)
+      );
       return (
         this.playersLocal.length !== this.players.length ||
         this.playersLocal.length != diffPlayers.length ||
@@ -80,12 +83,46 @@ export default {
       if (this.isEnabledToAdd) {
         this.setTitle({ title: this.titleLocal });
         this.setPlayers({ players: this.playersLocal });
+        this.playersLocal = this.getCopyOfPlayersState();
       }
     },
     goBack() {
       if (this.haveBeenChanges) {
+        this.$modal.show("dialog", {
+          title: "¿Quieres guardar los cambios?!",
+          text: "Tus cambios se perderán si no los guardas.",
+          adaptive: true,
+          classes: 'custom-modal',
+          buttons: [
+            {
+              title: "No guardar",
+              handler: () => {
+                this.$router.back();
+              }
+            },
+            {
+              title: "Cancelar", // Button title
+              default: true,
+              handler: () => {
+                this.$modal.hide('dialog');
+              }
+            },
+            {
+              title: "Guardar",
+              class: 'v-dialog-save',
+              handler: () => {
+                this.save();
+                this.$router.back();
+              }
+            }
+          ]
+        });
+      } else {
+        this.$router.back();
       }
-      $router.back();
+    },
+    getCopyOfPlayersState() {
+      return this.players.slice();
     },
   },
 };
@@ -109,7 +146,7 @@ p {
   margin-top: auto;
 }
 
-.list {
+.list { 
   width: 100%;
   max-height: 57vh;
   overflow-y: auto;
