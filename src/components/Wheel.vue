@@ -4,6 +4,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import randomColor from 'randomcolor';
+import gen from 'color-generator';
 
 export default {
   name: "Wheel",
@@ -28,6 +29,7 @@ export default {
       pointerY: 160,
       wheelY: 320,
       randomColorVendor: randomColor,
+      genVendor: gen,
       palette: [],
     };
   },
@@ -49,7 +51,7 @@ export default {
     Konva.angleDeg = false;
     this.numWedges = this.players.length;
     this.angularVelocity = this.forceAngularVelocity;
-    this.palette = this.getPalette(this.getRandom(['blue', 'pink', 'yellow', 'orange', 'purple']));
+    this.palette = this.getPalette(this.getRandom(['purple']));
     this.init();
   },
   methods: {
@@ -171,7 +173,7 @@ export default {
       return array[Math.floor(Math.random() * array.length)];
     },
     getColor() {
-      return this.getRandom(this.palette);
+      return this.genVendor(0.5, 0.8).hexString();
     },
     getAverageAngularVelocity() {
       let total = 0;
@@ -194,9 +196,7 @@ export default {
         rotation: (2 * n * Math.PI) / this.numWedges
       });
 
-      let colorText = 'white';
-      const randomColor = this.getColor(n, this.numWedges);
-      if (Number(randomColor.split(',')[2].split('%')[0]) > 70) colorText = 'black';
+      const randomColor = this.getColor();
       const wedgeBackground = new Konva.Wedge({
         radius: this.width / 2,
         angle: angle,
@@ -213,7 +213,7 @@ export default {
         text: `        ${this.players[n]}`,
         fontFamily: "Helvetica",
         fontSize: 30 - (this.players[n].length * 0.9),
-        fill: colorText,
+        fill: "white",
         align: "left",
         rotation: cMini * 2,
         offsetY: 12, // Font height

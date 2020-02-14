@@ -186,6 +186,7 @@ p {
   width: 100%;
   max-height: 55vh;
   overflow-y: auto;
+  min-height: 20rem;
 }
 
 button {
@@ -230,6 +231,7 @@ button {
 }
 
 .icon-save {
+  top: 3px;
   right: 0;
 
   &.--not-saved {

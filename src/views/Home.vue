@@ -73,10 +73,10 @@ export default {
     font-size: 0.5rem;
     color: white;
     border-bottom: none;
-    border-radius: 132px;
-    background: #2b2b2b;
-    box-shadow:  5px 5px 11px #111111, 
-                -5px -5px 11px #454545;
+    border-radius: 150px;
+    background: linear-gradient(145deg, #515495, #6064b1);
+    box-shadow:  11px 11px 21px #4d4f8c, 
+             -11px -11px 21px #686bbe;
 
     [class^='icon-'] {
       color: white;

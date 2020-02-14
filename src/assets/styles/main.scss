@@ -16,9 +16,19 @@ body {
 }
 
 body {
+  padding: 2rem;
   color: white;
+  background-color: teal;
   font-family: "Fredoka One", sans-serif;
   letter-spacing: 3px;
+
+  @media screen and (max-width: 400px) {
+    padding: 0;
+
+    #app {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 canvas {
@@ -42,8 +52,9 @@ button {
   //border-bottom: 5px solid grey;
   transition: border-bottom-width 250ms ease-in;
   outline: none;
-  background: linear-gradient(145deg, #272727, #2e2e2e);
-  box-shadow: 17px 17px 34px #111111, -17px -17px 34px #454545;
+  background: linear-gradient(145deg, #515495, #6064b1);
+  box-shadow:  11px 11px 21px #4d4f8c, 
+              -11px -11px 21px #686bbe;
 
   &:active {
     border-bottom-width: 0;
@@ -61,7 +72,7 @@ textarea {
   font-family: Helvetica;
   background: transparent;
   border: none;
-  border-bottom: 3px solid #404040;
+  border-bottom: 3px solid #585b9e99;
   outline: none;
 }
 
