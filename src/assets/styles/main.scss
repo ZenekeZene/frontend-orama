@@ -26,7 +26,7 @@ body {
     padding: 0;
 
     #app {
-      width: 100%;
+      max-width: unset !important;
       border-radius: 0 !important;
     }
   }

@@ -7,6 +7,7 @@
 #app {
   position: relative;
   max-width: 375px;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   margin: 0 auto;
