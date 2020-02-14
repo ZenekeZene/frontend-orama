@@ -187,6 +187,10 @@ p {
   max-height: 55vh;
   overflow-y: auto;
   min-height: 20rem;
+
+  @media screen and (min-width: 500px) {
+
+  }
 }
 
 button {

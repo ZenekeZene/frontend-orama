@@ -172,6 +172,8 @@ canvas {
   transition: all 150ms ease-in-out;
 
   &:hover {
-    transform: scale(0.95);
+    @media screen and (min-width: 500px) {
+      transform: scale(0.95);
+    }
   }
 }
