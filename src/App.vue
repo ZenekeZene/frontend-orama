@@ -10,9 +10,11 @@
   max-height: 812px;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   margin: 0 auto;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
   border-radius: 25px;
+  transform: translate3d(0, 0, 0);
   transition: all 250ms ease-in;
 
   &:after {
@@ -43,10 +45,6 @@
       background-size: cover;
       background-position-y: 177%;
     }
-
-  @media screen and (min-width: 500px) {
-    overflow: hidden;
-  }
 
   &:hover {
 
