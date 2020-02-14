@@ -51,14 +51,17 @@ button {
   border-radius: 14px;
   border: none;
   //border-bottom: 5px solid grey;
-  transition: border-bottom-width 250ms ease-in;
+  transition: all 250ms ease-in;
   outline: none;
   background: linear-gradient(145deg, #515495, #6064b1);
   box-shadow:  11px 11px 21px #4d4f8c, 
               -11px -11px 21px #686bbe;
+  cursor: pointer;
 
-  &:active {
-    border-bottom-width: 0;
+  &:hover {
+    background: linear-gradient(145deg, #6064b1, #515495);
+    box-shadow:  inset 11px 11px 21px #4d4f8c, 
+            inset -11px -11px 21px #686bbe !important;
   }
 }
 
@@ -161,4 +164,14 @@ h1 {
 .vue-dialog-buttons button {
   box-shadow: none;
   background-color: inherit;
+}
+
+canvas {
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 }

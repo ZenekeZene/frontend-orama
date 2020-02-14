@@ -5,7 +5,7 @@
       class="icon-forward --left"
       :class="{ '--disabled': !isEnabledToAdd }"
     ></span>
-    <h1>Editar</h1>
+    <h1 style="margin-bottom: 1rem;">Editar</h1>
     <span
       @click="save()"
       class="icon-save"
@@ -228,6 +228,7 @@ button {
 
 .icon-forward {
   left: 0;
+  font-size: 1.5rem;
 }
 
 .icon-save {
