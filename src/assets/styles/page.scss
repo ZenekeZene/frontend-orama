@@ -44,7 +44,7 @@
     max-height: 720px;
 
     &:hover {
-      transform: scale(1.01) rotate3d(1, 1, 1, -2deg);
+      transform: rotate3d(1, 1, 1, -2deg);
       box-shadow: -5px 12px 15px 0 rgba(0, 0, 0, .24), -5px 17px 50px 0 rgba(0, 0, 0, .19);
     }
 

@@ -2,7 +2,7 @@
   <div class="home">
     <textarea rows="1" maxlength="42" type="text" v-model="title" disabled></textarea>
     <wheel :forceAngularVelocity="angularVelocity"></wheel>
-    <button class="edit" @click="goToEdit"><span class="icon-pencil2"></span></button>
+    <button class="edit" @click="goToEdit"><span class="icon-pencil"></span></button>
     <button class="launch" @click="angularVelocity = calculateAngularVelocity()">¡Lanzar!🤞</button>
   </div>
 </template>
