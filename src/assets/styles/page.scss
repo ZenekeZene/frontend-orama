@@ -22,8 +22,9 @@
   & > div {
     position: relative;
     z-index: 2;
-    min-height: 100vh;
+    height: 100vh;
 
+    &:before,
     &:after {
       content: '';
       position: absolute;
@@ -32,28 +33,23 @@
       left: 0;
       right: 0;
       bottom: 0;
+    }
+
+    &:after {
       background: linear-gradient(to bottom, #5a5da5 0%, rgba(0, 0, 0, 0.7) 44%, #5a5da5 90%);
       transform: rotate3d(-45deg);
     }
 
     &:before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
       background: url(https://raw.githubusercontent.com/khadkamhn/secret-project/master/img/background.jpg) center no-repeat;
       background-size: cover;
-      background-position-y: 177%;
       background-attachment: fixed;
     }
   }
 }
 
 .fixed {
-  position: fixed !important;
+  position: fixed;
   bottom: 0;
   padding: 1rem;
 
