@@ -24,4 +24,8 @@ button {
   &:hover {
     transform: scale(1.05);
   }
+
+  &:active {
+    outline: none;
+  }
 }

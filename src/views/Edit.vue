@@ -21,17 +21,19 @@
     </div>
     <p>Opciones:</p>
     <ul class="list">
-      <li class="input"
-        v-for="(player, index) in playersLocal" :key="`player-${index}`"
-      >
-        <input :ref="`player-${index}`" type="text" maxlength="20" v-model="playersLocal[index]" />
-        <span
-          v-if="playersLocal[index].length > 0"
-          class="input__clear"
-          @click="clearInput(index)"
-        >X</span>
-        <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
-      </li>
+      <fade-transition group>
+        <li class="input"
+          v-for="(player, index) in playersLocal" :key="`player-${index}`"
+        >
+          <input :ref="`player-${index}`" type="text" maxlength="20" v-model="playersLocal[index]" />
+          <span
+            v-if="playersLocal[index].length > 0"
+            class="input__clear"
+            @click="clearInput(index)"
+          >X</span>
+          <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
+        </li>
+      </fade-transition>
     </ul>
     <v-dialog
       name="save-dialog"
