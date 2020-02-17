@@ -13,7 +13,7 @@ export default new Vuex.Store({
   ],
   state: {
     players: [],
-    title: 'La ruleta del despido',
+    title: 'Título de mi super ruleta',
   },
   getters: {
     getNumOfPlayers: state => state.players.length,

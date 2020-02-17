@@ -1,9 +1,14 @@
 <template>
-  <div id="container"></div>
+  <div>
+    <div id="container" v-show="getNumOfPlayers > 0"></div>
+    <fade-transition>
+      <p class="winner">{{ winner }}</p>
+    </fade-transition>
+    <p v-show="getNumOfPlayers === 0">¡Hola!<br/>Añade un título y opciones a tu super ruleta de la suerte.</p>
+  </div>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
-import randomColor from 'randomcolor';
+import { mapState, mapMutations, mapGetters, } from "vuex";
 import gen from 'color-generator';
 
 export default {
@@ -11,7 +16,7 @@ export default {
   data() {
     return {
       width: 375,
-      height: window.innerHeight,
+      height: 450,
       angularVelocity: 0,
       angularVelocityInitial: 0,
       angularVelocities: [],
@@ -26,15 +31,15 @@ export default {
       pointer: null,
       finished: false,
       numWedges: 0,
-      pointerY: 160,
-      wheelY: 320,
-      randomColorVendor: randomColor,
+      pointerY: 30,
+      wheelY: 200,
       genVendor: gen,
-      palette: [],
+      winner: '',
     };
   },
   computed: {
-    ...mapState(["players"])
+    ...mapState(["players"]),
+    ...mapGetters(['getNumOfPlayers']),
   },
   props: {
     forceAngularVelocity: {
@@ -44,14 +49,16 @@ export default {
   },
   watch: {
     forceAngularVelocity(newValue) {
-      this.angularVelocity = this.forceAngularVelocity;
+      this.finished = false;
+      this.angularVelocity = newValue;
+      this.angularVelocityInitial = this.angularVelocity;
+      this.winner = '';
     }
   },
   mounted() {
     Konva.angleDeg = false;
     this.numWedges = this.players.length;
     this.angularVelocity = this.forceAngularVelocity;
-    this.palette = this.getPalette(this.getRandom(['purple']));
     this.init();
   },
   methods: {
@@ -64,7 +71,7 @@ export default {
       this.layer = new Konva.Layer();
       this.wheel = new Konva.Group({
         x: this.stage.width() / 2,
-        y: this.wheelY
+        y: this.wheelY,
       });
 
       for (var n = 0; n < this.numWedges; n++) {
@@ -112,6 +119,7 @@ export default {
         "mouseup touchend",
         () => {
           this.controlled = false;
+          this.winner = '';
           this.angularVelocity = this.getAverageAngularVelocity() * 5;
           this.angularVelocityInitial = this.angularVelocity;
 
@@ -151,26 +159,6 @@ export default {
       setTimeout(function() {
         anim.start();
       }, 1000);
-    },
-    byte2Hex(n) {
-      const nybHexString = "0123456789ABCDEF";
-      return (
-        String(nybHexString.substr((n >> 4) & 0x0f, 1)) +
-        nybHexString.substr(n & 0x0f, 1)
-      );
-    },
-    RGB2Color(r, g, b) {
-      return "#" + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
-    },
-    getPalette(hue) {
-      return this.randomColorVendor({
-        hue: hue,
-        count: this.numWedges,
-        format: 'hsl',
-      });
-    },
-    getRandom(array) {
-      return array[Math.floor(Math.random() * array.length)];
     },
     getColor() {
       return this.genVendor(0.5, 0.8).hexString();
@@ -237,7 +225,7 @@ export default {
       // activate / deactivate wedges based on point intersection
       const shape = this.stage.getIntersection({
         x: this.stage.width() / 2,
-        y: 200
+        y: 100
       });
 
       if (this.controlled) {
@@ -258,8 +246,9 @@ export default {
               .getParent()
               .findOne("Text")
               .text();
-            const price = text.split("\n").join("");
-            console.log("The winner is " + price);
+            const winner = text.split("\n").join("");
+            console.log("The winner is " + winner);
+            this.winner = winner;
           }
           this.finished = true;
         }

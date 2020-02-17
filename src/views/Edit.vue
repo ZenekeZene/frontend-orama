@@ -113,7 +113,8 @@ export default {
       }
     },
     save() {
-      if (this.isEnabledToAdd) {
+      if (this.isEnabledToSave) {
+        console.log('Save!');
         this.setTitle({ title: this.titleLocal });
         this.setPlayers({ players: this.playersLocal });
         this.playersLocal = this.getCopyOfPlayersState();

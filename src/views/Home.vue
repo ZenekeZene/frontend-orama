@@ -3,7 +3,7 @@
     <textarea rows="1" maxlength="42" type="text" v-model="title" disabled></textarea>
     <wheel :forceAngularVelocity="angularVelocity"></wheel>
     <button class="edit" @click="goToEdit"><span class="icon-pencil2"></span></button>
-    <button @click="angularVelocity = calculateAngularVelocity()">¡Lanzar!🤞</button>
+    <button class="launch" @click="angularVelocity = calculateAngularVelocity()">¡Lanzar!🤞</button>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     Wheel,
   },
   computed: {
-    ...mapState(["title"]),
+    ...mapState(['title']),
   },
   data() {
     return {
