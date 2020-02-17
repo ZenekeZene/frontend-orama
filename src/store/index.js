@@ -20,7 +20,7 @@ export default new Vuex.Store({
   },
   mutations: {
     addPlayer(state, payload) {
-      state.players.push(payload.value);
+      state.players.unshift(payload.value);
     },
     removePlayer(state, payload) {
       state.players.splice(payload.index, 1);

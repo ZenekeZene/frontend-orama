@@ -4,6 +4,9 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import Fragment from "vue-fragment";
+Vue.use(Fragment.Plugin);
+
 import "./assets/styles/main.scss";
 
 Vue.use(VModal, { dialog: true });

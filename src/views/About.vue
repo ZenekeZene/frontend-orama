@@ -33,13 +33,6 @@
         <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
       </li>
     </ul>
-    <button
-      class="add"
-      :class="{ '--disabled': !isEnabledToAdd }"
-      @click="addPlayer(playersLocal.length)"
-    >
-      <span class="icon-plus"></span>
-    </button>
     <v-dialog
       name="save-dialog"
       :adaptive="true"
@@ -48,6 +41,15 @@
       height="auto"
       transition="fadeInDown"
     ></v-dialog>
+    <div class="fixed --right">
+    <button
+      class="add fab"
+      :class="{ '--disabled': !isEnabledToAdd }"
+      @click="addPlayer(0)"
+    >
+      <span class="icon-plus"></span>
+    </button>
+  </div>
   </div>
 </template>
 <script>
@@ -102,7 +104,7 @@ export default {
     },
     addPlayer(index) {
       if (this.isEnabledToAdd) {
-        this.playersLocal.push("");
+        this.playersLocal.unshift("");
         this.$nextTick(() => {
           this.$refs[`player-${index}`][0].focus();
         });
@@ -162,11 +164,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .about {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
+  display: block;
   padding: 1rem;
 }
 
@@ -184,42 +182,8 @@ p {
 
 .list {
   width: 100%;
-  max-height: 55vh;
+  max-height: 60vh;
   overflow-y: auto;
-  min-height: 20rem;
-
-  @media screen and (min-width: 500px) {
-
-  }
-}
-
-button {
-  margin-top: 1rem;
-}
-
-.add {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 4rem;
-  height: 4rem;
-  min-height: 4rem;
-  margin: 0;
-  margin-top: 1rem;
-  padding: 0;
-  font-size: 2rem;
-  border-radius: 50%;
-
-  [class^="icon-"] {
-    width: 1.95rem;
-  }
-
-  @media screen and (max-height: 400px) {
-    display: none;
-  }
 }
 
 .--disabled {

@@ -98,7 +98,6 @@ textarea {
   }
 
   &.--title {
-    margin-bottom: 2rem;
     font-size: 2rem;
 
     @media screen and (max-width: 360px) {
@@ -118,6 +117,7 @@ textarea {
 
 h1 {
   font-size: 1.5rem;
+  padding-left: 3rem;
 }
 
 @import "icons/icons.scss";
@@ -174,5 +174,36 @@ canvas {
     @media screen and (min-width: 500px) {
       transform: scale(0.95);
     }
+  }
+}
+
+.fixed {
+  position: fixed !important;
+  bottom: 0;
+  padding: 1rem;
+
+  &.--right {
+    right: 0;
+  }
+}
+
+.fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  min-height: 4rem;
+  margin: 0 0 0 auto;
+  padding: 0;
+  font-size: 2rem;
+  border-radius: 50%;
+
+  [class^="icon-"] {
+    width: 1.95rem;
+  }
+
+  @media screen and (max-height: 400px) {
+    display: none;
   }
 }
