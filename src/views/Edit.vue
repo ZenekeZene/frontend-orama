@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="edit">
     <span
       @click="goBack()"
       class="icon-forward --left"
@@ -55,7 +55,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
-  name: "About",
+  name: "Configuration",
   data() {
     return {
       playersLocal: [],
@@ -162,63 +162,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.about {
-  display: block;
-  padding: 1rem;
-}
-
-p {
-  width: 100%;
-  text-align: left;
-  font-family: Helvetica;
-  font-weight: 700;
-  letter-spacing: initial;
-}
-
-.save {
-  margin-top: auto;
-}
-
-.list {
-  width: 100%;
-  max-height: 60vh;
-  overflow-y: auto;
-}
-
-.--disabled {
-  opacity: 0.5;
-}
-
-.icon-forward,
-.icon-save {
-  position: absolute;
-  top: 0;
-  padding: 1rem;
-}
-
-.icon-forward {
-  left: 0;
-  font-size: 1.5rem;
-}
-
-.icon-save {
-  top: 3px;
-  right: 0;
-
-  &.--not-saved {
-    &:after {
-      $size: 0.8rem;
-      content: "";
-      position: absolute;
-      top: 0.2rem;
-      left: 0.2rem;
-      display: inline-block;
-      width: $size;
-      height: $size;
-      background-color: orange;
-      border-radius: 50%;
-    }
-  }
-}
-</style>

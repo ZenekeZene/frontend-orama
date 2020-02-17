@@ -1,0 +1,50 @@
+input[type="text"],
+textarea {
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  padding: 1rem 3rem 1rem 1rem;
+  font-size: 1rem;
+  color: white;
+  font-family: Helvetica;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #585b9e99;
+  outline: none;
+}
+
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 0 1rem 0;
+
+  &__clear {
+    position: absolute;
+    right: 3rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  &__delete {
+    padding: 1rem;
+  }
+
+  &.--title {
+    font-size: 2rem;
+
+    @media screen and (max-width: 360px) {
+      margin-bottom: 0;
+    }
+
+    textarea {
+      font-size: 1rem;
+      min-height: 4rem;
+    }
+
+    .input__clear {
+      right: 0;
+    }
+  }
+}

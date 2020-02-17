@@ -1,0 +1,35 @@
+[name="save-dialog"] {
+  color: #2b2b2b;
+  letter-spacing: initial;
+
+  button {
+    border-radius: 0;
+  }
+}
+
+.vue-dialog-buttons .v-dialog-save {
+  font-size: 12px !important;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: 40px;
+  height: 40px;
+  color: white;
+  text-shadow: 0 0 5px black;
+  font: inherit;
+  outline: none;
+  background-color: #e49541;
+}
+
+.dialog-c-title,
+.dialog-c-text {
+  font-family: Helvetica;
+}
+
+.vue-dialog-buttons button {
+  box-shadow: none;
+  background-color: inherit;
+}

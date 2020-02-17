@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import Edit from "../views/Edit.vue";
 
 import VueKonva from "vue-konva";
 
@@ -16,10 +16,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    component: About,
-    props: true,
+    path: "/edit",
+    name: "Edit",
+    component: Edit,
   },
 ];
 
