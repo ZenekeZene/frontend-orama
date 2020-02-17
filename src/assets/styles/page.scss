@@ -1,7 +1,7 @@
 #app {
   position: relative;
   max-width: 375px;
-  max-height: 100vh;
+  max-height: 720px;
   overflow: hidden;
   width: 100%;
   margin: 0 auto;
@@ -41,6 +41,7 @@
 
   @media screen and (min-width: 500px) {
     min-height: 720px;
+    max-height: 720px;
 
     &:hover {
       transform: scale(1.01) rotate3d(1, 1, 1, -2deg);

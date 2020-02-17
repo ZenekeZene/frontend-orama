@@ -2,7 +2,7 @@
   <div>
     <div id="container" v-show="getNumOfPlayers > 0"></div>
     <fade-transition>
-      <p class="winner">{{ winner }}</p>
+      <p v-if="winner.length > 0" class="winner">{{ winner }}</p>
     </fade-transition>
     <p v-show="getNumOfPlayers === 0">¡Hola!<br/>Añade un título y opciones a tu super ruleta de la suerte.</p>
   </div>
