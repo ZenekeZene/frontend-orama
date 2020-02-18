@@ -33,3 +33,11 @@ canvas {
 @import 'fab';
 @import 'vendor';
 @import 'pages/pages';
+
+.version {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7rem;
+  padding: 0.2rem;
+}
