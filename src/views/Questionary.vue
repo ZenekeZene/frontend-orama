@@ -25,6 +25,12 @@
           }"
         >
           {{ option.value }}
+          <fade-transition>
+            <span
+              v-if="option.state === 'correct' && completed"
+              class="icon-book"
+            ></span>
+          </fade-transition>
         </button>
       </transition-group>
     </ul>
@@ -61,7 +67,7 @@ export default {
         ],
         correctIndex: 1
       },
-      seconds: 10,
+      seconds: 2,
       optionSelectedIndex: -1,
       completed: false,
       nextIsVisible: false,

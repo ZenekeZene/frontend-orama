@@ -37,11 +37,24 @@
     }
 
     &.--correct {
+      position: relative;
       background: $color-secondary;
     }
 
     &.--selected {
       border: 3px solid $color-secondary;
+    }
+
+    .icon-book {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border-radius: 50%;
+      background-color: darken($color-secondary, 15);
+      font-size: 1rem;
+      padding: 0.5rem;
+      width: 2rem;
+      height: 2rem;
     }
   }
 
