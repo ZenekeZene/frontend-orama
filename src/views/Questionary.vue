@@ -57,25 +57,27 @@
       </vue-code-highlight>
     </div>
     <fade-transition>
-      <div v-if="clockIsVisible" class="clock">{{ seconds }}s</div>
+      <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
     <button class="next" v-if="nextIsVisible">Siguiente</button>
   </div>
 </template>
 <script>
 import { component as VueCodeHighlight } from "vue-code-highlight";
+import Clock from "../components/Clock";
 
 export default {
   name: "Questionary",
   components: {
-    VueCodeHighlight
+    VueCodeHighlight,
+    Clock
   },
   data() {
     return {
       question: {
         title: "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry?",
         options: ["XML", "CSS", "HTML", "JS"],
-        correctIndex: 1,
+        correctIndex: 3,
         note: {
           description:
             "Es porque la gente denosta este lenguaje: <a href='http://www.google.es/' target='_BLANK'>Link</a>",
@@ -107,19 +109,12 @@ const foo = (a, b) => {
       noteIsVisible: false
     };
   },
-  mounted() {
-    const timer = setInterval(() => {
-      if (this.seconds > 0) {
-        this.seconds--;
-      } else {
-        this.completed = true;
-        this.clockIsVisible = false;
-        this.nextIsVisible = true;
-        clearInterval(timer);
-      }
-    }, 1000);
-  },
   methods: {
+    timeFinished() {
+      this.completed = true;
+      this.clockIsVisible = false;
+      this.nextIsVisible = true;
+    },
     beforeEnter: function(el) {
       el.style.opacity = 0;
     },
