@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div id="container" v-show="getNumOfPlayers > 0" class="wheel" style="text-align: center;"></div>
+    <div
+      id="container"
+      v-show="getNumOfPlayers > 0"
+      class="wheel"
+      style="text-align: center;"
+    ></div>
     <fade-transition>
       <p v-if="winner.length > 0" class="winner">{{ winner }}</p>
     </fade-transition>
@@ -11,7 +16,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import gen from "color-generator";
 
 export default {
@@ -139,7 +144,7 @@ export default {
 
       this.stage.addEventListener(
         "mousemove touchmove",
-        evt => {
+        () => {
           const mousePos = this.stage.getPointerPosition();
           if (this.controlled && mousePos && this.target) {
             const x = mousePos.x - this.wheel.getX();
@@ -252,6 +257,9 @@ export default {
             const winner = text.split("\n").join("");
             console.log("The winner is " + winner);
             this.winner = winner;
+            setTimeout(() => {
+              this.$router.push("questionary");
+            }, 1000);
           }
           this.finished = true;
         }

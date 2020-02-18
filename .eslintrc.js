@@ -21,5 +21,9 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+  globals: {
+    Konva: "readable",
+    Velocity: "readable"
+  }
 };

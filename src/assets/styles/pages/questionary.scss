@@ -1,0 +1,50 @@
+.questionary {
+  padding: 1rem;
+
+  .options {
+    list-style: none;
+    padding: 1rem;
+
+    li {
+      text-align: center;
+    }
+  }
+
+  button {
+    margin: 0.5rem 0;
+  }
+
+  .list-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  .list-enter-active {
+    // .list-leave-active
+    transform: translateX(100%);
+    transition: all 1s;
+  }
+
+  .option {
+    border: 3px solid $color-primary;
+
+    &.--incorrect {
+      opacity: 0.5 !important;
+    }
+
+    &.--correct {
+      background: $color-secondary;
+    }
+
+    &.--selected {
+      border: 3px solid $color-secondary;
+    }
+  }
+
+  .next {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

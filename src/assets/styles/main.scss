@@ -41,3 +41,11 @@ canvas {
   font-size: 0.7rem;
   padding: 0.2rem;
 }
+
+.clock {
+  @extend .fab;
+  @include neomorphs;
+  display: flex;
+  margin: 0 auto;
+  font-size: 1.3rem;
+}

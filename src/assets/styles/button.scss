@@ -1,3 +1,9 @@
+@mixin neomorphs {
+  background: linear-gradient(145deg, #515495, #6064b1);
+  box-shadow:  11px 11px 21px #4d4f8c, 
+              -11px -11px 21px #686bbe;
+}
+
 button {
   -webkit-appearance: none;
   max-width: calc(375px - 2rem);
@@ -14,16 +20,19 @@ button {
   border: none;
   transition: all $duration ease-in;
   outline: none;
-  background: linear-gradient(145deg, #515495, #6064b1);
-  box-shadow:  11px 11px 21px #4d4f8c, 
-              -11px -11px 21px #686bbe;
+  @include neomorphs;
   cursor: pointer;
-
-  &:hover {
-    transform: scale(1.05) translateX(-48%) translateY(0);
-  }
 
   &:active {
     outline: none;
+  }
+
+  &[simple] {
+    background-color: $color-primary;
+    box-shadow: none;
+  }
+
+  &:hover {
+    background: $color-secondary;
   }
 }
