@@ -1,7 +1,11 @@
 <template>
   <div class="questionary">
     <h1>{{ question.title }}</h1>
-    <ul class="options" :class="{ '--is-completed': completed }" v-if="!noteIsVisible">
+    <ul
+      class="options"
+      :class="{ '--is-completed': completed }"
+      v-if="!noteIsVisible"
+    >
       <transition-group
         appear
         name="list"
@@ -27,24 +31,31 @@
           {{ option }}
           <fade-transition>
             <span
-              v-if="question.correctIndex === index && completed && question.note"
+              v-if="
+                question.correctIndex === index && completed && question.note
+              "
               class="icon-book"
             ></span>
           </fade-transition>
         </button>
       </transition-group>
     </ul>
-    <ul class="options" v-if="noteIsVisible">
+    <ul class="options" v-else>
       <li>
-        <button
-            simple
-            class="option --correct"
-          >{{ question.options[question.correctIndex] }}</button>
-        </li>
+        <button simple class="option --correct">
+          {{ question.options[question.correctIndex] }}
+        </button>
+      </li>
     </ul>
-    <fade-transition>
-      <p v-if="noteIsVisible" v-html="question.note"></p>
-    </fade-transition>
+    <div v-if="noteIsVisible">
+      <p v-html="question.note.description" class="explanation"></p>
+      <vue-code-highlight
+        v-for="(embed, index) in question.note.embeds"
+        :key="`embed-${index}`"
+      >
+        {{ embed.value }}
+      </vue-code-highlight>
+    </div>
     <fade-transition>
       <div v-if="clockIsVisible" class="clock">{{ seconds }}s</div>
     </fade-transition>
@@ -52,24 +63,48 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
+import { component as VueCodeHighlight } from "vue-code-highlight";
+
 export default {
   name: "Questionary",
+  components: {
+    VueCodeHighlight
+  },
   data() {
     return {
       question: {
         title: "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry?",
         options: ["XML", "CSS", "HTML", "JS"],
         correctIndex: 1,
-        note:
-          "Es porque la gente denosta este lenguaje: <a href='http://www.google.es/' target='_BLANK'>Link</a>",
+        note: {
+          description:
+            "Es porque la gente denosta este lenguaje: <a href='http://www.google.es/' target='_BLANK'>Link</a>",
+          embeds: [
+            {
+              type: "code",
+              value: `
+const foo = (a, b) => {
+  return a + b;
+}
+              `
+            },
+            {
+              type: "code",
+              value: `
+.class {
+  border-radius: 50%;
+}
+              `
+            }
+          ]
+        }
       },
       seconds: 1,
       optionSelectedIndex: -1,
       completed: false,
       nextIsVisible: false,
       clockIsVisible: true,
-      noteIsVisible: false,
+      noteIsVisible: false
     };
   },
   mounted() {
@@ -108,7 +143,7 @@ export default {
           this.noteIsVisible = true;
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>

@@ -49,3 +49,8 @@ canvas {
   margin: 0 auto;
   font-size: 1.3rem;
 }
+
+@import 'vendor/prism-synthwave84';
+pre[class*="language-"] {
+  border: none;
+}
