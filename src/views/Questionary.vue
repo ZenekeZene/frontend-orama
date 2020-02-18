@@ -1,7 +1,7 @@
 <template>
   <div class="questionary">
     <h1>{{ question.title }}</h1>
-    <ul class="options" :class="{ '--is-completed': completed }">
+    <ul class="options" :class="{ '--is-completed': completed }" v-if="!noteIsVisible">
       <transition-group
         appear
         name="list"
@@ -14,26 +14,37 @@
         <button
           simple
           v-for="(option, index) in question.options"
-          :key="`option-${index}`"
+          :key="`option-${index}-${option}`"
           :data-index="index"
-          @click="selectOption(index)"
           class="option"
           :class="{
             '--selected': optionSelectedIndex === index,
             '--incorrect': question.correctIndex !== index && completed,
-            '--correct': option.state === 'correct' && completed
+            '--correct': question.correctIndex === index && completed
           }"
+          @click="selectOption(index)"
         >
-          {{ option.value }}
+          {{ option }}
           <fade-transition>
             <span
-              v-if="option.state === 'correct' && completed"
+              v-if="question.correctIndex === index && completed && question.note"
               class="icon-book"
             ></span>
           </fade-transition>
         </button>
       </transition-group>
     </ul>
+    <ul class="options" v-if="noteIsVisible">
+      <li>
+        <button
+            simple
+            class="option --correct"
+          >{{ question.options[question.correctIndex] }}</button>
+        </li>
+    </ul>
+    <fade-transition>
+      <p v-if="noteIsVisible" v-html="question.note"></p>
+    </fade-transition>
     <fade-transition>
       <div v-if="clockIsVisible" class="clock">{{ seconds }}s</div>
     </fade-transition>
@@ -41,58 +52,35 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
 export default {
   name: "Questionary",
   data() {
     return {
       question: {
         title: "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry?",
-        options: [
-          {
-            state: "incorrect",
-            value: "XML"
-          },
-          {
-            state: "correct",
-            value: "CSS"
-          },
-          {
-            state: "incorrect",
-            value: "HTML"
-          },
-          {
-            state: "incorrect",
-            value: "JS"
-          }
-        ],
-        correctIndex: 1
+        options: ["XML", "CSS", "HTML", "JS"],
+        correctIndex: 1,
+        note:
+          "Es porque la gente denosta este lenguaje: <a href='http://www.google.es/' target='_BLANK'>Link</a>",
       },
-      seconds: 2,
+      seconds: 1,
       optionSelectedIndex: -1,
       completed: false,
       nextIsVisible: false,
-      clockIsVisible: true
+      clockIsVisible: true,
+      noteIsVisible: false,
     };
   },
-  computed: {
-    options: function() {
-      if (!this.completed) {
-        return this.question.options;
-      } else {
-        return this.question.options[this.question.correctIndex];
-      }
-    }
-  },
   mounted() {
-    setInterval(() => {
+    const timer = setInterval(() => {
       if (this.seconds > 0) {
         this.seconds--;
       } else {
         this.completed = true;
         this.clockIsVisible = false;
-        setTimeout(() => {
-          this.nextIsVisible = true;
-        }, 2000);
+        this.nextIsVisible = true;
+        clearInterval(timer);
       }
     }, 1000);
   },
@@ -115,8 +103,12 @@ export default {
     selectOption(index) {
       if (!this.completed) {
         this.optionSelectedIndex = index;
+      } else {
+        if (index === this.question.correctIndex && this.question.note) {
+          this.noteIsVisible = true;
+        }
       }
-    }
-  }
+    },
+  },
 };
 </script>
