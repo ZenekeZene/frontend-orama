@@ -8,6 +8,10 @@
     li {
       text-align: center;
     }
+
+    &.--is-completed button:hover {
+      background: $gradient-button;
+    }
   }
 
   button {
@@ -25,7 +29,7 @@
     transition: all 1s;
   }
 
-  .option {
+  .options button.option {
     border: 3px solid $color-primary;
 
     &.--incorrect {

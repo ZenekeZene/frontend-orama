@@ -1,7 +1,7 @@
 <template>
   <div class="questionary">
     <h1>{{ question.title }}</h1>
-    <ul class="options">
+    <ul class="options" :class="{ '--is-completed': completed }">
       <transition-group
         appear
         name="list"
@@ -107,7 +107,9 @@ export default {
       }, delay);
     },
     selectOption(index) {
-      this.optionSelectedIndex = index;
+      if (!this.completed) {
+        this.optionSelectedIndex = index;
+      }
     }
   }
 };

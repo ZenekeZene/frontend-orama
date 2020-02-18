@@ -1,5 +1,7 @@
+$gradient-button: linear-gradient(145deg, #515495, #6064b1);
+
 @mixin neomorphs {
-  background: linear-gradient(145deg, #515495, #6064b1);
+  background: $gradient-button;
   box-shadow:  11px 11px 21px #4d4f8c, 
               -11px -11px 21px #686bbe;
 }
