@@ -1,41 +1,30 @@
 <template>
   <ul class="options" :class="{ '--is-completed': showCorrect }">
-    <transition-group
-      appear
-      name="list"
-      tag="li"
-      v-bind:css="false"
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:leave="leave"
-    >
-      <button
-        simple
+    <answer-transition :optionsLength="options.length">
+      <answer
         v-for="(option, index) in options"
-        :key="`option-${index}-${option}`"
-        :data-index="index"
-        class="option"
-        :class="{
-          '--selected': optionSelectedIndex === index,
-          '--incorrect': correctIndex !== index && showCorrect,
-          '--correct': correctIndex === index && showCorrect
-        }"
-        @click="selectOption(index)"
+        :key="`option-${index}`"
+        :index="index"
+        :isCorrect="correctIndex === index"
+        :showCorrect="showCorrect"
+        :hasNote="hasNote"
+        :class="{ '--selected': optionSelectedIndex === index }"
+        @click.native="selectOption(index)"
+        >{{ option }}</answer
       >
-        {{ option }}
-        <fade-transition>
-          <span
-            v-if="correctIndex === index && showCorrect && hasNote"
-            class="icon-book"
-          ></span>
-        </fade-transition>
-      </button>
-    </transition-group>
+    </answer-transition>
   </ul>
 </template>
 <script>
+import Answer from "./Answer";
+import AnswerTransition from "./AnswerTransition";
+
 export default {
   name: "Options",
+  components: {
+    Answer,
+    AnswerTransition
+  },
   props: {
     options: {
       type: Array,
@@ -63,21 +52,6 @@ export default {
     selectOption(index) {
       this.optionSelectedIndex = index;
       this.$emit("optionSelected", index);
-    },
-    beforeEnter(el) {
-      el.style.opacity = 0;
-    },
-    enter(el, done) {
-      const delay = el.dataset.index * 150;
-      setTimeout(function() {
-        Velocity(el, { opacity: 1 }, { complete: done });
-      }, delay);
-    },
-    leave(el, done) {
-      const delay = (this.options.length - el.dataset.index) * 150;
-      setTimeout(function() {
-        Velocity(el, { opacity: 0 }, { duration: 1000 }, { complete: done });
-      }, delay);
     }
   }
 };

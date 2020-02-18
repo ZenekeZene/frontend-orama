@@ -36,7 +36,6 @@ export default {
   data() {
     return {
       questionLocal: question[0],
-      optionSelectedIndex: -1,
       completed: false,
       nextIsVisible: false,
       clockIsVisible: true,
@@ -49,18 +48,17 @@ export default {
       this.clockIsVisible = false;
       this.nextIsVisible = true;
     },
-
     selectOption(index) {
-      if (!this.completed) {
-        this.optionSelectedIndex = index;
-      } else {
-        if (
-          index === this.questionLocal.correctIndex &&
-          this.questionLocal.note
-        ) {
-          this.noteIsVisible = true;
-        }
+      if (
+        this.completed &&
+        this.isAnswerCorrect(index) &&
+        this.questionLocal.note
+      ) {
+        this.noteIsVisible = true;
       }
+    },
+    isAnswerCorrect(possibleAnswerCorrectIndex) {
+      return possibleAnswerCorrectIndex === this.questionLocal.correctIndex;
     }
   }
 };

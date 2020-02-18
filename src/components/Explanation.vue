@@ -1,18 +1,19 @@
 <template>
-  <section>
+  <section class="explanation">
     <ul class="options">
       <li>
         <button simple class="option --correct">{{ answerCorrect }}</button>
       </li>
     </ul>
-    <div>
-      <p v-html="note.description" class="explanation"></p>
-      <vue-code-highlight
-        v-for="(embed, index) in note.embeds"
-        :key="`embed-${index}`"
-      >
-        {{ embed.value }}
-      </vue-code-highlight>
+    <div class="explanation__wrapper">
+      <div class="explanation__section">
+        <div v-for="(step, index) in note" :key="`step-${index}`">
+          <p v-if="!step.type" v-html="step" class="explanation__description">
+            {{ step }}
+          </p>
+          <vue-code-highlight v-else>{{ step.value }}</vue-code-highlight>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -29,8 +30,8 @@ export default {
       default: ""
     },
     note: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: () => []
     }
   }
 };
