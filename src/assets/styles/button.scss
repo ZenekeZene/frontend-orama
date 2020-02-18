@@ -12,7 +12,7 @@ button {
   background-color: white;
   border-radius: 1.3rem;
   border: none;
-  transition: all 250ms ease-in;
+  transition: all $duration ease-in;
   outline: none;
   background: linear-gradient(145deg, #515495, #6064b1);
   box-shadow:  11px 11px 21px #4d4f8c, 

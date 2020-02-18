@@ -1,5 +1,5 @@
 [name="save-dialog"] {
-  color: #2b2b2b;
+  color: $color-tertiary;
   letter-spacing: initial;
 
   button {
@@ -8,20 +8,18 @@
 }
 
 .vue-dialog-buttons .v-dialog-save {
-  font-size: 12px !important;
-  background: transparent;
-  padding: 0;
+  font-size: 12px;
   margin: 0;
-  border: 0;
-  cursor: pointer;
-  box-sizing: border-box;
+  padding: 0;
   line-height: 40px;
   height: 40px;
   color: white;
   text-shadow: 0 0 5px black;
   font: inherit;
   outline: none;
-  background-color: #e49541;
+  cursor: pointer;
+  background-color: $color-secondary;
+  border: 0;
 }
 
 .dialog-c-title,
@@ -35,5 +33,5 @@
 }
 
 .v--modal-overlay .v--modal-box {
-  left: 1.7rem !important;
+  left: 1.7rem !important; // js override
 }
