@@ -5,8 +5,9 @@
       v-if="!noteIsVisible"
       :options="questionLocal.options"
       :correctIndex="questionLocal.correctIndex"
-      :hasNote="questionLocal.note !== null"
+      :hasNote="questionLocal.note.length > 0"
       :showCorrect="completed"
+      :forceReset="forceReset"
       @optionSelected="selectOption($event)"
     ></options>
     <explanation
@@ -42,13 +43,22 @@ export default {
     Explanation,
     Options
   },
+  watch: {
+    questionLocal() {
+      this.forceReset = true;
+      this.$nextTick(() => {
+        this.forceReset = false;
+      })
+    },
+  },
   data() {
     return {
       questionLocal: question[0],
       completed: false,
       nextIsVisible: false,
       clockIsVisible: true,
-      noteIsVisible: false
+      noteIsVisible: false,
+      forceReset: false,
     };
   },
   methods: {
@@ -61,7 +71,7 @@ export default {
       if (
         this.completed &&
         this.isAnswerCorrect(index) &&
-        this.questionLocal.note
+        this.questionLocal.note.length > 0
       ) {
         this.noteIsVisible = true;
       }

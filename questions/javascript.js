@@ -40,6 +40,7 @@ const bar = (a, b) => {
     title:
       "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry? Ahora sin explicación",
     options: ["XML", "CSS", "HTML", "JS"],
-    correctIndex: 1
+    correctIndex: 1,
+	note: [],
   }
 ];

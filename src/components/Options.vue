@@ -41,7 +41,18 @@ export default {
     showCorrect: {
       type: Boolean,
       default: false
-    }
+    },
+	forceReset: {
+		type: Boolean,
+      	default: false
+	},
+  },
+  watch: {
+	forceReset(value) {
+		if (value) {
+			this.optionSelectedIndex = -1;
+		}
+	},
   },
   data() {
     return {
@@ -50,8 +61,10 @@ export default {
   },
   methods: {
     selectOption(index) {
-      this.optionSelectedIndex = index;
-      this.$emit("optionSelected", index);
+		if (!this.showCorrect) {
+			this.optionSelectedIndex = index;
+			this.$emit("optionSelected", index);
+		}
     }
   }
 };
