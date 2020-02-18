@@ -8,15 +8,15 @@ export default new Vuex.Store({
   strict: process.env.NODE_ENV !== "production",
   plugins: [
     createPersistedState({
-      key: "despido-state",
-    }),
+      key: "despido-state"
+    })
   ],
   state: {
-    players: [],
-    title: 'Título de mi super ruleta',
+    players: ["Javascript", "CSS", "HTML", "A11y"],
+    title: "Título de mi super ruleta"
   },
   getters: {
-    getNumOfPlayers: state => state.players.length,
+    getNumOfPlayers: state => state.players.length
   },
   mutations: {
     addPlayer(state, payload) {
@@ -33,8 +33,8 @@ export default new Vuex.Store({
     },
     setTitle(state, payload) {
       state.title = payload.title;
-    },
+    }
   },
   actions: {},
-  modules: {},
+  modules: {}
 });
