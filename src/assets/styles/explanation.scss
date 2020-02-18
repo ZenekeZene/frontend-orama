@@ -1,6 +1,10 @@
 .explanation {
   position: relative;
 
+  .options {
+	  padding: 0 1rem;
+  }
+
   .option {
     padding: 0;
   }
@@ -19,7 +23,7 @@
 
 	$color: #4f4f6e;
     &:before {
-      top: 0;
+      top: -1px;
 	  background: linear-gradient(to bottom, $color 0%, rgba($color, 0) 100%);
     }
 
@@ -30,7 +34,7 @@
   }
 
   &__section {
-    max-height: 50vh;
+    max-height: 54vh;
     overflow-y: auto;
 	padding: 1rem 0;
   }

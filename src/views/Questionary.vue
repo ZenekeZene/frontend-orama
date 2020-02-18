@@ -17,7 +17,16 @@
     <fade-transition>
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
-    <button class="next" v-if="nextIsVisible">Siguiente</button>
+    <button class="next" v-if="noteIsVisible" @click="returnToQuestion">
+      Atrás
+    </button>
+    <button
+      class="next"
+      v-if="nextIsVisible && !noteIsVisible"
+      @click="nextQuestion"
+    >
+      Siguiente
+    </button>
   </div>
 </template>
 <script>
@@ -59,6 +68,14 @@ export default {
     },
     isAnswerCorrect(possibleAnswerCorrectIndex) {
       return possibleAnswerCorrectIndex === this.questionLocal.correctIndex;
+    },
+    returnToQuestion() {
+      this.noteIsVisible = false;
+    },
+    nextQuestion() {
+      this.questionLocal = question[1];
+      this.clockIsVisible = true;
+      this.completed = false;
     }
   }
 };
