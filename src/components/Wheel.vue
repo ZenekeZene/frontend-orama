@@ -1,22 +1,25 @@
 <template>
   <div>
-    <div id="container" v-show="getNumOfPlayers > 0"></div>
+    <div id="container" v-show="getNumOfPlayers > 0" class="wheel" style="text-align: center;"></div>
     <fade-transition>
       <p v-if="winner.length > 0" class="winner">{{ winner }}</p>
     </fade-transition>
-    <p v-show="getNumOfPlayers === 0">¡Hola!<br/>Añade un título y opciones a tu super ruleta de la suerte.</p>
+    <p v-show="getNumOfPlayers === 0">
+      ¡Hola!
+      <br />Añade un título y opciones a tu super ruleta de la suerte.
+    </p>
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapGetters, } from "vuex";
-import gen from 'color-generator';
+import { mapState, mapMutations, mapGetters } from "vuex";
+import gen from "color-generator";
 
 export default {
   name: "Wheel",
   data() {
     return {
       width: 375,
-      height: 450,
+      height: 390,
       angularVelocity: 0,
       angularVelocityInitial: 0,
       angularVelocities: [],
@@ -34,12 +37,12 @@ export default {
       pointerY: 30,
       wheelY: 200,
       genVendor: gen,
-      winner: '',
+      winner: ""
     };
   },
   computed: {
     ...mapState(["players"]),
-    ...mapGetters(['getNumOfPlayers']),
+    ...mapGetters(["getNumOfPlayers"])
   },
   props: {
     forceAngularVelocity: {
@@ -52,7 +55,7 @@ export default {
       this.finished = false;
       this.angularVelocity = newValue;
       this.angularVelocityInitial = this.angularVelocity;
-      this.winner = '';
+      this.winner = "";
     }
   },
   mounted() {
@@ -71,7 +74,7 @@ export default {
       this.layer = new Konva.Layer();
       this.wheel = new Konva.Group({
         x: this.stage.width() / 2,
-        y: this.wheelY,
+        y: this.wheelY
       });
 
       for (var n = 0; n < this.numWedges; n++) {
@@ -119,7 +122,7 @@ export default {
         "mouseup touchend",
         () => {
           this.controlled = false;
-          this.winner = '';
+          this.winner = "";
           this.angularVelocity = this.getAverageAngularVelocity() * 5;
           this.angularVelocityInitial = this.angularVelocity;
 
@@ -200,7 +203,7 @@ export default {
       const text = new Konva.Text({
         text: `        ${this.players[n]}`,
         fontFamily: "Helvetica",
-        fontSize: 30 - (this.players[n].length * 0.9),
+        fontSize: 30 - this.players[n].length * 0.9,
         fill: "white",
         align: "left",
         rotation: cMini * 2,
@@ -256,10 +259,7 @@ export default {
       this.lastRotation = this.wheel.rotation();
 
       if (shape) {
-        if (
-          shape &&
-          (!this.activeWedge || shape._id !== this.activeWedge._id)
-        ) {
+        if (!this.activeWedge || shape._id !== this.activeWedge._id) {
           this.pointer.y(this.pointerY - 10);
 
           new Konva.Tween({

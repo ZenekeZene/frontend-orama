@@ -1,10 +1,13 @@
+$color-primary: #5a5da5;
+@import '_breakpoints';
+
 @import 'base';
 @import "icons/icons.scss";
 
 @include icon("") {
   &:hover {
     color: #e49541;
-    transition: all 250ms ease-in;
+    transition: all 150ms ease-in;
   }
 }
 
@@ -14,7 +17,7 @@ canvas {
   transition: all 150ms ease-in-out;
 
   &:hover {
-    @media screen and (min-width: 500px) {
+    @include mq($from: phablet) {
       transform: scale(0.95);
     }
   }

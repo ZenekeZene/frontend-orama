@@ -9,7 +9,7 @@ textarea {
   font-family: Helvetica;
   background: transparent;
   border: none;
-  border-bottom: 3px solid #585b9e99;
+  border-bottom: 3px solid rgba($color-primary, 0.5);
   outline: none;
 }
 
@@ -34,7 +34,7 @@ textarea {
   &.--title {
     font-size: 2rem;
 
-    @media screen and (max-width: 360px) {
+    @include mq($until: mobile) {
       margin-bottom: 0;
     }
 

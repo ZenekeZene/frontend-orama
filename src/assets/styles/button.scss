@@ -12,17 +12,15 @@ button {
   background-color: white;
   border-radius: 1.3rem;
   border: none;
-  //border-bottom: 5px solid grey;
   transition: all 250ms ease-in;
   outline: none;
-  transform: translateY(0);
   background: linear-gradient(145deg, #515495, #6064b1);
   box-shadow:  11px 11px 21px #4d4f8c, 
               -11px -11px 21px #686bbe;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateX(-48%) translateY(0);
   }
 
   &:active {
