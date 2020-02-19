@@ -37,12 +37,12 @@ export default {
     hasNote: {
       type: Boolean,
       default: false
-    }
+    },
   },
   computed: {
     showIconNote() {
       return this.isCorrect && this.showCorrect && this.hasNote;
-    }
-  }
+    },
+  },
 };
 </script>

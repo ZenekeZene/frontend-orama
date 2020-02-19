@@ -41,7 +41,7 @@ export default {
   components: {
     Clock,
     Explanation,
-    Options
+    Options,
   },
   watch: {
     questionLocal() {
@@ -83,10 +83,12 @@ export default {
       this.noteIsVisible = false;
     },
     nextQuestion() {
-      this.questionLocal = question[1];
-      this.clockIsVisible = true;
-      this.completed = false;
-    }
-  }
+      if (this.completed) {
+        this.questionLocal = question[Math.round(Math.random())];
+        this.clockIsVisible = true;
+        this.completed = false;
+      }
+    },
+  },
 };
 </script>

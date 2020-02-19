@@ -61,11 +61,11 @@ export default {
   },
   methods: {
     selectOption(index) {
-		if (!this.showCorrect) {
-			this.optionSelectedIndex = index;
-			this.$emit("optionSelected", index);
-		}
-    }
-  }
+      if (!this.showCorrect) {
+        this.optionSelectedIndex = index;
+      }
+      this.$emit("optionSelected", index);
+    },
+  },
 };
 </script>
