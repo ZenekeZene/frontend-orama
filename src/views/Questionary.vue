@@ -6,7 +6,7 @@
       @optionSelected="responseIsVisible = true"
       @noteShown="noteIsVisible = $event"
     ></question>
-    <fade-transition>
+    <fade-transition appear>
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
     <fade-transition mode="out-in">

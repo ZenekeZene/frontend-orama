@@ -1,10 +1,5 @@
 <template>
   <section class="explanation">
-    <ul class="options">
-      <li>
-        <button simple class="option --correct">{{ answerCorrect }}</button>
-      </li>
-    </ul>
     <div class="explanation__wrapper">
       <div class="explanation__section">
         <div v-for="(step, index) in note" :key="`step-${index}`">
@@ -14,7 +9,6 @@
           <vue-code-highlight v-else>{{ step.value }}</vue-code-highlight>
         </div>
       </div>
-      <slot></slot>
     </div>
   </section>
 </template>

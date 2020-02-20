@@ -1,6 +1,16 @@
 <template>
   <div class="question" :class="{ '--expanded': noteIsVisible }">
+    <fade-transition>
+      <span class="back" v-if="noteIsVisible" @click="returnToQuestion"
+        ><span class="icon-forward"></span
+      ></span>
+    </fade-transition>
     <h1>{{ questionLocal.title }}</h1>
+    <p v-if="noteIsVisible" class="correct-answer">
+      Respuesta:<span>{{
+        questionLocal.options[questionLocal.correctIndex]
+      }}</span>
+    </p>
     <fade-transition mode="out-in">
       <options
         v-if="!noteIsVisible"
@@ -17,10 +27,7 @@
         key="explanation"
         :answerCorrect="questionLocal.options[questionLocal.correctIndex]"
         :note="questionLocal.note"
-        ><span class="back" v-if="noteIsVisible" @click="returnToQuestion"
-          >Atrás</span
-        >
-      </explanation>
+      ></explanation>
     </fade-transition>
   </div>
 </template>

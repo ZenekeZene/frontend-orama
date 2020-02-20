@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="height: 100%;">
     <answer-transition
       :optionsLength="options.length"
       :class="{ '--is-completed': showCorrect }"
