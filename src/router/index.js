@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Edit from "../views/Edit.vue";
 import Questionary from "../views/Questionary.vue";
+import Result from "../views/Result.vue";
 
 import VueKonva from "vue-konva";
 
@@ -25,6 +26,11 @@ const routes = [
     path: "/questionary",
     name: "Questionary",
     component: Questionary
+  },
+  {
+    path: "/result",
+    name: "Result",
+    component: Result
   }
 ];
 

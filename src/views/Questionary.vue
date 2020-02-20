@@ -1,5 +1,8 @@
 <template>
   <article class="questionary" page>
+    <span class="indicator"
+      >{{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span
+    >
     <question
       :questionLocal="questionLocal"
       :showCorrect="completed"
@@ -24,7 +27,7 @@
   </article>
 </template>
 <script>
-import question from "../../questions/javascript";
+import questions from "../../questions/javascript";
 import Question from "../components/Question";
 import Clock from "../components/Clock";
 
@@ -36,7 +39,9 @@ export default {
   },
   data() {
     return {
-      questionLocal: question[0],
+      totalQuestions: questions.length,
+      currentQuestionIndex: 0,
+      questionLocal: questions[0],
       completed: false,
       nextIsVisible: false,
       clockIsVisible: true,
@@ -54,10 +59,16 @@ export default {
     },
     nextQuestion() {
       if (this.completed) {
-        this.questionLocal = question[Math.round(Math.random())];
-        this.clockIsVisible = true;
-        this.completed = false;
-        this.nextIsVisible = false;
+        if (this.currentQuestionIndex + 1 === this.totalQuestions) {
+          console.log("Final del test");
+          this.$router.push("result");
+        } else {
+          this.currentQuestionIndex++;
+          this.questionLocal = questions[this.currentQuestionIndex];
+          this.clockIsVisible = true;
+          this.completed = false;
+          this.nextIsVisible = false;
+        }
       }
     }
   }
