@@ -38,9 +38,12 @@ canvas {
 .version {
   position: absolute;
   top: 0;
-  right: 0;
-  font-size: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
   padding: 0.2rem;
+  font-size: 0.7rem;
+  opacity: 0.3;
 }
 
 .clock {

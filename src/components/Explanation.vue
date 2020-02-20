@@ -14,6 +14,7 @@
           <vue-code-highlight v-else>{{ step.value }}</vue-code-highlight>
         </div>
       </div>
+      <slot></slot>
     </div>
   </section>
 </template>

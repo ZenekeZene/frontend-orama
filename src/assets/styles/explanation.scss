@@ -1,8 +1,9 @@
 .explanation {
   position: relative;
+  border-radius: 0 0 2rem 2rem;
 
   .options {
-	  padding: 0 1rem;
+    padding: 0 1rem;
   }
 
   .option {
@@ -15,28 +16,32 @@
     &:before,
     &:after {
       content: "";
-	  position: absolute;
-	  display: block;
+      position: absolute;
+      display: block;
       width: 100%;
       height: 1.3rem;
     }
 
-	$color: #4f4f6e;
+    $color: #4f4f6e;
     &:before {
       top: -1px;
-	  background: linear-gradient(to bottom, $color 0%, rgba($color, 0) 100%);
+      background: linear-gradient(to bottom, $color 0%, rgba($color, 0) 100%);
     }
 
     &:after {
       bottom: 0;
-	  background: linear-gradient(to top, #50558a 0%, rgba(#50558a, 0) 100%);
+      background: linear-gradient(to top, #50558a 0%, rgba(#50558a, 0) 100%);
     }
   }
 
   &__section {
     max-height: 54vh;
     overflow-y: auto;
-	padding: 1rem 0;
+    padding: 1rem 0;
+
+    @at-root .--expanded & {
+      max-height: 66vh;
+    }
   }
 
   &__description {

@@ -1,5 +1,5 @@
 <template>
-  <div class="edit">
+  <div class="edit" page>
     <span
       @click="goBack()"
       class="icon-forward --left"
@@ -11,27 +11,44 @@
       class="icon-save"
       :class="{
         '--not-saved': haveBeenChanges,
-        '--disabled': !isEnabledToSave,
+        '--disabled': !isEnabledToSave
       }"
     ></span>
     <p>Título:</p>
     <div class="input --title">
-      <textarea rows="1" maxlength="42" ref="title" type="text" v-model="titleLocal"></textarea>
+      <textarea
+        rows="1"
+        maxlength="42"
+        ref="title"
+        type="text"
+        v-model="titleLocal"
+      ></textarea>
       <span class="input__clear" @click="clearTitle">X</span>
     </div>
     <p>Opciones:</p>
     <ul class="list">
       <fade-transition group>
-        <li class="input"
-          v-for="(player, index) in playersLocal" :key="`player-${index}`"
+        <li
+          class="input"
+          v-for="(player, index) in playersLocal"
+          :key="`player-${index}`"
         >
-          <input :ref="`player-${index}`" type="text" maxlength="20" v-model="playersLocal[index]" />
+          <input
+            :ref="`player-${index}`"
+            type="text"
+            maxlength="20"
+            v-model="playersLocal[index]"
+          />
           <span
             v-if="playersLocal[index].length > 0"
             class="input__clear"
             @click="clearInput(index)"
-          >X</span>
-          <span class="input__delete icon-trash" @click="deletePlayer(index)"></span>
+            >X</span
+          >
+          <span
+            class="input__delete icon-trash"
+            @click="deletePlayer(index)"
+          ></span>
         </li>
       </fade-transition>
     </ul>
@@ -44,14 +61,14 @@
       transition="fadeInDown"
     ></v-dialog>
     <div class="fixed --right">
-    <button
-      class="add fab"
-      :class="{ '--disabled': !isEnabledToAdd }"
-      @click="addPlayer(0)"
-    >
-      <span class="icon-plus"></span>
-    </button>
-  </div>
+      <button
+        class="add fab"
+        :class="{ '--disabled': !isEnabledToAdd }"
+        @click="addPlayer(0)"
+      >
+        <span class="icon-plus"></span>
+      </button>
+    </div>
   </div>
 </template>
 <script>
@@ -114,7 +131,7 @@ export default {
     },
     save() {
       if (this.isEnabledToSave) {
-        console.log('Save!');
+        console.log("Save!");
         this.setTitle({ title: this.titleLocal });
         this.setPlayers({ players: this.playersLocal });
         this.playersLocal = this.getCopyOfPlayersState();
