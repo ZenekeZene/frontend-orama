@@ -52,6 +52,7 @@
     font-family: inherit;
 
     &.--fixed {
+      min-height: 2rem;
       font-size: 2rem;
       text-align: center;
     }
@@ -66,6 +67,7 @@
 }
 
 .winner {
+  margin-top: -1rem;
   padding: 1rem;
   text-align: center;
   font-size: 2rem;

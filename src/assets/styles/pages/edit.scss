@@ -20,10 +20,6 @@
 		overflow-y: auto;
 	}
 
-	.--disabled {
-		opacity: 0.5;
-	}
-
 	.icon-forward,
 	.icon-save {
 		position: absolute;
@@ -59,4 +55,8 @@
 	h1 {
 		padding-left: 3rem;
 	}
+}
+
+.--disabled {
+	opacity: 0.5;
 }

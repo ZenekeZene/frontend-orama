@@ -1,7 +1,7 @@
 <template>
   <section>
     <span class="header-nav icon-menu"></span>
-    <span class="version">v0.1.1</span>
+    <span class="version">v0.1.2</span>
   </section>
 </template>
 <script>

@@ -8,13 +8,18 @@
       v-model="title"
       disabled
     ></textarea>
-    <wheel :forceAngularVelocity="angularVelocity"></wheel>
+    <wheel
+      :forceAngularVelocity="angularVelocity"
+      :wasLaunched="wasLaunched"
+      @lockLaunch="wasLaunched = true"
+    ></wheel>
     <button style="display: none" class="edit" @click="goToEdit">
       <span class="icon-pencil"></span>
     </button>
     <button
       class="launch"
-      @click="angularVelocity = calculateAngularVelocity()"
+      @click="launch"
+      :class="{ '--disabled': wasLaunched }"
     >
       ¡Lanzar!🤞
     </button>
@@ -37,12 +42,19 @@ export default {
     return {
       angularVelocity: 0,
       minAngularVelocity: 10,
-      maxAngularVelocity: 20
+      maxAngularVelocity: 20,
+      wasLaunched: false
     };
   },
   methods: {
     goToEdit() {
       this.$router.push("edit");
+    },
+    launch() {
+      if (!this.wasLaunched) {
+        this.wasLaunched = true;
+        this.angularVelocity = this.calculateAngularVelocity();
+      }
     },
     calculateAngularVelocity() {
       return (

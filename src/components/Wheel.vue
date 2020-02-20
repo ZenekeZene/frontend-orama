@@ -42,7 +42,9 @@ export default {
       pointerY: 30,
       wheelY: 200,
       genVendor: gen,
-      winner: ""
+      winner: "",
+      wasLaunchedLocal: false,
+      lockLaunch: false
     };
   },
   computed: {
@@ -53,6 +55,10 @@ export default {
     forceAngularVelocity: {
       type: Number,
       default: 0
+    },
+    wasLaunched: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -67,6 +73,7 @@ export default {
     Konva.angleDeg = false;
     this.numWedges = this.players.length;
     this.angularVelocity = this.forceAngularVelocity;
+    this.wasLaunchedLocal = this.wasLaunched;
     this.init();
   },
   methods: {
@@ -117,27 +124,31 @@ export default {
 
       // bind events
       this.wheel.on("mousedown touchstart", evt => {
-        this.angularVelocity = 0;
-        this.controlled = true;
-        this.target = evt.target;
-        this.finished = false;
+        if (!this.lockLaunch) {
+          this.angularVelocity = 0;
+          this.controlled = true;
+          this.target = evt.target;
+          this.finished = false;
+        }
       });
       // add listeners to container
       this.stage.addEventListener(
         "mouseup touchend",
         () => {
-          this.controlled = false;
-          this.winner = "";
-          this.angularVelocity = this.getAverageAngularVelocity() * 5;
-          this.angularVelocityInitial = this.angularVelocity;
+          if (!this.lockLaunch) {
+            this.controlled = false;
+            this.winner = "";
+            this.angularVelocity = this.getAverageAngularVelocity() * 5;
+            this.angularVelocityInitial = this.angularVelocity;
 
-          if (this.angularVelocity > 20) {
-            this.angularVelocity = 20;
-          } else if (this.angularVelocity < -20) {
-            this.angularVelocity = 0;
+            if (this.angularVelocity > 20) {
+              this.angularVelocity = 20;
+            } else if (this.angularVelocity < -20) {
+              this.angularVelocity = 0;
+            }
+
+            this.angularVelocities = [];
           }
-
-          this.angularVelocities = [];
         },
         false
       );
@@ -146,7 +157,7 @@ export default {
         "mousemove touchmove",
         () => {
           const mousePos = this.stage.getPointerPosition();
-          if (this.controlled && mousePos && this.target) {
+          if (this.controlled && mousePos && this.target && !this.lockLaunch) {
             const x = mousePos.x - this.wheel.getX();
             const y = mousePos.y - this.wheel.getY();
             const atan = Math.atan(y / x);
@@ -247,6 +258,10 @@ export default {
       } else {
         const diff = (frame.timeDiff * this.angularVelocity) / 1000;
         if (diff > 0.001) {
+          if (!this.lockLaunch) {
+            this.$emit("lockLaunch");
+          }
+          this.lockLaunch = true;
           this.wheel.rotate(diff);
         } else if (!this.finished && !this.controlled) {
           if (shape && this.angularVelocityInitial > 5) {
