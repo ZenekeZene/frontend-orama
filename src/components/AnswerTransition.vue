@@ -26,13 +26,13 @@ export default {
     },
     enter(el, done) {
       const delay = el.dataset.index * 150;
-      setTimeout(function() {
+      setTimeout(() => {
         Velocity(el, { opacity: 1 }, { complete: done });
       }, delay);
     },
     leave(el, done) {
       const delay = (this.optionsLength - el.dataset.index) * 150;
-      setTimeout(function() {
+      setTimeout(() => {
         Velocity(el, { opacity: 0 }, { duration: 1000 }, { complete: done });
       }, delay);
     }

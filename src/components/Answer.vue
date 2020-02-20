@@ -4,8 +4,8 @@
     :data-index="index"
     class="option"
     :class="{
-      '--incorrect': !isCorrect && showCorrect,
-      '--correct': isCorrect && showCorrect
+      '--correct': isCorrect && showCorrect,
+      '--incorrect': !isCorrect && showCorrect
     }"
   >
     <slot></slot>
@@ -37,12 +37,12 @@ export default {
     hasNote: {
       type: Boolean,
       default: false
-    },
+    }
   },
   computed: {
     showIconNote() {
       return this.isCorrect && this.showCorrect && this.hasNote;
-    },
-  },
+    }
+  }
 };
 </script>

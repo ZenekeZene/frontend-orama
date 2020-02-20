@@ -42,17 +42,17 @@ export default {
       type: Boolean,
       default: false
     },
-	forceReset: {
-		type: Boolean,
-      	default: false
-	},
+    forceReset: {
+      type: Boolean,
+      default: false
+    }
   },
   watch: {
-	forceReset(value) {
-		if (value) {
-			this.optionSelectedIndex = -1;
-		}
-	},
+    forceReset(value) {
+      if (value) {
+        this.optionSelectedIndex = -1;
+      }
+    }
   },
   data() {
     return {
@@ -65,7 +65,7 @@ export default {
         this.optionSelectedIndex = index;
       }
       this.$emit("optionSelected", index);
-    },
-  },
+    }
+  }
 };
 </script>
