@@ -2,11 +2,12 @@
   <transition-group
     appear
     name="list"
-    tag="li"
+    tag="ul"
     v-bind:css="false"
     v-on:before-enter="beforeEnter"
     v-on:enter="enter"
     v-on:leave="leave"
+    class="options"
   >
     <slot></slot>
   </transition-group>

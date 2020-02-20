@@ -1,7 +1,6 @@
 <template>
   <button
     simple
-    :data-index="index"
     class="option"
     :class="{
       '--correct': isCorrect && showCorrect,

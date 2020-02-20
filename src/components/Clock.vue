@@ -6,7 +6,7 @@ export default {
   name: "Clock",
   data() {
     return {
-      seconds: 5
+      seconds: 1
     };
   },
   mounted() {

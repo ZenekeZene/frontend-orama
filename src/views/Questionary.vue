@@ -1,20 +1,24 @@
 <template>
   <div class="questionary">
     <h1>{{ questionLocal.title }}</h1>
-    <options
-      v-if="!noteIsVisible"
-      :options="questionLocal.options"
-      :correctIndex="questionLocal.correctIndex"
-      :hasNote="questionLocal.note.length > 0"
-      :showCorrect="completed"
-      :forceReset="forceReset"
-      @optionSelected="selectOption($event)"
-    ></options>
-    <explanation
-      v-else
-      :answerCorrect="questionLocal.options[questionLocal.correctIndex]"
-      :note="questionLocal.note"
-    ></explanation>
+    <fade-transition mode="out-in">
+      <options
+        v-if="!noteIsVisible"
+        key="options"
+        :options="questionLocal.options"
+        :correctIndex="questionLocal.correctIndex"
+        :hasNote="questionLocal.note.length > 0"
+        :showCorrect="completed"
+        :forceReset="forceReset"
+        @optionSelected="selectOption($event)"
+      ></options>
+      <explanation
+        v-else
+        key="explanation"
+        :answerCorrect="questionLocal.options[questionLocal.correctIndex]"
+        :note="questionLocal.note"
+      ></explanation>
+    </fade-transition>
     <fade-transition>
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
@@ -41,15 +45,15 @@ export default {
   components: {
     Clock,
     Explanation,
-    Options,
+    Options
   },
   watch: {
     questionLocal() {
       this.forceReset = true;
       this.$nextTick(() => {
         this.forceReset = false;
-      })
-    },
+      });
+    }
   },
   data() {
     return {
@@ -58,7 +62,7 @@ export default {
       nextIsVisible: false,
       clockIsVisible: true,
       noteIsVisible: false,
-      forceReset: false,
+      forceReset: false
     };
   },
   methods: {
@@ -88,7 +92,7 @@ export default {
         this.clockIsVisible = true;
         this.completed = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>

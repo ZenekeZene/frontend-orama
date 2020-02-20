@@ -1,19 +1,26 @@
 <template>
-  <ul class="options" :class="{ '--is-completed': showCorrect }">
-    <answer-transition :optionsLength="options.length">
-      <answer
+  <section>
+    <answer-transition
+      :optionsLength="options.length"
+      :class="{ '--is-completed': showCorrect }"
+    >
+      <li
         v-for="(option, index) in options"
         :key="`option-${index}`"
-        :index="index"
-        :isCorrect="correctIndex === index"
-        :showCorrect="showCorrect"
-        :hasNote="hasNote"
-        :class="{ '--selected': optionSelectedIndex === index }"
-        @click.native="selectOption(index)"
-        >{{ option }}</answer
+        :data-index="index"
       >
+        <answer
+          :index="index"
+          :isCorrect="correctIndex === index"
+          :showCorrect="showCorrect"
+          :hasNote="hasNote"
+          :class="{ '--selected': optionSelectedIndex === index }"
+          @click.native="selectOption(index)"
+          >{{ option }}</answer
+        >
+      </li>
     </answer-transition>
-  </ul>
+  </section>
 </template>
 <script>
 import Answer from "./Answer";
