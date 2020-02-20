@@ -6,14 +6,14 @@
     <question
       :questionLocal="questionLocal"
       :showCorrect="completed"
-      @optionSelected="responseIsVisible = true"
+      @optionSelected="optionSelected"
       @noteShown="noteIsVisible = $event"
     ></question>
     <fade-transition appear>
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
     <fade-transition mode="out-in">
-      <button class="next" v-if="responseIsVisible" @click="timeFinished">
+      <button class="next" v-if="responseIsVisible" @click="confirmResponse">
         Contestar
       </button>
       <button
@@ -27,6 +27,7 @@
   </article>
 </template>
 <script>
+import { mapMutations } from "vuex";
 import questions from "../../questions/javascript";
 import Question from "../components/Question";
 import Clock from "../components/Clock";
@@ -47,10 +48,16 @@ export default {
       clockIsVisible: true,
       responseIsVisible: false,
       noteIsVisible: false,
-      noteShown: false
+      noteShown: false,
+      answerIndexSelected: -1
     };
   },
+  mounted() {
+    this.resetPoints();
+    this.setTotalQuestions({ totalQuestions: this.totalQuestions });
+  },
   methods: {
+    ...mapMutations(["incrementPoint", "setTotalQuestions", "resetPoints"]),
     timeFinished() {
       this.completed = true;
       this.clockIsVisible = false;
@@ -69,6 +76,18 @@ export default {
           this.completed = false;
           this.nextIsVisible = false;
         }
+      }
+    },
+    optionSelected(index) {
+      console.log(index);
+      this.responseIsVisible = true;
+      this.answerIndexSelected = index;
+    },
+    confirmResponse() {
+      console.log("confirmResponse");
+      this.timeFinished();
+      if (this.questionLocal.correctIndex === this.answerIndexSelected) {
+        this.incrementPoint();
       }
     }
   }

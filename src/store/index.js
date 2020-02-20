@@ -8,12 +8,15 @@ export default new Vuex.Store({
   strict: process.env.NODE_ENV !== "production",
   plugins: [
     createPersistedState({
-      key: "despido-state"
+      key: "despido-state",
+      paths: ["players", "title"]
     })
   ],
   state: {
     players: ["Javascript", "CSS", "HTML", "A11y"],
-    title: "Título de mi super ruleta"
+    title: "Título de mi super ruleta",
+    points: 0,
+    totalQuestions: 0
   },
   getters: {
     getNumOfPlayers: state => state.players.length
@@ -33,6 +36,15 @@ export default new Vuex.Store({
     },
     setTitle(state, payload) {
       state.title = payload.title;
+    },
+    resetPoints(state) {
+      state.points = 0;
+    },
+    incrementPoint(state) {
+      state.points += 1;
+    },
+    setTotalQuestions(state, payload) {
+      state.totalQuestions = payload.totalQuestions;
     }
   },
   actions: {},

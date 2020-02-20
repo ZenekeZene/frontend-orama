@@ -77,7 +77,7 @@ export default {
       ) {
         this.noteIsVisible = true;
       } else {
-        this.$emit("optionSelected");
+        this.$emit("optionSelected", index);
       }
     },
     isAnswerCorrect(possibleAnswerCorrectIndex) {
