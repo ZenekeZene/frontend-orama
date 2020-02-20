@@ -14,7 +14,7 @@ export default new Vuex.Store({
   ],
   state: {
     players: ["Javascript", "CSS", "HTML", "A11y"],
-    title: "Título de mi super ruleta",
+    title: "Front-End-ORAMA",
     points: 0,
     totalQuestions: 0
   },

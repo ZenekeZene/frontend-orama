@@ -1,5 +1,6 @@
 .home {
-
+  padding: 2rem 0 !important;
+  
   h1 {
     position: absolute;
     top: 2rem;
@@ -49,6 +50,11 @@
     font-size: 1.7rem;
     border-bottom: none;
     font-family: inherit;
+
+    &.--fixed {
+      font-size: 2rem;
+      text-align: center;
+    }
   }
 }
 

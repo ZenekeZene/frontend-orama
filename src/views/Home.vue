@@ -1,6 +1,7 @@
 <template>
   <div class="home" page>
     <textarea
+      class="--fixed"
       rows="1"
       maxlength="42"
       type="text"
@@ -8,7 +9,7 @@
       disabled
     ></textarea>
     <wheel :forceAngularVelocity="angularVelocity"></wheel>
-    <button class="edit" @click="goToEdit">
+    <button style="display: none" class="edit" @click="goToEdit">
       <span class="icon-pencil"></span>
     </button>
     <button
