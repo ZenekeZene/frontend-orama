@@ -36,5 +36,9 @@ button {
 
   &:hover {
     background: $color-secondary;
+
+    & > * {
+      background: inherit;
+    }
   }
 }

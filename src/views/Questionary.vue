@@ -9,7 +9,7 @@
       @optionSelected="optionSelected"
       @noteShown="noteIsVisible = $event"
     ></question>
-    <fade-transition>
+    <fade-transition appear>
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
     <fade-transition mode="out-in">
@@ -21,7 +21,13 @@
         v-if="nextIsVisible && !noteIsVisible"
         @click="nextQuestion"
       >
-        Siguiente
+        {{ literalNext }}
+        <clock
+          class="--mini"
+          v-if="!clockIsVisible"
+          :seconds="5"
+          @finished="nextQuestion"
+        ></clock>
       </button>
     </fade-transition>
   </article>
@@ -49,7 +55,8 @@ export default {
       responseIsVisible: false,
       noteIsVisible: false,
       noteShown: false,
-      answerIndexSelected: -1
+      answerIndexSelected: -1,
+      literalNext: "Siguiente"
     };
   },
   mounted() {
@@ -67,7 +74,6 @@ export default {
     nextQuestion() {
       if (this.completed) {
         if (this.currentQuestionIndex + 1 === this.totalQuestions) {
-          console.log("Final del test");
           this.$router.push("result");
         } else {
           this.currentQuestionIndex++;
@@ -75,16 +81,16 @@ export default {
           this.clockIsVisible = true;
           this.completed = false;
           this.nextIsVisible = false;
+          if (this.currentQuestionIndex + 1 === this.totalQuestions)
+            this.literalNext = "Finalizar";
         }
       }
     },
     optionSelected(index) {
-      console.log(index);
       this.responseIsVisible = true;
       this.answerIndexSelected = index;
     },
     confirmResponse() {
-      console.log("confirmResponse");
       this.timeFinished();
       if (this.questionLocal.correctIndex === this.answerIndexSelected) {
         this.incrementPoint();

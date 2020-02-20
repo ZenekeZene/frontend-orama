@@ -106,6 +106,14 @@
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
+
+    .clock {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      background: $color-primary;
+      transform: translateY(-50%);
+    }
   }
 
   .back {

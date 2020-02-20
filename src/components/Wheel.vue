@@ -246,7 +246,7 @@ export default {
         );
       } else {
         const diff = (frame.timeDiff * this.angularVelocity) / 1000;
-        if (diff > 0.0001) {
+        if (diff > 0.001) {
           this.wheel.rotate(diff);
         } else if (!this.finished && !this.controlled) {
           if (shape && this.angularVelocityInitial > 5) {

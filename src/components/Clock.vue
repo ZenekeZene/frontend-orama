@@ -1,18 +1,25 @@
 <template>
-  <div class="clock">{{ seconds }}s</div>
+  <div class="clock">{{ secondsLocal }}s</div>
 </template>
 <script>
 export default {
   name: "Clock",
   data() {
     return {
-      seconds: 20
+      secondsLocal: 10
     };
   },
+  props: {
+    seconds: {
+      type: Number,
+      default: 10
+    }
+  },
   mounted() {
+    this.secondsLocal = this.seconds;
     const timer = setInterval(() => {
-      if (this.seconds > 0) {
-        this.seconds--;
+      if (this.secondsLocal > 0) {
+        this.secondsLocal--;
       } else {
         this.$emit("finished");
         clearInterval(timer);
