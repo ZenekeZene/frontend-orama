@@ -6,4 +6,10 @@
     padding: 1.5rem;
     font-size: 1.2rem;
   }
+
+  &__image {
+    position: absolute;
+    bottom: 1rem;
+    max-height: 72vh;
+  }
 }
