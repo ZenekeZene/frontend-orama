@@ -31,6 +31,7 @@ canvas {
 @import 'input';
 @import 'button';
 @import 'fab';
+@import 'clock';
 @import 'vendor';
 @import 'pages/pages';
 @import 'explanation';
@@ -44,14 +45,6 @@ canvas {
   padding: 0.2rem;
   font-size: 0.7rem;
   opacity: 0.3;
-}
-
-.clock {
-  @extend .fab;
-  @include neomorphs;
-  display: flex;
-  margin: 0 auto;
-  font-size: 1.3rem;
 }
 
 @import 'vendor/prism-synthwave84';

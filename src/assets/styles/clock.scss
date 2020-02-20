@@ -1,0 +1,21 @@
+.clock {
+  @extend .fab;
+  @include neomorphs;
+  display: flex;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  border: 2px solid transparent;
+  animation: pulse-clock 1s infinite;
+  animation-delay: 0.2s;
+
+  &.pulse-clock {
+    animation-name: pulse-clock;
+    animation-play-state: running;
+  }
+}
+
+@keyframes pulse-clock {
+  0% { border-color: transparent; }
+  50% { border-color: $color-secondary; }
+  100% { border-color: transparent; }
+}

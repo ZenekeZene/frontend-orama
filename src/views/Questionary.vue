@@ -9,7 +9,7 @@
       @optionSelected="optionSelected"
       @noteShown="noteIsVisible = $event"
     ></question>
-    <fade-transition appear>
+    <fade-transition>
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
     <fade-transition mode="out-in">
