@@ -1,30 +1,56 @@
 <template>
-  <div class="clock">{{ secondsLocal }}s</div>
+  <div class="clock" :class="{ '--is-progress': isProgress }">
+    <span>{{ secondsLocal }}s</span>
+    <div class="progress" v-if="isProgress">
+      <span :style="{ width: progress + '%' }"></span>
+    </div>
+  </div>
 </template>
 <script>
 export default {
   name: "Clock",
   data() {
     return {
-      secondsLocal: 10
+      secondsLocal: 0,
+      progress: 100
     };
   },
   props: {
+    isProgress: {
+      type: Boolean,
+      default: false
+    },
     seconds: {
       type: Number,
       default: 10
+    },
+    isStop: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
-    this.secondsLocal = this.seconds;
-    const timer = setInterval(() => {
-      if (this.secondsLocal > 0) {
-        this.secondsLocal--;
-      } else {
-        this.$emit("finished");
-        clearInterval(timer);
+    if (!this.isStop) {
+      this.secondsLocal = this.seconds;
+      const secondsInitial = this.secondsLocal;
+      const timer = setInterval(() => {
+        if (this.secondsLocal > 0) {
+          this.secondsLocal -= 1;
+        } else {
+          this.$emit("finished");
+          clearInterval(timer);
+        }
+      }, 1000);
+      if (this.isProgress) {
+        const timer2 = setInterval(() => {
+          if (this.progress === 0) {
+            clearInterval(timer2);
+          } else {
+            this.progress--;
+          }
+        }, (secondsInitial + 0.7) * 10);
       }
-    }, 1000);
+    }
   }
 };
 </script>

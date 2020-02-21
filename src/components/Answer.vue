@@ -8,9 +8,6 @@
     }"
   >
     <slot></slot>
-    <fade-transition>
-      <span v-if="showIconNote" class="icon-book"></span>
-    </fade-transition>
   </button-custom>
 </template>
 <script>
@@ -32,15 +29,6 @@ export default {
     showCorrect: {
       type: Boolean,
       default: false
-    },
-    hasNote: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    showIconNote() {
-      return this.isCorrect && this.showCorrect && this.hasNote;
     }
   }
 };

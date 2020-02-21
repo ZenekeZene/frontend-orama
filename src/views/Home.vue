@@ -8,6 +8,7 @@
       v-model="title"
       disabled
     ></textarea>
+    <h1>Resultado: {{ points }} / {{ totalQuestions }}</h1>
     <wheel
       :forceAngularVelocity="angularVelocity"
       :wasLaunched="wasLaunched"
@@ -35,7 +36,8 @@ export default {
     Wheel
   },
   computed: {
-    ...mapState(["title"])
+    ...mapState(["title"]),
+    ...mapState(["points", "totalQuestions"])
   },
   data() {
     return {
@@ -44,6 +46,12 @@ export default {
       maxAngularVelocity: 20,
       wasLaunched: false
     };
+  },
+  mounted() {
+    this.wasLaunched = false;
+    if (this.$route.params.angularVelocity) {
+      //this.launch();
+    }
   },
   methods: {
     goToEdit() {

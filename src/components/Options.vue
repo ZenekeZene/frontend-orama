@@ -13,7 +13,6 @@
           :index="index"
           :isCorrect="correctIndex === index"
           :showCorrect="showCorrect"
-          :hasNote="hasNote"
           :class="{ '--selected': optionSelectedIndex === index }"
           @click.native="selectOption(index)"
           >{{ option }}</answer
@@ -41,24 +40,9 @@ export default {
       type: Number,
       default: -1
     },
-    hasNote: {
-      type: Boolean,
-      default: false
-    },
     showCorrect: {
       type: Boolean,
       default: false
-    },
-    forceReset: {
-      type: Boolean,
-      default: false
-    }
-  },
-  watch: {
-    forceReset(value) {
-      if (value) {
-        this.optionSelectedIndex = -1;
-      }
     }
   },
   data() {

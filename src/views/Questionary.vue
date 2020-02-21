@@ -7,32 +7,14 @@
       :questionLocal="questionLocal"
       :showCorrect="completed"
       @optionSelected="optionSelected"
-      @noteShown="noteIsVisible = $event"
     ></question>
     <fade-transition appear>
-      <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
-    </fade-transition>
-    <fade-transition mode="out-in">
-      <button-custom
-        class="next"
-        v-if="responseIsVisible"
-        @click="confirmResponse"
-      >
-        Contestar
-      </button-custom>
-      <button-custom
-        class="next"
-        v-if="nextIsVisible && !noteIsVisible"
-        @click.native="nextQuestion"
-      >
-        {{ literalNext }}
-        <clock
-          class="--mini"
-          v-if="!clockIsVisible"
-          :seconds="5"
-          @finished="nextQuestion"
-        ></clock>
-      </button-custom>
+      <clock
+        :isProgress="true"
+        :isStop="false"
+        v-if="clockIsVisible"
+        @finished="timeFinished"
+      ></clock>
     </fade-transition>
   </article>
 </template>
@@ -54,13 +36,7 @@ export default {
       currentQuestionIndex: 0,
       questionLocal: questions[0],
       completed: false,
-      nextIsVisible: false,
-      clockIsVisible: true,
-      responseIsVisible: false,
-      noteIsVisible: false,
-      noteShown: false,
-      answerIndexSelected: -1,
-      literalNext: "Siguiente"
+      clockIsVisible: true
     };
   },
   mounted() {
@@ -72,33 +48,26 @@ export default {
     timeFinished() {
       this.completed = true;
       this.clockIsVisible = false;
-      this.nextIsVisible = true;
-      this.responseIsVisible = false;
+      setTimeout(() => {
+        this.nextQuestion();
+      }, 2000);
     },
     nextQuestion() {
-      if (this.completed) {
-        if (this.currentQuestionIndex + 1 === this.totalQuestions) {
-          this.$router.push("result");
-        } else {
-          this.currentQuestionIndex++;
-          this.questionLocal = questions[this.currentQuestionIndex];
-          this.clockIsVisible = true;
-          this.completed = false;
-          this.nextIsVisible = false;
-          if (this.currentQuestionIndex + 1 === this.totalQuestions)
-            this.literalNext = "Finalizar";
-        }
+      if (this.currentQuestionIndex + 1 === this.totalQuestions) {
+        this.$router.push("result");
+      } else {
+        this.currentQuestionIndex++;
+        this.clockIsVisible = true;
+        this.completed = false;
+        this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
       }
     },
     optionSelected(index) {
-      this.responseIsVisible = true;
       this.answerIndexSelected = index;
-    },
-    confirmResponse() {
-      this.timeFinished();
-      if (this.questionLocal.correctIndex === this.answerIndexSelected) {
+      if (this.questionLocal.correctIndex === index) {
         this.incrementPoint();
       }
+      this.timeFinished();
     }
   }
 };
