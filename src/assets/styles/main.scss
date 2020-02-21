@@ -1,11 +1,11 @@
 :root {
   --vh: 1;
+  --color-primary: #5a5da5;
+  --color-secondary: #e49541; 
+  --color-tertiary: #2b2b2b;
+  --duration: 150ms;
 }
 
-$color-primary: #5a5da5 !default;
-$color-secondary: #e49541 !default; 
-$color-tertiary: #2b2b2b!default;
-$duration: 150ms !default;
 
 @import '_breakpoints';
 
@@ -14,8 +14,8 @@ $duration: 150ms !default;
 
 @include icon("") {
   &:hover {
-    color: $color-secondary;
-    transition: all $duration ease-in;
+    color: var(--color-secondary);
+    transition: all var(--duration) ease-in;
   }
 }
 

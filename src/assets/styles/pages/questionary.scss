@@ -9,7 +9,7 @@
 
     h1 {
       padding: 0 1rem 0 1rem;
-      transition: all $duration ease-in;
+      transition: all var(--duration) ease-in;
     }
 
     &.--expanded {
@@ -71,7 +71,7 @@
   }
 
   .options button.option {
-    border: 3px solid $color-primary;
+    border: 3px solid var(--color-primary);
 
     &.--incorrect {
       opacity: 0.5 !important;
@@ -80,11 +80,11 @@
     &.--correct {
       position: relative;
       opacity: 1 !important;
-      background: $color-secondary;
+      background: var(--color-secondary) !important;
     }
 
     &.--selected {
-      border: 3px solid $color-secondary;
+      border: 3px solid var(--color-secondary);
     }
 
     .icon-book {
@@ -93,7 +93,7 @@
       transform: translateY(-50%);
       right: 1rem;
       border-radius: 50%;
-      background-color: darken($color-secondary, 15);
+      background-color: orange;
       font-size: 1rem;
       padding: 0.5rem;
       width: 2rem;
@@ -111,7 +111,7 @@
       position: absolute;
       top: 50%;
       right: 1rem;
-      background: $color-primary;
+      background: var(--color-primary);
       transform: translateY(-50%);
     }
   }

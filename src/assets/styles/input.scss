@@ -9,7 +9,7 @@ textarea {
   font-family: Helvetica;
   background: transparent;
   border: none;
-  border-bottom: 3px solid rgba($color-primary, 0.5);
+  border-bottom: 3px solid rgba(var(--color-primary), 0.5);
   outline: none;
 }
 

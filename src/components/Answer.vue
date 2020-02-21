@@ -1,5 +1,5 @@
 <template>
-  <button
+  <button-custom
     simple
     class="option"
     :class="{
@@ -11,7 +11,7 @@
     <fade-transition>
       <span v-if="showIconNote" class="icon-book"></span>
     </fade-transition>
-  </button>
+  </button-custom>
 </template>
 <script>
 export default {

@@ -13,13 +13,17 @@
       <clock v-if="clockIsVisible" @finished="timeFinished"></clock>
     </fade-transition>
     <fade-transition mode="out-in">
-      <button class="next" v-if="responseIsVisible" @click="confirmResponse">
+      <button-custom
+        class="next"
+        v-if="responseIsVisible"
+        @click="confirmResponse"
+      >
         Contestar
-      </button>
-      <button
+      </button-custom>
+      <button-custom
         class="next"
         v-if="nextIsVisible && !noteIsVisible"
-        @click="nextQuestion"
+        @click.native="nextQuestion"
       >
         {{ literalNext }}
         <clock
@@ -28,7 +32,7 @@
           :seconds="5"
           @finished="nextQuestion"
         ></clock>
-      </button>
+      </button-custom>
     </fade-transition>
   </article>
 </template>

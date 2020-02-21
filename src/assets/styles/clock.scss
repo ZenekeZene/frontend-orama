@@ -28,6 +28,6 @@
 
 @keyframes pulse-clock {
   0% { border-color: transparent; }
-  50% { border-color: $color-secondary; }
+  50% { border-color: var(--color-secondary); }
   100% { border-color: transparent; }
 }

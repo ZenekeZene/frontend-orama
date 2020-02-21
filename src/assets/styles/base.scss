@@ -12,7 +12,7 @@
 html,
 body {
   height: 100%;
-  background-color: $color-tertiary;
+  background-color: var(--color-tertiary);
 }
 
 body {
@@ -27,6 +27,14 @@ body {
   }
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 canvas {
   width: 100%;
 }
@@ -39,5 +47,5 @@ a  {
   padding: 0.5rem;
   text-align: center;
   text-decoration: underline;
-  color: $color-secondary;
+  color: var(--color-secondary);
 }

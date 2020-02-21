@@ -20,7 +20,7 @@ button {
   background-color: white;
   border-radius: 1.3rem;
   border: none;
-  transition: all $duration ease-in;
+  transition: all var(--duration) ease-in;
   outline: none;
   @include neomorphs;
   cursor: pointer;
@@ -30,12 +30,12 @@ button {
   }
 
   &[simple] {
-    background-color: $color-primary;
+    background-color: var(--color-primary);
     box-shadow: none;
   }
 
   &:hover {
-    background: $color-secondary;
+    background: var(--color-tertiary);
 
     & > * {
       background: inherit;

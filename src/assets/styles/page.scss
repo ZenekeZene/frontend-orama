@@ -6,12 +6,12 @@
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  background-color: $color-primary;
+  background-color: var(--color-primary);
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24),
     0 17px 50px 0 rgba(0, 0, 0, .19);
   border-radius: 2.5rem;
   transform: translate3d(0, 0, 0);
-  transition: all $duration ease-in;
+  transition: all var(--duration) ease-in;
 
   & > [page] {
     position: relative;
@@ -37,7 +37,7 @@
     }
 
     &:after {
-      background: linear-gradient(to bottom, $color-primary 0%, rgba(0, 0, 0, 0.7) 44%, $color-primary 90%);
+      background: linear-gradient(to bottom, var(--color-primary) 0%, rgba(0, 0, 0, 0.7) 44%, var(--color-primary) 90%);
       transform: rotate3d(-45deg);
     }
   }

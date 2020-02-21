@@ -38,11 +38,11 @@
   padding: 0 0.5rem 0.5rem 1rem;
   font-family: Helvetica;
   letter-spacing: initial;
-  border-bottom: $border-width solid $color-secondary;
+  border-bottom: $border-width solid var(--color-secondary);
 
   span {
     padding-left: 0.5rem;
-    color: $color-secondary;
+    color: var(--color-secondary);
     font-family: "Fredoka One", sans-serif;
   }
 

@@ -9,11 +9,11 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: "despido-state",
-      paths: ["players", "title"]
+      paths: ["title"]
     })
   ],
   state: {
-    players: ["Javascript", "CSS", "HTML", "A11y"],
+    players: ["JS", "CSS", "HTML", "A11y", "Vue", "React", "Semántica"],
     title: "Front-End-ORAMA",
     points: 0,
     totalQuestions: 0

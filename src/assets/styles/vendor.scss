@@ -1,5 +1,5 @@
 [name="save-dialog"] {
-  color: $color-tertiary;
+  color: var(--color-tertiary);
   letter-spacing: initial;
 
   button {
@@ -18,7 +18,7 @@
   font: inherit;
   outline: none;
   cursor: pointer;
-  background-color: $color-secondary;
+  background-color: var(--color-secondary);
   border: 0;
 }
 
