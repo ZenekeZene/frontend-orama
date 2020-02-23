@@ -45,11 +45,14 @@
       height: 100%;
 
       & > span {
-        width: 25%;
+        width: 100%;
         height: 100%;
         display: block;
         background-color: var(--color-secondary);
-        //transition: all 250ms ease-in;
+
+        &.launched {
+          width: 0;
+        }
       }
     }
   }

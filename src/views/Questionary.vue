@@ -12,6 +12,7 @@
       <clock
         :isProgress="true"
         :isStop="false"
+        :seconds="10"
         v-if="clockIsVisible"
         @finished="timeFinished"
       ></clock>
