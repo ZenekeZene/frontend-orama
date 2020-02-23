@@ -27,14 +27,22 @@
 
   &.--is-progress {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 9px;
+    top: 1.7rem;
+    left: 1rem;
+    width: calc(100% - 6rem);
     height: 5px;
+    min-height: 5px;
+    overflow: hidden;
+    background: transparent;
+    border-radius: 1rem;
     border-width: 0;
-    border-radius: 0px;
     animation: none;
+
+    @include mq($until: phablet) {
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
 
     & > span {
       display: none;

@@ -1,46 +1,19 @@
 export default [
   {
-    title: "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry?",
+    declare: "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry?",
+    img: "https://picsum.photos/200/300",
     options: ["XML", "CSS", "HTML", "JS"],
-    correctIndex: 3,
-    note: [
-      `Es porque la gente denosta este lenguaje:
-		<a href='http://www.google.es/' target='_BLANK'>Link</a>`,
-      {
-        type: "code",
-        value: `
-const foo = (a, b) => {
-	return a + b;
-}
-			`
-      },
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      {
-        type: "code",
-        value: `
-const bar = (a, b) => {
-	return a + b;
-}
-			`
-      },
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`,
-      `Además bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla`
-    ]
+    correctIndex: 3
   },
   {
-    title:
-      "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry? Ahora sin explicación",
-    options: ["XML", "CSS", "HTML", "JS"],
-    correctIndex: 1,
-	note: [],
+    declare: "Calcula la especificidad de este selector CSS:",
+    declare2: {
+      type: "code",
+      value: `.settings p {
+  margin: 1rem;
+}`
+    },
+    options: ["10", "100", "250"],
+    correctIndex: 1
   }
 ];

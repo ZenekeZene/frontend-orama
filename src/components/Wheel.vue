@@ -30,7 +30,7 @@ export default {
       angularVelocities: [],
       lastRotation: 0,
       controlled: false,
-      angularFriction: 0.2,
+      angularFriction: 0.0005,
       target: null,
       activeWedge: null,
       stage: null,
@@ -257,7 +257,7 @@ export default {
         );
       } else {
         const diff = (frame.timeDiff * this.angularVelocity) / 1000;
-        if (diff > 0.001) {
+        if (diff > 0.01) {
           if (!this.lockLaunch) {
             this.$emit("lockLaunch");
           }
@@ -270,7 +270,6 @@ export default {
               .findOne("Text")
               .text();
             const winner = text.split("\n").join("");
-            console.log("The winner is " + winner);
             this.winner = winner;
             setTimeout(() => {
               this.$router.push("questionary");

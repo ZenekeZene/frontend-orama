@@ -11,7 +11,7 @@
     <fade-transition appear>
       <clock
         :isProgress="true"
-        :isStop="false"
+        :isStop="true"
         :seconds="10"
         v-if="clockIsVisible"
         @finished="timeFinished"
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      totalQuestions: questions.length,
+      totalQuestions: 1,
       currentQuestionIndex: 0,
       questionLocal: questions[0],
       completed: false,
@@ -54,14 +54,7 @@ export default {
       }, 2000);
     },
     nextQuestion() {
-      if (this.currentQuestionIndex + 1 === this.totalQuestions) {
-        this.$router.push("result");
-      } else {
-        this.currentQuestionIndex++;
-        this.clockIsVisible = true;
-        this.completed = false;
-        this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
-      }
+      this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
     },
     optionSelected(index) {
       this.answerIndexSelected = index;

@@ -1,8 +1,10 @@
 :root {
   --vh: 1;
-  --color-primary: #5a5da5;
-  --color-secondary: #e49541; 
-  --color-tertiary: #2b2b2b;
+  --color-primary: #5a5da5; //#5a5da5;
+  --color-secondary: #D87A53; //#e49541; 
+  --color-tertiary: #D5C553;//#2b2b2b;
+  --color-incorrect: #e3665c;
+  --color-correct: #65A681;
   --duration: 150ms;
 }
 
@@ -52,7 +54,12 @@ canvas {
 }
 
 @import 'vendor/prism-synthwave84';
-pre[class*="language-"] {
+code {
   border: none;
-  font-size: 0.8rem;
+  //font-size: 1rem;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+.hljs {
+  border-radius: 5px;
 }
