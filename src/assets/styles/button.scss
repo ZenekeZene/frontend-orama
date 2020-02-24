@@ -13,7 +13,7 @@ button {
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: 900;
-  font-family: inherit;
+  font-family: 'Museo Sans Rounded 700', Helvetica, sans-serif;
   text-transform: uppercase;
   letter-spacing: inherit;
   color: white;
@@ -30,12 +30,20 @@ button {
   }
 
   &[simple] {
-    background-color: var(--color-primary);
+    background: var(--color-primary);
     box-shadow: none;
   }
 
+  &[color-secondary] {
+    background: var(--color-secondary);
+
+    &:hover {
+      background: var(--color-primary);
+    }
+  }
+
   &:hover {
-    background: var(--color-tertiary);
+    background: var(--color-secondary);
 
     & > * {
       background: inherit;

@@ -10,6 +10,8 @@
 
     img {
       border-radius: 0.5rem;
+      max-height: 30vh;
+      margin: 0 auto;
     }
 
     h1 {
@@ -79,6 +81,10 @@
   .options button.option {
     border: 3px solid var(--color-primary);
 
+    &:hover:not(.--incorrect) {
+      border-color: #b96441;
+    }
+
     &.--incorrect {
       opacity: 0.5 !important;
       width: 95%;
@@ -97,6 +103,7 @@
     }
 
     &.--selected.--incorrect {
+      opacity: 1 !important;
       background: var(--color-incorrect) !important;
       border-color: var(--color-incorrect) !important;
     }
@@ -144,8 +151,11 @@
 
 .indicator {
   position: absolute;
-  top: 2.5rem;
-  transform: translateX(-50%);
+  top: 0.7rem;
   left: 50%;
-  color: rgb(124, 126, 167);
+  z-index: 1;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  color: white;
+  background-color: var(--color-primary);
 }

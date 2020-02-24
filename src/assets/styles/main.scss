@@ -5,9 +5,9 @@
   --color-tertiary: #D5C553;//#2b2b2b;
   --color-incorrect: #e3665c;
   --color-correct: #65A681;
+  --color-dark: #333560;
   --duration: 150ms;
 }
-
 
 @import '_breakpoints';
 
@@ -44,8 +44,8 @@ canvas {
 
 .version {
   position: absolute;
-  bottom: 0;
-  left: 50%;
+  bottom: -0.5rem;
+  left: 14%;
   transform: translateX(-50%);
   z-index: 3;
   padding: 0.2rem;

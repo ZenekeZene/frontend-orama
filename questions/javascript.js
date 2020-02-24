@@ -1,7 +1,7 @@
 export default [
   {
     declare: "¿Qué lenguaje toca todo txus pero no lo sabe usar ni Perry?",
-    img: "https://picsum.photos/200/300",
+    img: "https://picsum.photos/300/300",
     options: ["XML", "CSS", "HTML", "JS"],
     correctIndex: 3
   },
