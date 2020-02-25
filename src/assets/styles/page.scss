@@ -60,7 +60,7 @@
     max-height: 720px;
 
     &:hover {
-      transform: rotate3d(1, 1, 1, -2deg);
+      //transform: rotate3d(1, 1, 1, -2deg);
       box-shadow: -5px 12px 15px 0 rgba(0, 0, 0, 0.24), -5px 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 
@@ -72,7 +72,10 @@
 
 .fixed {
   position: fixed;
+  left: 0;
   bottom: 0;
+  width: 100%;
+  display: flex;
   padding: 1rem;
 
   &.--right {

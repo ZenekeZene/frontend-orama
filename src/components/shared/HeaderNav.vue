@@ -1,6 +1,7 @@
 <template>
   <section class="header">
-    <span class="header-nav icon-user" @click="onToggleCollapse"></span>
+    <span class="--left icon-forward" @click="goBack"></span>
+    <span class="--right icon-menu" @click="onToggleCollapse"></span>
   </section>
 </template>
 <script>
@@ -15,6 +16,9 @@ export default {
     onToggleCollapse() {
       this.isSidebarOpened = !this.isSidebarOpened;
       this.$emit("onToggleCollapse", this.isSidebarOpened);
+    },
+    goBack() {
+      this.$router.go(-1);
     }
   }
 };
@@ -29,14 +33,22 @@ export default {
   top: 0;
   left: 0;
   z-index: 3;
+  transition: transform 250ms linear;
 
-  &-nav {
+  > span {
     position: absolute;
-    right: 0;
     top: -5px;
     z-index: 3;
     padding: 1.5rem;
     font-size: 1.2rem;
+
+    &.--left {
+      left: 0;
+    }
+
+    &.--right {
+      right: 0;
+    }
   }
 }
 </style>

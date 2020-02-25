@@ -17,12 +17,16 @@
     <button style="display: none" class="edit" @click="goToEdit">
       <span class="icon-pencil"></span>
     </button>
-    <button-custom
+    <button
+      simple
+      big
+      color-secondary
       class="launch"
       @click="launch"
       :class="{ '--disabled': wasLaunched }"
-      >¡Lanzar!🤞</button-custom
     >
+      ¡Lanzar!🤞
+    </button>
   </div>
 </template>
 

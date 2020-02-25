@@ -3,13 +3,13 @@ textarea {
   -webkit-appearance: none;
   display: block;
   width: 100%;
-  padding: 1rem 3rem 1rem 1rem;
+  padding: 0.5rem 3rem 0.5rem 0;
   font-size: 1rem;
   color: white;
   font-family: Helvetica;
   background: transparent;
   border: none;
-  border-bottom: 3px solid rgba(var(--color-primary), 0.5);
+  border-bottom: 3px solid var(--color-primary);
   outline: none;
 }
 
@@ -22,29 +22,8 @@ textarea {
 
   &__clear {
     position: absolute;
-    right: 3rem;
+    right: 0;
     padding: 1rem;
     font-size: 1rem;
-  }
-
-  &__delete {
-    padding: 1rem;
-  }
-
-  &.--title {
-    font-size: 2rem;
-
-    @include mq($until: mobile) {
-      margin-bottom: 0;
-    }
-
-    textarea {
-      font-size: 1rem;
-      min-height: 4rem;
-    }
-
-    .input__clear {
-      right: 0;
-    }
   }
 }

@@ -54,9 +54,6 @@ export default {
   },
   mounted() {
     this.widthLocal = this.width;
-    this.$parent.$children.forEach(node => {
-      node.$el.style = "transition: transform 250ms linear;";
-    });
   },
   methods: {
     loopSiblings(iterationCallback) {

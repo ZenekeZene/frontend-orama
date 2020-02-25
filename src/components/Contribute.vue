@@ -1,12 +1,18 @@
 <template>
-  <section class="contribute">
+  <section class="contribute" style="margin-bottom: 0">
     <p>¿Quieres contribuir con tus propias preguntas?</p>
-    <button simple>Contribuir</button>
+    <button simple @click="goToEdit">Contribuir</button>
   </section>
 </template>
 <script>
 export default {
-  name: "Contribute"
+  name: "Contribute",
+  methods: {
+    goToEdit() {
+      this.$router.push("edit");
+      this.$emit("onToggleCollapse", false);
+    }
+  }
 };
 </script>
 <style lang="scss">

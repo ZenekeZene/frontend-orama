@@ -6,7 +6,7 @@
     </fade-transition>
     <side-menu :isCollapsed="isCollapsed" :width="70">
       <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
-      <contribute></contribute>
+      <contribute @onToggleCollapse="isCollapsed = $event"></contribute>
       <credits></credits>
       <version></version>
     </side-menu>

@@ -11,10 +11,8 @@ button {
   max-width: calc(375px - 2rem);
   width: 100%;
   padding: 1rem;
-  font-size: 1.5rem;
-  font-weight: 900;
-  font-family: 'Museo Sans Rounded 700', Helvetica, sans-serif;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: 'Museo Sans Rounded 500', Helvetica, sans-serif;
   letter-spacing: inherit;
   color: white;
   background-color: white;
@@ -34,12 +32,32 @@ button {
     box-shadow: none;
   }
 
+  &[transparent] {
+    color: white;
+    background: transparent;
+    box-shadow: none;
+
+    [class^='icon'] {
+      padding-right: 0.5rem;
+    }
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
   &[color-secondary] {
     background: var(--color-secondary);
 
     &:hover {
       background: var(--color-primary);
     }
+  }
+
+  &[big] {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-family: 'Museo Sans Rounded 1000';
   }
 
   &:hover {
