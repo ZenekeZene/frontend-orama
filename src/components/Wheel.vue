@@ -18,6 +18,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import gen from "color-generator";
+import FontFaceObserver from "fontfaceobserver";
 
 export default {
   name: "Wheel",
@@ -74,7 +75,17 @@ export default {
     this.numWedges = this.players.length;
     this.angularVelocity = this.forceAngularVelocity;
     this.wasLaunchedLocal = this.wasLaunched;
-    this.init();
+    const font = new FontFaceObserver("Museo Sans Rounded 500");
+
+    font
+      .load()
+      .then(() => {
+        console.log("Museo Sans Rounded 500 has loaded.");
+        this.init();
+      })
+      .catch(error => {
+        console.warn(error);
+      });
   },
   methods: {
     init() {
@@ -218,7 +229,7 @@ export default {
 
       const text = new Konva.Text({
         text: `        ${this.players[n]}`,
-        fontFamily: "Helvetica",
+        fontFamily: "Museo Sans Rounded",
         fontSize: 30 - this.players[n].length * 0.9,
         fill: "white",
         align: "left",

@@ -1,5 +1,5 @@
 <template>
-  <p class="credits">
+  <p class="credits" style="margin-bottom: 0;">
     Desarrollado con 🥑 por
     <a href="http://www.twitter.com/zenekezene/">@zenekezene</a>
   </p>

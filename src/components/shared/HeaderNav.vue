@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <span class="header-nav icon-menu" @click="toggleMenu"></span>
+    <span class="header-nav icon-user" @click="onToggleCollapse"></span>
   </section>
 </template>
 <script>
@@ -12,9 +12,9 @@ export default {
     };
   },
   methods: {
-    toggleMenu() {
+    onToggleCollapse() {
       this.isSidebarOpened = !this.isSidebarOpened;
-      this.$emit("toggleMenu", this.isSidebarOpened);
+      this.$emit("onToggleCollapse", this.isSidebarOpened);
     }
   }
 };

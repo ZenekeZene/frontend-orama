@@ -12,6 +12,7 @@ export default {
 <style lang="scss">
 .contribute {
   background-color: #2d2f50;
+  margin-top: auto;
   margin-bottom: 0;
 
   > * {

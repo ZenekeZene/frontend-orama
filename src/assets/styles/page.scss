@@ -18,7 +18,7 @@
     z-index: 2;
     min-height: 100%;
     padding: 3rem 1rem 1rem 1rem;
-    transition: transform $duration linear;
+    transition: all 250ms linear;
 
     &:before,
     &:after {

@@ -22,8 +22,8 @@
 <script>
 import { mapMutations } from "vuex";
 import questions from "../../questions/javascript";
-import Question from "../components/Question";
-import Clock from "../components/Clock";
+import Question from "@/components/test/Question";
+import Clock from "@/components/test/Clock";
 
 export default {
   name: "Questionary",
@@ -35,7 +35,7 @@ export default {
     return {
       totalQuestions: 1,
       currentQuestionIndex: 0,
-      questionLocal: questions[0],
+      questionLocal: questions[1],
       completed: false,
       clockIsVisible: true
     };

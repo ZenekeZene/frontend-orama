@@ -1,20 +1,21 @@
 <template>
-  <div id="app" class="app" :class="{ '--side-menu-opened': sideMenuStatus }">
-    <header-nav @toggleMenu="sideMenuStatus = $event"></header-nav>
+  <div id="app" class="app">
+    <header-nav @onToggleCollapse="isCollapsed = $event"></header-nav>
     <fade-transition :duration="100">
       <router-view />
     </fade-transition>
-    <side-menu :toggleMenu="sideMenuStatus">
-      <span class="version">v0.1.2</span>
-      <avatar></avatar>
+    <side-menu :isCollapsed="isCollapsed" :width="70">
+      <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
       <contribute></contribute>
       <credits></credits>
+      <version></version>
     </side-menu>
   </div>
 </template>
 <script>
-import HeaderNav from "@/components/HeaderNav";
-import SideMenu from "@/components/SideMenu";
+import HeaderNav from "@/components/shared/HeaderNav";
+import SideMenu from "@/components/shared/SideMenu";
+import Version from "@/components/shared/Version";
 import Avatar from "@/components/Avatar";
 import Credits from "@/components/Credits";
 import Contribute from "@/components/Contribute";
@@ -26,11 +27,12 @@ export default {
     SideMenu,
     Avatar,
     Credits,
-    Contribute
+    Contribute,
+    Version
   },
   data() {
     return {
-      sideMenuStatus: false
+      isCollapsed: false
     };
   },
   mounted() {
@@ -41,13 +43,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.--side-menu-opened > * {
-  transition: transform 250ms linear;
-  transform: translateX(-60%) !important;
-
-  &.side-menu {
-    transform: translateX(0%) !important;
-  }
-}
-</style>

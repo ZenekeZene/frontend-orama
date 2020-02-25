@@ -5,7 +5,7 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import Transitions from "vue2-transitions";
-import ButtonCustom from "./components/ButtonCustom";
+import ButtonCustom from "./components/shared/ButtonCustom";
 import VueHighlightJS from "vue-highlight.js";
 // Highlight.js languages (Only required languages)
 import css from "highlight.js/lib/languages/css";
