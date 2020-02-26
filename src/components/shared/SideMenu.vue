@@ -50,7 +50,6 @@ export default {
     }
   },
   mounted() {
-    this.widthLocal = this.width;
     this.loopSiblings(node => (node.$el.style = this.pulled));
     this.$el.style = `width: ${this.width}; ${this.transition}; transform: translateX(100%)`;
   },
