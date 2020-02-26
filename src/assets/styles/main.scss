@@ -48,3 +48,9 @@ code {
   //font-size: 1rem;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
+
+.hidden-keyboard-opened {
+  @media screen and (max-height: 400px) {
+    display: none;
+  }
+}

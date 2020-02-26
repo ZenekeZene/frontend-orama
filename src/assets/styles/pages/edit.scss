@@ -13,14 +13,13 @@
   }
 
   &__question {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   p {
     width: 100%;
     text-align: left;
-    font-family: Helvetica;
     font-weight: 700;
     letter-spacing: initial;
   }
@@ -100,4 +99,10 @@
   span {
     padding: 0.5rem;
   }
+}
+
+p.error-message {
+  text-align: center;
+  color: var(--color-incorrect);
+  padding-bottom: 0.5rem;
 }
