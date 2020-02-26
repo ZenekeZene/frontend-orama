@@ -21,7 +21,6 @@
 <script>
 import SideMenu from "@/components/shared/SideMenu";
 import Version from "@/components/shared/Version";
-import Avatar from "@/components/Avatar";
 import Credits from "@/components/Credits";
 import Contribute from "@/components/contribution/Contribute";
 
@@ -29,7 +28,6 @@ export default {
   name: "App",
   components: {
     SideMenu,
-    Avatar,
     Credits,
     Contribute,
     Version

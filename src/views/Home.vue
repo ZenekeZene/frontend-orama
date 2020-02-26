@@ -38,8 +38,7 @@ export default {
     Wheel
   },
   computed: {
-    ...mapState(["title"]),
-    ...mapState(["points", "totalQuestions"])
+    ...mapState(["points", "totalQuestions", "currentQuestionIndex"])
   },
   data() {
     return {
@@ -51,9 +50,6 @@ export default {
   },
   mounted() {
     this.wasLaunched = false;
-    if (this.$route.params.angularVelocity) {
-      //this.launch();
-    }
   },
   methods: {
     goToEdit() {

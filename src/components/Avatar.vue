@@ -1,6 +1,6 @@
 <template>
   <article class="avatar">
-    <h2>Buenos días, {{ name }}</h2>
+    <h2 v-if="withGreetins">Buenos días, {{ name }}</h2>
     <section class="image">
       <img src="../assets/boy2.gif" :alt="`Avatar de ${name}`" />
       <span class="aka">{{ level }}</span>
@@ -23,6 +23,10 @@ export default {
     level: {
       type: String,
       default: ""
+    },
+    withGreetins: {
+      type: Boolean,
+      default: true
     }
   }
 };
@@ -47,9 +51,10 @@ export default {
 
 img {
   width: 100%;
+  max-width: 200px;
   height: 12rem;
   display: block;
-  margin: 0;
+  margin: 0 auto;
   border-radius: 0.5rem;
 }
 

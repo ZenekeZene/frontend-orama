@@ -20,7 +20,7 @@
   </article>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import questions from "../../questions/javascript";
 import Question from "@/components/test/Question";
 import Clock from "@/components/test/Clock";
@@ -33,19 +33,33 @@ export default {
   },
   data() {
     return {
-      totalQuestions: 1,
-      currentQuestionIndex: 0,
-      questionLocal: questions[1],
+      questionLocal: questions[0],
       completed: false,
       clockIsVisible: true
     };
   },
+  computed: {
+    ...mapState(["totalQuestions", "currentQuestionIndex"])
+  },
   mounted() {
+    this.questionLocal = questions[this.currentQuestionIndex];
     this.resetPoints();
-    this.setTotalQuestions({ totalQuestions: this.totalQuestions });
+    this.setTotalQuestions({ totalQuestions: questions.length });
   },
   methods: {
-    ...mapMutations(["incrementPoint", "setTotalQuestions", "resetPoints"]),
+    ...mapMutations([
+      "incrementPoint",
+      "setTotalQuestions",
+      "resetPoints",
+      "incrementCurrentQuestionIndex"
+    ]),
+    optionSelected(index) {
+      this.answerIndexSelected = index;
+      if (this.questionLocal.correctIndex === index) {
+        this.incrementPoint();
+      }
+      this.timeFinished();
+    },
     timeFinished() {
       this.completed = true;
       this.clockIsVisible = false;
@@ -54,14 +68,12 @@ export default {
       }, 2000);
     },
     nextQuestion() {
-      this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
-    },
-    optionSelected(index) {
-      this.answerIndexSelected = index;
-      if (this.questionLocal.correctIndex === index) {
-        this.incrementPoint();
+      this.incrementCurrentQuestionIndex();
+      if (this.currentQuestionIndex === this.totalQuestions) {
+        this.$router.push({ name: "Result" });
+      } else {
+        this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
       }
-      this.timeFinished();
     }
   }
 };

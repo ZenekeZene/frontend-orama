@@ -1,0 +1,48 @@
+.ranking {
+  list-style: none;
+
+  li {
+    a {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      img {
+		$size: 3rem;
+        width: $size;
+		min-width: $size;
+		height: $size;
+		border-radius: 1rem;
+      }
+
+      > span {
+        display: flex;
+        align-items: center;
+        color: white;
+        width: 3rem;
+        justify-content: center;
+      }
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    padding-left: 1rem;
+  }
+
+  .value {
+    padding: 0.5rem;
+    background: #d6c552;
+    color: #595ca2;
+    border-radius: 7px;
+  }
+
+  .message {
+    color: white;
+    font-style: italic;
+  }
+}

@@ -9,19 +9,19 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: "despido-state",
-      paths: ["title", "questionToBeAdded"]
+      paths: ["questionToBeAdded", "currentQuestionIndex"]
     })
   ],
   state: {
     players: ["JS", "CSS", "HTML", "A11y", "Vue", "React", "Semántica"],
-    title: "Front-End-ORAMA",
     questionToBeAdded: {
       question: "",
       answers: [],
       correctAnswerIndex: -1
     },
     points: 0,
-    totalQuestions: 0
+    totalQuestions: 0,
+    currentQuestionIndex: 0
   },
   getters: {
     getNumOfPlayers: state => state.players.length,
@@ -42,9 +42,6 @@ export default new Vuex.Store({
     setPlayers(state, payload) {
       state.players = payload.players;
     },
-    setTitle(state, payload) {
-      state.title = payload.title;
-    },
     resetPoints(state) {
       state.points = 0;
     },
@@ -56,6 +53,9 @@ export default new Vuex.Store({
     },
     setQuestionToBeAdded(state, payload) {
       state.questionToBeAdded = payload.questionToBeAdded;
+    },
+    incrementCurrentQuestionIndex(state) {
+      state.currentQuestionIndex++;
     }
   },
   actions: {},

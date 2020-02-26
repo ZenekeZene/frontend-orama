@@ -7,6 +7,7 @@ import store from "./store";
 import Transitions from "vue2-transitions";
 import ButtonCustom from "./components/shared/ButtonCustom";
 import HeaderNav from "./components/shared/HeaderNav";
+import Avatar from "./components/Avatar";
 import VueTextareaAutosize from "vue-textarea-autosize";
 Vue.use(VueTextareaAutosize);
 import VueHighlightJS from "vue-highlight.js";
@@ -32,6 +33,7 @@ Vue.use(VueHighlightJS, {
 Vue.use(Transitions);
 Vue.component(ButtonCustom.name, ButtonCustom);
 Vue.component(HeaderNav.name, HeaderNav);
+Vue.component(Avatar.name, Avatar);
 
 import "./assets/styles/main.scss";
 
