@@ -1,10 +1,9 @@
 <template>
   <div id="app" class="app">
-    <header-nav @onToggleCollapse="isCollapsed = $event"></header-nav>
     <fade-transition :duration="100">
-      <router-view />
+      <router-view @onToggleCollapse="isCollapsed = $event" />
     </fade-transition>
-    <side-menu :isCollapsed="isCollapsed" :width="70">
+    <side-menu :isCollapsed="isCollapsed" width="70%" duration="450ms" easing="ease-in-out">
       <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
       <contribute @onToggleCollapse="isCollapsed = $event"></contribute>
       <credits></credits>
@@ -13,7 +12,6 @@
   </div>
 </template>
 <script>
-import HeaderNav from "@/components/shared/HeaderNav";
 import SideMenu from "@/components/shared/SideMenu";
 import Version from "@/components/shared/Version";
 import Avatar from "@/components/Avatar";
@@ -23,7 +21,6 @@ import Contribute from "@/components/Contribute";
 export default {
   name: "App",
   components: {
-    HeaderNav,
     SideMenu,
     Avatar,
     Credits,
@@ -32,10 +29,15 @@ export default {
   },
   data() {
     return {
-      isCollapsed: false
+      isCollapsed: false,
+      refPage: null,
     };
   },
   mounted() {
+    this.$nextTick(() => {
+      this.refPage = this.$refs.page;
+    })
+    console.log(this.refPage)
     // Hack mobile viewport with vh units:
     let vh = window.innerHeight * 0.01;
     // Then we set the value in the --vh custom property to the root of the document

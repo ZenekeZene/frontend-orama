@@ -1,32 +1,27 @@
 <template>
-  <div class="home" page>
-    <textarea
-      class="--fixed"
-      rows="1"
-      maxlength="42"
-      type="text"
-      v-model="title"
-      disabled
-    ></textarea>
-    <h1>Resultado: {{ points }} / {{ totalQuestions }}</h1>
-    <wheel
-      :forceAngularVelocity="angularVelocity"
-      :wasLaunched="wasLaunched"
-      @lockLaunch="wasLaunched = true"
-    ></wheel>
-    <button style="display: none" class="edit" @click="goToEdit">
-      <span class="icon-pencil"></span>
-    </button>
-    <button
-      simple
-      big
-      color-secondary
-      class="launch"
-      @click="launch"
-      :class="{ '--disabled': wasLaunched }"
-    >
-      ¡Lanzar!🤞
-    </button>
+  <div>
+    <header-nav @onToggleCollapse="$emit('onToggleCollapse', $event)"></header-nav>
+    <div class="home" page>
+      <h1>Resultado: {{ points }} / {{ totalQuestions }}</h1>
+      <wheel
+        :forceAngularVelocity="angularVelocity"
+        :wasLaunched="wasLaunched"
+        @lockLaunch="wasLaunched = true"
+      ></wheel>
+      <button style="display: none" class="edit" @click="goToEdit">
+        <span class="icon-pencil"></span>
+      </button>
+      <button
+        simple
+        big
+        color-secondary
+        class="launch"
+        @click="launch"
+        :class="{ '--disabled': wasLaunched }"
+      >
+        ¡Lanzar!🤞
+      </button>
+    </div>
   </div>
 </template>
 

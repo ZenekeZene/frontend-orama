@@ -1,7 +1,6 @@
 <template>
   <section
     class="side-menu"
-    :class="{ '--open': isCollapsed }"
     :style="cssProps"
   >
     <slot></slot>
@@ -16,44 +15,55 @@ export default {
       default: false
     },
     width: {
-      type: Number,
-      default: 60
+      type: String,
+      default: '60%',
     },
     duration: {
-      type: Number,
-      default: 100
+      type: String,
+      default: '100ms'
+    },
+    easing: {
+      type: String,
+      default: 'ease-in'
     }
   },
   computed: {
     cssProps() {
       return {
-        "--widthSide": `${this.widthLocal}%`,
-        "--offsetX": this.isCollapsed ? "0%" : "100%"
+        "width": this.widthLocal,
+        "transform": `translateX(${this.isCollapsed ? "0%" : "100%"}`
       };
+    },
+    pushed() {
+      return  `${this.transition}; transform: translateX(-${this.widthLocal});`;
+    },
+    pulled() {
+      return `${this.transition}; transform: translateX(0%);`;
+    },
+    transition() {
+      return `transition: transform ${this.duration} ${this.easing}`;
     }
   },
   data() {
     return {
-      widthLocal: 100
+      widthLocal: '100%'
     };
   },
   watch: {
     isCollapsed: {
       handler(newVal) {
-        if (newVal) {
-          this.loopSiblings(node => {
-            node.$el.style = `transform: translateX(-${this.width}%);`;
-          });
-        } else {
-          this.loopSiblings(node => {
-            node.$el.style = "transform: translateX(0%);";
-          });
-        }
+        this.loopSiblings(node => {
+          node.$el.style = newVal ? this.pushed : this.pulled;
+        });
       }
     }
   },
   mounted() {
     this.widthLocal = this.width;
+    this.loopSiblings(node => {
+      node.$el.style = this.pulled;
+    });
+    this.$el.style = `${this.transition}; transform: translateX(100%)`;
   },
   methods: {
     loopSiblings(iterationCallback) {
@@ -68,8 +78,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .side-menu {
-  --offsetX: 100%;
-  --widthSide: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -77,11 +85,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: var(--widthSide);
+  width: 100%;
   height: 100%;
   background-color: var(--color-dark);
-  transition: transform 250ms linear;
-  transform: translateX(var(--offsetX));
 
   & > * {
     margin-bottom: 1rem;

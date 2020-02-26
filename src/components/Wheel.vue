@@ -229,7 +229,7 @@ export default {
 
       const text = new Konva.Text({
         text: `        ${this.players[n]}`,
-        fontFamily: "Museo Sans Rounded",
+        fontFamily: "Museo Sans Rounded, Helvetica, sans-serif",
         fontSize: 30 - this.players[n].length * 0.9,
         fill: "white",
         align: "left",

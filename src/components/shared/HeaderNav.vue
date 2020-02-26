@@ -1,6 +1,7 @@
 <template>
   <section class="header">
     <span class="--left icon-forward" @click="goBack"></span>
+    <h1>{{ title }}</h1>
     <span class="--right icon-menu" @click="onToggleCollapse"></span>
   </section>
 </template>
@@ -11,6 +12,12 @@ export default {
     return {
       isSidebarOpened: false
     };
+  },
+  props: {
+    title: {
+      type: String,
+      default: 'Front-End-ORAMA'
+    },
   },
   methods: {
     onToggleCollapse() {
@@ -25,15 +32,13 @@ export default {
 </script>
 <style lang="scss">
 .header {
-  display: block;
-  height: auto;
-  width: 100%;
-  height: 4rem;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 3;
-  transition: transform 250ms linear;
+  display: block;
+  width: 100%;
+  height: 4rem;
 
   > span {
     position: absolute;
@@ -49,6 +54,15 @@ export default {
     &.--right {
       right: 0;
     }
+  }
+
+  h1 {
+    font-family: 'Museo Sans Rounded 1000';
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
   }
 }
 </style>
