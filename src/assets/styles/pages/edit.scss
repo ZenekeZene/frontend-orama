@@ -1,6 +1,6 @@
 .edit {
   display: block;
-  padding: 1rem;
+  padding: 0 1rem;
 
   .title {
     position: absolute;
@@ -13,6 +13,8 @@
   }
 
   &__question {
+    max-height: 79vh;
+    overflow-y: auto;
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -24,18 +26,14 @@
     letter-spacing: initial;
   }
 
-  .add {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
   .save {
     margin-top: auto;
   }
 
   .list {
     width: 100%;
-    max-height: 16rem;
+    max-height: 28rem;
+    overflow-y: auto;
   }
 
   .icon-forward,
@@ -105,4 +103,8 @@ p.error-message {
   text-align: center;
   color: var(--color-incorrect);
   padding-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-family: "Museo Sans Rounded 700";
 }

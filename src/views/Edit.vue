@@ -9,19 +9,21 @@
     ></header-nav>
     <article class="edit">
       <article class="edit__question">
-        <p>Enunciado:</p>
-        <div class="input --title">
-          <textarea
+        <p class="subtitle">Enunciado:</p>
+        <div style="padding: 0; padding-left: 5px;" class="input --title">
+          <textarea-autosize
             v-model="question"
-            maxlength="140"
+            :minHeight="30"
+            :maxHeight="100"
+            maxlength="135"
             ref="title"
             type="text"
-          ></textarea>
+          ></textarea-autosize>
         </div>
         <section class="attachments">
           <span class="icon-image"></span>
         </section>
-        <p style="margin-top: 1rem; margin-bottom: 0.5rem;">
+        <p class="subtitle" style="margin-top: -21px; margin-bottom: 0.5rem;">
           Respuestas:
           <span class="detail">(Min. 2 - Máx. 5)</span>
         </p>
@@ -38,12 +40,18 @@
               class="--incorrect"
               :class="{ '--correct': correctAnswerIndex === index }"
             />
-            <input
+            <textarea-autosize
               :ref="`player-${index}`"
-              type="text"
-              maxlength="20"
+              rows="1"
+              maxlength="70"
+              :maxHeight="maxHeightAnswers"
+              placeholder="Inserta aquí tu respuesta"
               v-model="answers[index]"
-            />
+              :class="{
+                '--correct': correctAnswerIndex === index,
+                '--incorrect': correctAnswerIndex !== index
+              }"
+            ></textarea-autosize>
             <span class="input__clear" @click="deletePlayer(index)">
               <span class="icon-cross"></span>
             </span>
@@ -116,12 +124,18 @@ export default {
         }
       ],
       errors: [],
-      flagValidate: false
+      flagValidate: false,
+      maxHeightAnswers: 60
     };
   },
   mounted() {
-    this.question = this.questionToBeAdded.question;
-    this.answers = [...this.questionToBeAdded.answers];
+    this.validate();
+    if (this.questionToBeAdded.question.length > 0) {
+      this.question = this.questionToBeAdded.question;
+    }
+    if (this.questionToBeAdded.answers.length > 0) {
+      this.answers = [...this.questionToBeAdded.answers];
+    }
   },
   computed: {
     ...mapState(["questionToBeAdded"]),
@@ -156,7 +170,7 @@ export default {
           this.correctAnswerIndex++;
         }
         this.$nextTick(() => {
-          this.$refs[`player-${index}`][0].focus();
+          this.$refs[`player-${index}`][0].$el.focus();
         });
       }
       if (!this.flagValidate) this.flagValidate = true;

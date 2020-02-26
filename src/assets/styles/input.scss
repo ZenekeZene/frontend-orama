@@ -11,6 +11,10 @@ textarea {
   border: none;
   border-bottom: 3px solid var(--color-primary);
   outline: none;
+
+  &.--correct {
+    border-bottom-color: var(--color-correct);
+  }
 }
 
 .input {
