@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <span class="--left icon-forward" @click="goBack"></span>
+    <span v-if="withBack" class="--left icon-forward" @click="goBack"></span>
     <h1>{{ title }}</h1>
     <span class="--right icon-menu" @click="onToggleCollapse"></span>
   </section>
@@ -17,6 +17,10 @@ export default {
     title: {
       type: String,
       default: "Front-End-ORAMA"
+    },
+    withBack: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

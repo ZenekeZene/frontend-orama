@@ -2,6 +2,7 @@
   <div page>
     <header-nav
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
+      :withBack="false"
     ></header-nav>
     <div class="home">
       <h1>Resultado: {{ points }} / {{ totalQuestions }}</h1>

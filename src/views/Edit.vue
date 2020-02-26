@@ -3,6 +3,7 @@
     <header-nav
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       title="Nueva pregunta"
+      :withBack="true"
     ></header-nav>
     <div class="edit">
       <section class="edit__question">

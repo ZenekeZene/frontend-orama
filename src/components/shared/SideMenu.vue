@@ -30,7 +30,7 @@ export default {
     },
     withClose: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   computed: {
@@ -64,17 +64,23 @@ export default {
       this.isCollapsedLocal = this.isCollapsed;
     },
     isCollapsedLocal(value) {
-      console.log(value);
       this.loopSiblings(
         node => (node.$el.style.transform = value ? this.pushed : this.pulled)
       );
+      this.$el.style.transition = `all ${this.duration} ${this.easing}`;
+    },
+    $route() {
+      this.loopSiblings(node => {
+        node.$el.style.transform = this.pulled;
+        node.$el.style.transition = `all ${this.duration} ${this.easing}`;
+      });
     }
   },
   mounted() {
     const direction = this.side === "left" ? -1 : 1;
     this.isCollapsedLocal = this.isCollapsed;
     this.loopSiblings(node => {
-      node.$el.style = this.pulled;
+      node.$el.style.transform = this.pulled;
       node.$el.style.transition = `all ${this.duration} ${this.easing}`;
     });
     this.$el.style.width = this.width;

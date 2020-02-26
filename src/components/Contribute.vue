@@ -9,8 +9,10 @@ export default {
   name: "Contribute",
   methods: {
     goToEdit() {
-      this.$router.push("edit");
-      this.$emit("onToggleCollapse", false);
+      if (this.$route.path !== "/edit") {
+        this.$router.push("edit");
+        this.$emit("onToggleCollapse", false);
+      }
     }
   }
 };

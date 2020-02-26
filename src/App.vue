@@ -7,10 +7,12 @@
       duration="450ms"
       easing="ease-in-out"
       side="right"
-      :withClose="true"
     >
       <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
-      <contribute @onToggleCollapse="isCollapsed = $event"></contribute>
+      <contribute
+        v-if="$route.path !== '/edit'"
+        @onToggleCollapse="isCollapsed = $event"
+      ></contribute>
       <credits></credits>
       <version></version>
     </side-menu>
