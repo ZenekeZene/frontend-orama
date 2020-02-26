@@ -25,6 +25,8 @@ export default {
       this.$emit("onToggleCollapse", this.isSidebarOpened);
     },
     goBack() {
+      this.isSidebarOpened = false;
+      this.$emit("onToggleCollapse", this.isSidebarOpened);
       this.$router.go(-1);
     }
   }

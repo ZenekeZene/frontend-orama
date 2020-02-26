@@ -1,5 +1,6 @@
 <template>
   <nav class="side-menu" :style="cssProps">
+    <span v-if="withClose" @click="isCollapsedLocal = false">X</span>
     <slot></slot>
   </nav>
 </template>
@@ -22,36 +23,65 @@ export default {
     easing: {
       type: String,
       default: "ease-in"
+    },
+    side: {
+      type: String,
+      default: "right"
+    },
+    withClose: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
     cssProps() {
+      const direction = this.side === "left" ? -1 : 1;
       return {
-        'transform': `translateX(${this.isCollapsed ? "0%" : "100%"})`
+        transform: `translateX(${
+          this.isCollapsedLocal ? "0%" : direction * 100 + "%"
+        })`
       };
     },
     pushed() {
-      return `${this.transition}; transform: translateX(-${this.width});`;
+      const direction = this.side === "left" ? 1 : -1;
+      const offset = this.width.split("%")[0] * direction;
+      console.log(offset);
+      return `translateX(${offset}%)`;
     },
     pulled() {
-      return `${this.transition}; transform: translateX(0%);`;
+      return `translateX(0%)`;
     },
     transition() {
-      return `transition: transform ${this.duration} ${this.easing}`;
+      return `transition: all ${this.duration} ${this.easing}`;
     }
   },
+  data() {
+    return {
+      isCollapsedLocal: false
+    };
+  },
   watch: {
-    isCollapsed: {
-      handler(value) {
-        this.loopSiblings(
-          node => (node.$el.style = value ? this.pushed : this.pulled)
-        );
-      }
+    isCollapsed() {
+      this.isCollapsedLocal = this.isCollapsed;
+    },
+    isCollapsedLocal(value) {
+      console.log(value);
+      this.loopSiblings(
+        node => (node.$el.style.transform = value ? this.pushed : this.pulled)
+      );
     }
   },
   mounted() {
-    this.loopSiblings(node => (node.$el.style = this.pulled));
-    this.$el.style = `width: ${this.width}; ${this.transition}; transform: translateX(100%)`;
+    const direction = this.side === "left" ? -1 : 1;
+    this.isCollapsedLocal = this.isCollapsed;
+    this.loopSiblings(node => {
+      node.$el.style = this.pulled;
+      node.$el.style.transition = `all ${this.duration} ${this.easing}`;
+    });
+    this.$el.style.width = this.width;
+    this.$el.style[this.side] = 0;
+    this.$el.style.transition = `all ${this.duration} ${this.easing}`;
+    this.$el.transform = `translateX(${direction * 100 + "%"})`;
   },
   methods: {
     loopSiblings(iterationCallback) {
