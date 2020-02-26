@@ -45,7 +45,6 @@ export default {
     pushed() {
       const direction = this.side === "left" ? 1 : -1;
       const offset = this.width.split("%")[0] * direction;
-      console.log(offset);
       return `translateX(${offset}%)`;
     },
     pulled() {

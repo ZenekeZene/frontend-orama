@@ -1,13 +1,12 @@
 <template>
   <div id="app" class="app">
-    <button @click="isCollapsed = !isCollapsed">Toggle menu</button>
     <router-view @onToggleCollapse="isCollapsed = $event" />
     <side-menu
       :isCollapsed="isCollapsed"
       width="70%"
       duration="450ms"
       easing="ease-in-out"
-      side="left"
+      side="right"
       :withClose="true"
     >
       <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
