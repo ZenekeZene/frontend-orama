@@ -58,10 +58,10 @@ input[type="radio"] {
   min-width: 1.5rem;
   height: 1.5rem;
   margin-right: 0.5rem;
-  border-radius: 50%;
+  border-radius: 55px;
   border: 2px solid var(--color-secondary);
-  outline: none;
   transition: 250ms ease-in background-color;
+  outline: none;
 
   &:checked {
     background-color: var(--color-secondary);

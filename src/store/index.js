@@ -17,7 +17,8 @@ export default new Vuex.Store({
     title: "Front-End-ORAMA",
     questionToBeAdded: {
       question: "",
-      answers: []
+      answers: [],
+      correctAnswerIndex: -1
     },
     points: 0,
     totalQuestions: 0

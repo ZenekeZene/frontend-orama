@@ -7,64 +7,13 @@
       :withBack="true"
       :withMenu="false"
     ></header-nav>
-    <article class="edit">
+    <div class="edit">
       <article class="edit__question">
-        <p class="subtitle">Enunciado:</p>
-        <div style="padding: 0; padding-left: 5px;" class="input --title">
-          <textarea-autosize
-            v-model="question"
-            :minHeight="30"
-            :maxHeight="100"
-            maxlength="135"
-            ref="title"
-            type="text"
-          ></textarea-autosize>
-        </div>
-        <section class="attachments">
-          <span class="icon-image"></span>
-        </section>
-        <p class="subtitle" style="margin-top: -21px; margin-bottom: 0.5rem;">
-          Respuestas:
-          <span class="detail">(Min. 2 - Máx. 5)</span>
-        </p>
-        <fade-transition group tag="ul" class="list">
-          <li
-            class="input"
-            v-for="(answer, index) in answers"
-            :key="`player-${index}`"
-          >
-            <input
-              type="radio"
-              v-model="correctAnswerIndex"
-              :value="index"
-              class="--incorrect"
-              :class="{ '--correct': correctAnswerIndex === index }"
-            />
-            <textarea-autosize
-              :ref="`player-${index}`"
-              rows="1"
-              maxlength="70"
-              :maxHeight="maxHeightAnswers"
-              placeholder="Inserta aquí tu respuesta"
-              v-model="answers[index]"
-              :class="{
-                '--correct': correctAnswerIndex === index,
-                '--incorrect': correctAnswerIndex !== index
-              }"
-            ></textarea-autosize>
-            <span class="input__clear" @click="deletePlayer(index)">
-              <span class="icon-cross"></span>
-            </span>
-          </li>
-        </fade-transition>
-        <button
-          class="add"
-          transparent
-          v-if="answers.length < 5"
-          @click="addPlayer(0)"
-        >
-          <span class="icon-plus"></span>Añadir respuesta
-        </button>
+        <new-question :question.sync="question"></new-question>
+        <new-answers
+          :answers.sync="answers"
+          :correctAnswerIndex.sync="correctAnswerIndex"
+        ></new-answers>
       </article>
       <aside class="fixed" style="flex-direction: column;">
         <p class="error-message" v-if="errors.length > 0 && flagValidate">
@@ -91,51 +40,28 @@
         height="auto"
         transition="fadeInDown"
       ></v-dialog>
-    </article>
+    </div>
   </main>
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
+import { answersValidation } from "../mixins/NewQuestion.validation";
+import SaveNewQuestion from "../mixins/SaveNewQuestion.dialog";
+import NewQuestion from "@/components/contribution/NewQuestion.vue";
+import NewAnswers from "@/components/contribution/NewAnswers.vue";
 export default {
   name: "Configuration",
+  mixins: [answersValidation, SaveNewQuestion],
+  components: {
+    NewQuestion,
+    NewAnswers
+  },
   data() {
     return {
       question: "",
       answers: [],
-      correctAnswerIndex: -1,
-      validators: [
-        {
-          message: "Inserta al menos 2 respuestas",
-          validator: ({ answers }) => answers.length > 1
-        },
-        {
-          message: "No dejes ninguna respuesta vacía",
-          validator: ({ answers }) => answers.every(answer => answer.length > 0)
-        },
-        {
-          message: "Identifica una respuesta como la correcta",
-          validator: () =>
-            this.correctAnswerIndex >= 0 &&
-            this.correctAnswerIndex < this.answers.length
-        },
-        {
-          message: "Inserta el enunciado de la pregunta",
-          validator: () => this.question.length > 0
-        }
-      ],
-      errors: [],
-      flagValidate: false,
-      maxHeightAnswers: 60
+      correctAnswerIndex: -1
     };
-  },
-  mounted() {
-    this.validate();
-    if (this.questionToBeAdded.question.length > 0) {
-      this.question = this.questionToBeAdded.question;
-    }
-    if (this.questionToBeAdded.answers.length > 0) {
-      this.answers = [...this.questionToBeAdded.answers];
-    }
   },
   computed: {
     ...mapState(["questionToBeAdded"]),
@@ -150,55 +76,15 @@ export default {
       );
     }
   },
-  watch: {
-    answers() {
-      this.validate();
-    },
-    correctAnswerIndex() {
-      this.validate();
-    }
-  },
   methods: {
     ...mapMutations(["setQuestionToBeAdded"]),
-    deletePlayer(index) {
-      this.answers.splice(index, 1);
-    },
-    addPlayer(index) {
-      if (this.answers.length < 5) {
-        this.answers.unshift("");
-        if (this.correctAnswerIndex !== -1) {
-          this.correctAnswerIndex++;
-        }
-        this.$nextTick(() => {
-          this.$refs[`player-${index}`][0].$el.focus();
-        });
-      }
-      if (!this.flagValidate) this.flagValidate = true;
-    },
-    handGoBack() {
-      if (this.haveBeenChanges) {
-        this.handleDialog();
-      } else {
-        this.$router.back();
-      }
-    },
-    goBack() {
-      this.$router.back();
-    },
     save() {
       const questionToBeAdded = {
         question: this.question,
-        answers: this.answers
+        answers: this.answers,
+        correctAnswerIndex: this.correctAnswerIndex
       };
       this.setQuestionToBeAdded({ questionToBeAdded });
-    },
-    validate() {
-      this.errors = this.validators.filter(validator => {
-        return !validator.validator({
-          question: this.question,
-          answers: this.answers
-        });
-      });
     },
     handSend() {
       if (this.errors.length === 0) {
@@ -207,37 +93,6 @@ export default {
     },
     send() {
       console.log("Send");
-    },
-    handleDialog() {
-      this.$modal.show("dialog", {
-        title:
-          "¿Quieres guardar la pregunta? Podrás seguir con ella más adelante.",
-        text: "Tus cambios se perderán si no los guardas.",
-        adaptive: true,
-        buttons: [
-          {
-            title: "No guardar",
-            handler: () => {
-              this.goBack();
-            }
-          },
-          {
-            title: "Cancelar",
-            default: true,
-            handler: () => {
-              this.$modal.hide("dialog");
-            }
-          },
-          {
-            title: "Guardar",
-            class: "v-dialog-save",
-            handler: () => {
-              this.save();
-              this.goBack();
-            }
-          }
-        ]
-      });
     }
   }
 };
