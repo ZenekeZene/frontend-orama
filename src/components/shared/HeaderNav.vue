@@ -2,7 +2,11 @@
   <section class="header">
     <span v-if="withBack" class="--left icon-forward" @click="goBack"></span>
     <h1>{{ title }}</h1>
-    <span class="--right icon-menu" @click="onToggleCollapse"></span>
+    <span
+      v-if="withMenu"
+      class="--right icon-menu"
+      @click="onToggleCollapse"
+    ></span>
   </section>
 </template>
 <script>
@@ -21,6 +25,10 @@ export default {
     withBack: {
       type: Boolean,
       default: false
+    },
+    withMenu: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -31,7 +39,7 @@ export default {
     goBack() {
       this.isSidebarOpened = false;
       this.$emit("onToggleCollapse", this.isSidebarOpened);
-      this.$router.go(-1);
+      this.$emit("goBack");
     }
   }
 };

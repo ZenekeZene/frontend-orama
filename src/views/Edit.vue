@@ -2,14 +2,21 @@
   <div page>
     <header-nav
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
+      @goBack="handGoBack"
       title="Nueva pregunta"
       :withBack="true"
+      :withMenu="false"
     ></header-nav>
     <div class="edit">
       <section class="edit__question">
         <p>Enunciado:</p>
         <div class="input --title">
-          <textarea maxlength="140" ref="title" type="text"></textarea>
+          <textarea
+            v-model="question"
+            maxlength="140"
+            ref="title"
+            type="text"
+          ></textarea>
         </div>
         <section class="attachments">
           <span class="icon-image"></span>
@@ -61,14 +68,34 @@
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Configuration",
   data() {
     return {
+      question: "",
       answers: []
     };
   },
+  mounted() {
+    this.question = this.questionToBeAdded.question;
+    this.answers = [...this.questionToBeAdded.answers];
+  },
+  computed: {
+    ...mapState(["questionToBeAdded"]),
+    haveBeenChanges() {
+      const diffAnswers = this.answers.filter(x =>
+        this.questionToBeAdded.answers.includes(x)
+      );
+      return (
+        this.answers.length !== this.questionToBeAdded.answers.length ||
+        this.answers.length != diffAnswers.length ||
+        this.question !== this.questionToBeAdded.question
+      );
+    }
+  },
   methods: {
+    ...mapMutations(["setQuestionToBeAdded"]),
     deletePlayer(index) {
       this.answers.splice(index, 1);
     },
@@ -79,6 +106,54 @@ export default {
           this.$refs[`player-${index}`][0].focus();
         });
       }
+    },
+    handGoBack() {
+      if (this.haveBeenChanges) {
+        this.handleDialog();
+      } else {
+        this.$router.back();
+      }
+    },
+    goBack() {
+      this.$router.back();
+    },
+    save() {
+      const questionToBeAdded = {
+        question: this.question,
+        answers: this.answers
+      };
+      this.setQuestionToBeAdded({ questionToBeAdded });
+    },
+    handleDialog() {
+      this.$modal.show("dialog", {
+        title:
+          "¿Quieres guardar la pregunta? Podrás seguir con ella más adelante.",
+        text: "Tus cambios se perderán si no los guardas.",
+        adaptive: true,
+        buttons: [
+          {
+            title: "No guardar",
+            handler: () => {
+              this.goBack();
+            }
+          },
+          {
+            title: "Cancelar",
+            default: true,
+            handler: () => {
+              this.$modal.hide("dialog");
+            }
+          },
+          {
+            title: "Guardar",
+            class: "v-dialog-save",
+            handler: () => {
+              this.save();
+              this.goBack();
+            }
+          }
+        ]
+      });
     }
   }
 };
