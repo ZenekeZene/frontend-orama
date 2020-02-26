@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <header-nav @onToggleCollapse="$emit('onToggleCollapse', $event)"></header-nav>
-    <div class="home" page>
+  <div page>
+    <header-nav
+      @onToggleCollapse="$emit('onToggleCollapse', $event)"
+    ></header-nav>
+    <div class="home">
       <h1>Resultado: {{ points }} / {{ totalQuestions }}</h1>
       <wheel
         :forceAngularVelocity="angularVelocity"

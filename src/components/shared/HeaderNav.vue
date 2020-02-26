@@ -16,8 +16,8 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Front-End-ORAMA'
-    },
+      default: "Front-End-ORAMA"
+    }
   },
   methods: {
     onToggleCollapse() {
@@ -32,17 +32,15 @@ export default {
 </script>
 <style lang="scss">
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 3;
+  position: relative;
   display: block;
   width: 100%;
   height: 4rem;
 
   > span {
     position: absolute;
-    top: -5px;
+    top: 0;
+    left: 0;
     z-index: 3;
     padding: 1.5rem;
     font-size: 1.2rem;
@@ -53,11 +51,12 @@ export default {
 
     &.--right {
       right: 0;
+      left: unset;
     }
   }
 
   h1 {
-    font-family: 'Museo Sans Rounded 1000';
+    font-family: "Museo Sans Rounded 700";
     height: 100%;
     display: flex;
     justify-content: center;
