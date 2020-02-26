@@ -1,10 +1,7 @@
 <template>
-  <section
-    class="side-menu"
-    :style="cssProps"
-  >
+  <nav class="side-menu" :style="cssProps">
     <slot></slot>
-  </section>
+  </nav>
 </template>
 <script>
 export default {
@@ -16,26 +13,26 @@ export default {
     },
     width: {
       type: String,
-      default: '60%',
+      default: "60%"
     },
     duration: {
       type: String,
-      default: '100ms'
+      default: "100ms"
     },
     easing: {
       type: String,
-      default: 'ease-in'
+      default: "ease-in"
     }
   },
   computed: {
     cssProps() {
       return {
-        "width": this.widthLocal,
-        "transform": `translateX(${this.isCollapsed ? "0%" : "100%"}`
+        'width': this.widthLocal,
+        'transform': `translateX(${this.isCollapsed ? "0%" : "100%"})`
       };
     },
     pushed() {
-      return  `${this.transition}; transform: translateX(-${this.widthLocal});`;
+      return `${this.transition}; transform: translateX(-${this.widthLocal});`;
     },
     pulled() {
       return `${this.transition}; transform: translateX(0%);`;
@@ -46,23 +43,21 @@ export default {
   },
   data() {
     return {
-      widthLocal: '100%'
+      widthLocal: "100%"
     };
   },
   watch: {
     isCollapsed: {
-      handler(newVal) {
-        this.loopSiblings(node => {
-          node.$el.style = newVal ? this.pushed : this.pulled;
-        });
+      handler(value) {
+        this.loopSiblings(
+          node => (node.$el.style = value ? this.pushed : this.pulled)
+        );
       }
     }
   },
   mounted() {
     this.widthLocal = this.width;
-    this.loopSiblings(node => {
-      node.$el.style = this.pulled;
-    });
+    this.loopSiblings(node => (node.$el.style = this.pulled));
     this.$el.style = `${this.transition}; transform: translateX(100%)`;
   },
   methods: {
