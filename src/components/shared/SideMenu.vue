@@ -67,13 +67,15 @@ export default {
       this.loopSiblings(
         node => (node.$el.style.transform = value ? this.pushed : this.pulled)
       );
-      this.$el.style.transition = `all ${this.duration} ${this.easing}`;
+      //this.$el.style.transition = `all ${this.duration} ${this.easing}`;
     },
     $route() {
       this.loopSiblings(node => {
         node.$el.style.transform = this.pulled;
         node.$el.style.transition = `all ${this.duration} ${this.easing}`;
       });
+      const direction = this.side === "left" ? -1 : 1;
+      this.$el.style.transform = `translateX(${direction * 100 + "%"})`;
     }
   },
   mounted() {
@@ -86,7 +88,7 @@ export default {
     this.$el.style.width = this.width;
     this.$el.style[this.side] = 0;
     this.$el.style.transition = `all ${this.duration} ${this.easing}`;
-    this.$el.transform = `translateX(${direction * 100 + "%"})`;
+    this.$el.style.transform = `translateX(${direction * 100 + "%"})`;
   },
   methods: {
     loopSiblings(iterationCallback) {

@@ -14,6 +14,9 @@
         @optionSelected="selectOption($event)"
       ></options>
     </fade-transition>
+    <p class="author">
+      Contribuida por <a href="">{{ questionLocal.author }}</a>
+    </p>
   </div>
 </template>
 <script>
