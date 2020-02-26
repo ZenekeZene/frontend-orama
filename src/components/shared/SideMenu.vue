@@ -27,12 +27,11 @@ export default {
   computed: {
     cssProps() {
       return {
-        'width': this.widthLocal,
         'transform': `translateX(${this.isCollapsed ? "0%" : "100%"})`
       };
     },
     pushed() {
-      return `${this.transition}; transform: translateX(-${this.widthLocal});`;
+      return `${this.transition}; transform: translateX(-${this.width});`;
     },
     pulled() {
       return `${this.transition}; transform: translateX(0%);`;
@@ -40,11 +39,6 @@ export default {
     transition() {
       return `transition: transform ${this.duration} ${this.easing}`;
     }
-  },
-  data() {
-    return {
-      widthLocal: "100%"
-    };
   },
   watch: {
     isCollapsed: {
@@ -58,7 +52,7 @@ export default {
   mounted() {
     this.widthLocal = this.width;
     this.loopSiblings(node => (node.$el.style = this.pulled));
-    this.$el.style = `${this.transition}; transform: translateX(100%)`;
+    this.$el.style = `width: ${this.width}; ${this.transition}; transform: translateX(100%)`;
   },
   methods: {
     loopSiblings(iterationCallback) {
