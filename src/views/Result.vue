@@ -18,7 +18,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import MiniAvatar from "@/components/MiniAvatar";
+import MiniAvatar from "@/components/avatar/MiniAvatar";
 import RankingTable from "@/components/ranking/RankingTable";
 export default {
   name: "Result",

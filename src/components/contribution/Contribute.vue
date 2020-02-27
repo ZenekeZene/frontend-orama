@@ -1,5 +1,5 @@
 <template>
-  <section class="contribute" style="margin-bottom: 0">
+  <section class="contribute">
     <p v-if="!existQuestionToBeAdded">
       ¿Quieres contribuir con tus propias preguntas?
     </p>
@@ -28,9 +28,9 @@ export default {
 </script>
 <style lang="scss">
 .contribute {
-  background-color: #2d2f50;
   margin-top: auto;
   margin-bottom: 0;
+  background-color: #2d2f50;
 
   > * {
     margin-bottom: 1rem;

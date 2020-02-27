@@ -15,7 +15,7 @@
           :correctAnswerIndex.sync="correctAnswerIndex"
         ></new-answers>
       </article>
-      <aside class="fixed" style="flex-direction: column;">
+      <aside class="errors fixed">
         <p class="error-message" v-if="errors.length > 0 && flagValidate">
           {{ errors[0].message }}.
         </p>
@@ -97,3 +97,14 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.errors {
+  flex-direction: column;
+  text-align: center;
+}
+
+.error-message {
+  color: var(--color-incorrect);
+  padding-bottom: 0.5rem;
+}
+</style>

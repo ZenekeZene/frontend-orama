@@ -80,3 +80,11 @@ code {
   background-color: var(--color-primary);
   transform: translateX(-50%);
 }
+
+.--disabled {
+  opacity: 0.5;
+
+  &:hover {
+    background: initial;
+  }
+}

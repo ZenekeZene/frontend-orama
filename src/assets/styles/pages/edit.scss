@@ -2,14 +2,9 @@
   display: block;
   padding: 0 1rem;
 
-  .title {
-    position: absolute;
-    top: 1rem;
-    left: 0;
-    width: 100%;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    text-transform: uppercase;
+  .subtitle {
+    margin-bottom: 0.5rem;
+    font-family: "Museo Sans Rounded 500";
   }
 
   &__question {
@@ -21,13 +16,8 @@
 
   p {
     width: 100%;
-    text-align: left;
     font-weight: 700;
     letter-spacing: initial;
-  }
-
-  .save {
-    margin-top: auto;
   }
 
   .list {
@@ -35,76 +25,4 @@
     max-height: 28rem;
     overflow-y: auto;
   }
-
-  .icon-forward,
-  .icon-save {
-    position: absolute;
-    top: 0;
-    padding: 1rem;
-  }
-
-  .icon-forward {
-    left: 0;
-    font-size: 1.5rem;
-  }
-
-  .icon-save {
-    top: 3px;
-    right: 0;
-
-    &.--not-saved {
-      &:after {
-        $size: 0.8rem;
-        content: "";
-        position: absolute;
-        top: 0.2rem;
-        left: 0.2rem;
-        display: inline-block;
-        width: $size;
-        height: $size;
-        background-color: var(--color-secondary);
-        border-radius: 50%;
-      }
-    }
-  }
-}
-
-.--disabled {
-  opacity: 0.5;
-
-  &:hover {
-    background: initial;
-  }
-}
-
-.detail {
-  font-style: italic;
-  font-size: 0.7rem;
-  padding-left: 0.5rem;
-  font-family: Helvetica;
-  font-weight: 500;
-}
-
-.send {
-  max-width: calc(100% - 4rem);
-  margin: 0 auto;
-}
-
-.attachments {
-  display: flex;
-  justify-content: flex-end;
-
-  span {
-    padding: 0.5rem;
-  }
-}
-
-p.error-message {
-  text-align: center;
-  color: var(--color-incorrect);
-  padding-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-family: "Museo Sans Rounded 700";
 }

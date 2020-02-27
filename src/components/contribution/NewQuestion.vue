@@ -39,3 +39,13 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.attachments {
+  display: flex;
+  justify-content: flex-end;
+
+  span {
+    padding: 0.5rem;
+  }
+}
+</style>

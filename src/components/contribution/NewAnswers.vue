@@ -1,6 +1,6 @@
 <template>
   <article>
-    <p class="subtitle" style="margin-top: -21px; margin-bottom: 0.5rem;">
+    <p class="subtitle">
       Respuestas:
       <span class="detail">(Min. 2 - Máx. 5)</span>
     </p>
@@ -102,3 +102,12 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.detail {
+  padding-left: 0.5rem;
+  font-style: italic;
+  font-size: 0.7rem;
+  font-family: Helvetica;
+  font-weight: 500;
+}
+</style>

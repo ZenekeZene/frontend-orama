@@ -1,13 +1,13 @@
 <template>
   <article class="mini-avatar">
     <section class="image">
-      <img src="../assets/boy2.gif" :alt="`Avatar de ${name}`" />
+      <img src="../../assets/boy2.gif" :alt="`Avatar de ${name}`" />
     </section>
     <p class="points">
-      Has acertado <span class="color-secondary">7</span> preguntas en
+      Has acertado 7 preguntas en
       <span class="time">5:12</span> minutos. Lo que te da:
-      <span class="points__value">65</span> puntos.<br />
-      Eres todo un <span>{{ level }}</span
+      <span class="points__value">65</span> puntos. <br />Eres todo un
+      <span>{{ level }}</span
       >.
     </p>
     <button simple color-secondary>Compartir resultado</button>

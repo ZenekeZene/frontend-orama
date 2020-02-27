@@ -2,7 +2,7 @@
   <article class="avatar">
     <h2 v-if="withGreetins">Buenos días, {{ name }}</h2>
     <section class="image">
-      <img src="../assets/boy2.gif" :alt="`Avatar de ${name}`" />
+      <img src="../../assets/boy2.gif" :alt="`Avatar de ${name}`" />
       <span class="aka">{{ level }}</span>
     </section>
     <p class="points">
