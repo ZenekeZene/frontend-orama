@@ -1,5 +1,5 @@
 <template>
-  <div page>
+  <section page>
     <header-nav
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       :withBack="false"
@@ -24,7 +24,7 @@
         </button-custom>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

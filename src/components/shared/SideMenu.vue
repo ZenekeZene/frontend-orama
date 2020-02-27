@@ -38,7 +38,7 @@ export default {
       const direction = this.side === "left" ? -1 : 1;
       return {
         transform: `translateX(${
-          this.isCollapsedLocal ? "0%" : direction * 100 + "%"
+          this.isCollapsedLocal ? "0%" : direction * 101 + "%"
         })`
       };
     },
@@ -74,7 +74,7 @@ export default {
         node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
       });
       const direction = this.side === "left" ? -1 : 1;
-      this.$el.style.transform = `translateX(${direction * 100 + "%"})`;
+      this.$el.style.transform = `translateX(${direction * 101 + "%"})`;
     }
   },
   mounted() {
@@ -87,12 +87,15 @@ export default {
     this.$el.style.width = this.width;
     this.$el.style[this.side] = 0;
     this.$el.style.transition = `transform ${this.duration} ${this.easing}`;
-    this.$el.style.transform = `translateX(${direction * 100 + "%"})`;
+    this.$el.style.transform = `translateX(${direction * 101 + "%"})`;
   },
   methods: {
     loopSiblings(iterationCallback) {
       this.$parent.$children.forEach(node => {
-        if (!node.$el.classList.contains("side-menu")) {
+        if (
+          !node.$el.classList.contains("side-menu") &&
+          !node.$el.classList.contains("no-pusheable")
+        ) {
           iterationCallback(node);
         }
       });

@@ -53,7 +53,7 @@ export default {
 
 img {
   width: 50vw;
-  max-width: 250px;
+  max-width: 226px;
   height: auto;
   display: block;
   margin: 0 auto;
