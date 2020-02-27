@@ -9,7 +9,7 @@
       Record:
       <span class="points__value">65</span>puntos.
     </p>
-    <button simple color-secondary>Compartir</button>
+    <button-custom simple v-ripple color-secondary>Compartir</button-custom>
   </article>
 </template>
 <script>

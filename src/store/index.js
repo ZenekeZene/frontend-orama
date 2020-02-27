@@ -9,7 +9,7 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: "despido-state",
-      paths: ["questionToBeAdded", "currentQuestionIndex"]
+      paths: ["questionToBeAdded"]
     })
   ],
   state: {
@@ -19,9 +19,9 @@ export default new Vuex.Store({
       answers: [],
       correctAnswerIndex: -1
     },
+    currentQuestionIndex: 0,
     points: 0,
-    totalQuestions: 0,
-    currentQuestionIndex: 0
+    totalQuestions: 0
   },
   getters: {
     getNumOfPlayers: state => state.players.length,

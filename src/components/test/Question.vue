@@ -1,22 +1,21 @@
 <template>
   <div class="question">
-    <h1>{{ questionLocal.declare }}</h1>
-    <img height="100px" v-if="questionLocal.img" :src="questionLocal.img" />
-    <highlight-code lang="css" v-if="this.questionLocal.declare2">
-      {{ questionLocal.declare2.value }}
+    <h1>{{ question.declare }}</h1>
+    <img height="100" v-if="question.img" :src="question.img" />
+    <highlight-code lang="css" v-if="question.declare2">
+      {{ question.declare2.value }}
     </highlight-code>
     <fade-transition>
       <options
-        key="options"
-        :options="questionLocal.options"
-        :correctIndex="questionLocal.correctIndex"
+        :options="question.options"
+        :correctIndex="question.correctIndex"
         :showCorrect="showCorrect"
         @optionSelected="selectOption($event)"
       ></options>
     </fade-transition>
     <p class="author">
       Contribuida por
-      <a href>{{ questionLocal.author }}</a>
+      <a href>{{ question.author }}</a>
     </p>
   </div>
 </template>
@@ -29,7 +28,7 @@ export default {
     Options
   },
   props: {
-    questionLocal: {
+    question: {
       type: Object,
       default: () => {}
     },
@@ -38,12 +37,15 @@ export default {
       default: false
     }
   },
+  mounted() {
+    //console.log(this.question);
+  },
   methods: {
     selectOption(index) {
       this.$emit("optionSelected", index);
     },
     isAnswerCorrect(possibleAnswerCorrectIndex) {
-      return possibleAnswerCorrectIndex === this.questionLocal.correctIndex;
+      return possibleAnswerCorrectIndex === this.question.correctIndex;
     }
   }
 };

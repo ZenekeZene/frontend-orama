@@ -6,7 +6,8 @@
 <script>
 const colorDefault = getComputedStyle(
   document.documentElement
-).getPropertyValue("--color-tertiary");
+).getPropertyValue("--color-secondary");
+
 export default {
   name: "ButtonCustom",
   methods: {
@@ -29,13 +30,14 @@ export default {
     mobileHover: {
       inserted: (el, binding, vNode) => {
         el.addEventListener("touchstart", event => {
+          const colorInitial = el.style.background;
           if (!el.parentNode.classList.contains("--disabled")) {
-            el.style.backgroundColor = vNode.context.colorHover;
+            el.style.background = vNode.context.colorHover;
             if (binding.expression) {
               el.classList.add(binding.expression.replace(/'/g, ""));
             }
             setTimeout(() => {
-              event.target.style.backgroundColor = "unset";
+              event.target.style.background = colorInitial;
               if (binding.expression) {
                 el.classList.remove(binding.expression.replace(/'/g, ""));
               }

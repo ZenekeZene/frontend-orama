@@ -5,9 +5,10 @@
       >{{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span
     >
     <question
-      :questionLocal="questionLocal"
+      :question="question"
       :showCorrect="completed"
       @optionSelected="optionSelected"
+      :key="`question-${currentQuestionIndex}`"
     ></question>
     <fade-transition appear>
       <clock
@@ -34,7 +35,7 @@ export default {
   },
   data() {
     return {
-      questionLocal: questions[0],
+      question: null,
       completed: false,
       clockIsVisible: true
     };
@@ -43,7 +44,9 @@ export default {
     ...mapState(["totalQuestions", "currentQuestionIndex"])
   },
   mounted() {
-    this.questionLocal = questions[this.currentQuestionIndex];
+    this.$nextTick(() => {
+      this.question = { ...questions[this.currentQuestionIndex] };
+    });
     this.resetPoints();
     this.setTotalQuestions({ totalQuestions: questions.length });
   },
@@ -57,7 +60,7 @@ export default {
     ]),
     optionSelected(index) {
       this.answerIndexSelected = index;
-      if (this.questionLocal.correctIndex === index) {
+      if (this.question.correctIndex === index) {
         this.incrementPoint();
       }
       this.timeFinished();

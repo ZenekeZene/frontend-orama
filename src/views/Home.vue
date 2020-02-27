@@ -11,19 +11,18 @@
         :wasLaunched="wasLaunched"
         @lockLaunch="wasLaunched = true"
       ></wheel>
-      <button style="display: none" class="edit" @click="goToEdit">
-        <span class="icon-pencil"></span>
-      </button>
-      <button
-        simple
-        big
-        color-secondary
-        class="launch"
-        @click="launch"
-        :class="{ '--disabled': wasLaunched }"
-      >
-        ¡Lanzar!🤞
-      </button>
+      <div class="fixed">
+        <button-custom
+          simple
+          big
+          color-secondary
+          v-ripple
+          @click="launch"
+          style="position: relative;"
+        >
+          ¡Lanzar!🤞
+        </button-custom>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +56,7 @@ export default {
     },
     launch() {
       if (!this.wasLaunched) {
-        this.wasLaunched = true;
+        //this.wasLaunched = true;
         this.angularVelocity = this.calculateAngularVelocity();
       }
     },

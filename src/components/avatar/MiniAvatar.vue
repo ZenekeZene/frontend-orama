@@ -10,7 +10,7 @@
       <span>{{ level }}</span
       >.
     </p>
-    <button simple color-secondary>Compartir resultado</button>
+    <button class="share" simple color-secondary>Compartir resultado</button>
   </article>
 </template>
 <script>
@@ -41,7 +41,7 @@ export default {
   }
 
   .points {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
 
     &__value {
@@ -55,6 +55,10 @@ export default {
     display: inline-block;
     margin-top: 0.2rem;
     margin-bottom: 0.5rem;
+  }
+
+  .share {
+    margin-bottom: 1rem;
   }
 }
 </style>
