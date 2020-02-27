@@ -1,5 +1,5 @@
 <template>
-  <article page>
+  <article page class="result">
     <header-nav
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       title="Test finalizado"
@@ -7,10 +7,10 @@
       :withMenu="false"
       :withClose="true"
     ></header-nav>
-    <div class="result" style="max-height: 40rem; overflow-y: auto;">
+    <section class="result__avatar">
       <mini-avatar name="ZenekeZene" level="Ninja Developer"></mini-avatar>
-    </div>
-    <p style="padding: 1rem 2rem 1rem;">Ranking global</p>
+    </section>
+    <p class="ranking-title">Ranking global</p>
     <section class="ranking-wrapper">
       <ranking-table></ranking-table>
     </section>
@@ -36,10 +36,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.ranking-wrapper {
-  padding: 0 2rem 3rem 2rem;
-  overflow-y: auto;
-  height: calc(100vh - 4rem - 10rem);
-}
-</style>

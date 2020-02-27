@@ -6,9 +6,9 @@
     <p class="points">
       Has acertado <span class="color-secondary">7</span> preguntas en
       <span class="time">5:12</span> minutos. Lo que te da:
-      <span class="points__value">65 puntos</span>.<br />
-      Eres todo un
-      <span class="aka">{{ level }}</span>
+      <span class="points__value">65</span> puntos.<br />
+      Eres todo un <span>{{ level }}</span
+      >.
     </p>
     <button simple color-secondary>Compartir resultado</button>
   </article>
@@ -32,10 +32,6 @@ export default {
 .mini-avatar {
   position: relative;
 
-  .time {
-    color: var(--color-secondary);
-  }
-
   img {
     float: left;
     height: 5rem;
@@ -46,12 +42,10 @@ export default {
 
   .points {
     margin-bottom: 3rem;
+    font-size: 1rem;
 
     &__value {
-      padding: 0 0.2rem;
-      color: var(--color-dark);
-      background-color: var(--color-tertiary);
-      border-radius: 5px;
+      font-size: 1.5rem;
     }
   }
 
@@ -62,8 +56,5 @@ export default {
     margin-top: 0.2rem;
     margin-bottom: 0.5rem;
   }
-}
-.color-secondary {
-  color: var(--color-secondary);
 }
 </style>

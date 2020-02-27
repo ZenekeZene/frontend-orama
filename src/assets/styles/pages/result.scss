@@ -1,13 +1,17 @@
 .result {
-  padding-right: 2rem;
-  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
-  h1 {
-    margin-bottom: 1rem;
-    text-align: center;
-  }
+  &__avatar {
+    max-height: 40rem;
+    overflow-y: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
 
-  &__image {
-    outline: 1px solid white;
+    h1 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
   }
 }
