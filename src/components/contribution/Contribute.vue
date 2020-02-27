@@ -30,6 +30,7 @@ export default {
 .contribute {
   margin-top: auto;
   margin-bottom: 0;
+  padding: 1rem;
   background-color: #2d2f50;
 
   > * {

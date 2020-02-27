@@ -106,16 +106,7 @@ export default {
   top: 0;
   right: 0;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   width: 100%;
   height: 100%;
-  background-color: var(--color-dark);
-
-  & > * {
-    margin-bottom: 1rem;
-    padding: 1rem;
-  }
 }
 </style>

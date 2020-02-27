@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="menu">
     <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
     <contribute v-if="$route.path !== '/edit'"></contribute>
     <credits></credits>
@@ -20,3 +20,12 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background-color: var(--color-dark);
+}
+</style>

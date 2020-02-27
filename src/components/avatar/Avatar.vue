@@ -34,6 +34,7 @@ export default {
 <style lang="scss" scoped>
 .avatar {
   margin-bottom: auto;
+  padding: 1rem;
 
   > * {
     margin-bottom: 1rem;
@@ -51,8 +52,7 @@ export default {
 
 img {
   width: 100%;
-  max-width: 200px;
-  height: 12rem;
+  height: auto;
   display: block;
   margin: 0 auto;
   border-radius: 0.5rem;
