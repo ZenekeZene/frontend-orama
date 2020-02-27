@@ -10,7 +10,9 @@
       <span>{{ level }}</span
       >.
     </p>
-    <button class="share" simple color-secondary>Compartir resultado</button>
+    <button-custom class="share" v-ripple simple color-secondary
+      >Compartir resultado</button-custom
+    >
   </article>
 </template>
 <script>
@@ -35,7 +37,7 @@ export default {
   img {
     float: left;
     height: 5rem;
-    margin-top: 0.3rem;
+    margin-top: 0.2rem;
     margin-right: 1rem;
     border-radius: 7px;
   }

@@ -1,9 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Edit from "../views/Edit.vue";
-import Questionary from "../views/Questionary.vue";
-import Result from "../views/Result.vue";
+import Home from "../views/Home";
+import Edit from "../views/Edit";
+import Questionary from "../views/Questionary";
+import Result from "../views/Result";
+import Ranking from "../views/Ranking";
 
 import VueKonva from "vue-konva";
 
@@ -31,6 +32,11 @@ const routes = [
     path: "/result",
     name: "Result",
     component: Result
+  },
+  {
+    path: "/ranking",
+    name: "Ranking",
+    component: Ranking
   }
 ];
 

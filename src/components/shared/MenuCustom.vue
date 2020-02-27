@@ -1,6 +1,15 @@
 <template>
   <section class="menu">
-    <avatar name="ZenekeZene" level="Ninja Developer"></avatar>
+    <avatar name="ZenekeZene" level="Ninja Developer">
+      <button-custom
+        @click="$router.push('ranking')"
+        style="color: var(--color-secondary);"
+        simple
+        transparent
+        v-ripple
+        >Ver clasificación</button-custom
+      >
+    </avatar>
     <contribute v-if="$route.path !== '/edit'"></contribute>
     <credits></credits>
     <version></version>

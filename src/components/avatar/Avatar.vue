@@ -10,6 +10,7 @@
       <span class="points__value">65</span>puntos.
     </p>
     <button-custom simple v-ripple color-secondary>Compartir</button-custom>
+    <slot></slot>
   </article>
 </template>
 <script>
@@ -51,7 +52,8 @@ export default {
 }
 
 img {
-  width: 100%;
+  width: 50vw;
+  max-width: 250px;
   height: auto;
   display: block;
   margin: 0 auto;

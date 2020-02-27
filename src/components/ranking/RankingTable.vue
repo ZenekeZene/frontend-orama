@@ -3,7 +3,7 @@
     appear
     name="list"
     tag="ol"
-    class="ranking"
+    class="ranking-table"
     v-bind:css="false"
     v-on:before-enter="beforeEnter"
     v-on:enter="enter"
@@ -14,20 +14,17 @@
       :key="`option-${index}`"
       :data-index="index"
     >
-      <a :href="player.link">
-        <img src="../../assets/images/boy.gif" />
-        <div class="info">
-          <span class="name">{{ player.name }}</span>
-          <span class="message">- {{ player.message }}</span>
-        </div>
-        <span class="value">{{ player.record }}</span>
-      </a>
+      <ranking-player :player="player"></ranking-player>
     </li>
   </transition-group>
 </template>
 <script>
+import RankingPlayer from "./RankingPlayer";
 export default {
   name: "RankingTable",
+  components: {
+    RankingPlayer
+  },
   data() {
     return {
       mockPlayers: [
@@ -119,3 +116,23 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.ranking-table {
+  list-style: none;
+
+  &-wrapper {
+    position: relative;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 1rem 2rem 2rem 2rem;
+    background: linear-gradient(-180deg, #292a3a, transparent);
+  }
+
+  &-title {
+    padding: 1rem 2rem 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: var(--color-dark);
+  }
+}
+</style>

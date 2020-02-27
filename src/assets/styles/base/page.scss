@@ -80,3 +80,9 @@
     right: 0;
   }
 }
+
+.column-with-scroll  {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

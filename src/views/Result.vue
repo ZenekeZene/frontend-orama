@@ -1,5 +1,5 @@
 <template>
-  <article page class="result">
+  <article page class="result column-with-scroll">
     <header-nav
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       title="Test finalizado"
@@ -10,8 +10,8 @@
     <section class="result__avatar">
       <mini-avatar name="ZenekeZene" level="Ninja Developer"></mini-avatar>
     </section>
-    <p class="ranking-title">Ranking global</p>
-    <section class="ranking-wrapper">
+    <p class="ranking-table-title">Ranking global</p>
+    <section class="ranking-table-wrapper">
       <ranking-table></ranking-table>
     </section>
   </article>
@@ -36,3 +36,16 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.result {
+  &__avatar {
+    padding-right: 2rem;
+    padding-left: 2rem;
+
+    h1 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  }
+}
+</style>
