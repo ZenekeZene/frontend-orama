@@ -43,10 +43,8 @@ export default {
   computed: {
     ...mapState(["totalQuestions", "currentQuestionIndex"])
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.question = { ...questions[this.currentQuestionIndex] };
-    });
+  created() {
+    this.question = { ...questions[this.currentQuestionIndex] };
     this.resetPoints();
     this.setTotalQuestions({ totalQuestions: questions.length });
   },

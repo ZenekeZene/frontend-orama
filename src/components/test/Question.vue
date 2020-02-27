@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <h1>{{ question.declare }}</h1>
+    <h1 v-if="question.declare">{{ question.declare }}</h1>
     <img height="100" v-if="question.img" :src="question.img" />
     <highlight-code lang="css" v-if="question.declare2">
       {{ question.declare2.value }}
@@ -15,7 +15,7 @@
     </fade-transition>
     <p class="author">
       Contribuida por
-      <a href>{{ question.author }}</a>
+      <a href="">{{ question.author }}</a>
     </p>
   </div>
 </template>
@@ -36,9 +36,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  mounted() {
-    //console.log(this.question);
   },
   methods: {
     selectOption(index) {

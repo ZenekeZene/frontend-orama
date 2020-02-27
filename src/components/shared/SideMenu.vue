@@ -51,7 +51,7 @@ export default {
       return `translateX(0%)`;
     },
     transition() {
-      return `transition: all ${this.duration} ${this.easing}`;
+      return `transition: transform ${this.duration} ${this.easing}`;
     }
   },
   data() {
@@ -67,12 +67,11 @@ export default {
       this.loopSiblings(
         node => (node.$el.style.transform = value ? this.pushed : this.pulled)
       );
-      //this.$el.style.transition = `all ${this.duration} ${this.easing}`;
     },
     $route() {
       this.loopSiblings(node => {
         node.$el.style.transform = this.pulled;
-        node.$el.style.transition = `all ${this.duration} ${this.easing}`;
+        node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
       });
       const direction = this.side === "left" ? -1 : 1;
       this.$el.style.transform = `translateX(${direction * 100 + "%"})`;
@@ -83,11 +82,11 @@ export default {
     this.isCollapsedLocal = this.isCollapsed;
     this.loopSiblings(node => {
       node.$el.style.transform = this.pulled;
-      node.$el.style.transition = `all ${this.duration} ${this.easing}`;
+      node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
     });
     this.$el.style.width = this.width;
     this.$el.style[this.side] = 0;
-    this.$el.style.transition = `all ${this.duration} ${this.easing}`;
+    this.$el.style.transition = `transform ${this.duration} ${this.easing}`;
     this.$el.style.transform = `translateX(${direction * 100 + "%"})`;
   },
   methods: {

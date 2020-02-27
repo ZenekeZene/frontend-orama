@@ -7,7 +7,6 @@
     v-on:before-enter="beforeEnter"
     v-on:enter="enter"
     v-on:leave="leave"
-    class="options"
   >
     <slot></slot>
   </transition-group>

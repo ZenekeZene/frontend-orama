@@ -3,6 +3,7 @@
     <answer-transition
       :optionsLength="options.length"
       :class="{ '--is-completed': showCorrect }"
+      class="options"
     >
       <li
         v-for="(option, index) in options"
