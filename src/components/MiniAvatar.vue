@@ -6,7 +6,7 @@
     <p class="points">
       Has acertado <span class="color-secondary">7</span> preguntas en
       <span class="time">5:12</span> minutos. Lo que te da:
-      <span class="points__value">65 puntos</span><br />
+      <span class="points__value">65 puntos</span>.<br />
       Eres todo un
       <span class="aka">{{ level }}</span>
     </p>

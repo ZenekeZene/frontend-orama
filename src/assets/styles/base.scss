@@ -12,7 +12,6 @@
 html,
 body {
   height: 100%;
-  background-color: var(--color-tertiary);
 }
 
 @import '../fonts/museo/museo';
@@ -25,6 +24,7 @@ body {
 
   @include mq($until: phablet) {
     padding: 0;
+    background-color: var(--color-primary);
   }
 }
 

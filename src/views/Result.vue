@@ -9,9 +9,11 @@
     ></header-nav>
     <div class="result" style="max-height: 40rem; overflow-y: auto;">
       <mini-avatar name="ZenekeZene" level="Ninja Developer"></mini-avatar>
-      <p style="padding: 1rem 0;">Ranking global</p>
-      <ranking-table></ranking-table>
     </div>
+    <p style="padding: 1rem 2rem 1rem;">Ranking global</p>
+    <section class="ranking-wrapper">
+      <ranking-table></ranking-table>
+    </section>
   </article>
 </template>
 <script>
@@ -34,3 +36,10 @@ export default {
   }
 };
 </script>
+<style scoped>
+.ranking-wrapper {
+  padding: 0 2rem 3rem 2rem;
+  overflow-y: auto;
+  height: calc(100vh - 4rem - 10rem);
+}
+</style>
