@@ -89,5 +89,9 @@ export default {
     align-items: center;
     font-size: 1.7rem;
   }
+
+  .icon-forward {
+    transform: rotateZ(180deg);
+  }
 }
 </style>
