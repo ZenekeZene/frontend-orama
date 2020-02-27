@@ -58,22 +58,12 @@ img {
   border-radius: 0.5rem;
 }
 
-.aka {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.3rem 0.7rem;
-  color: var(--color-dark);
-  background-color: var(--color-tertiary);
-  border-radius: 5px;
-}
-
 .points {
   margin-bottom: 0.5rem;
 
   &__value {
     padding: 0 0.2rem;
-    color: var(--color-secondary);
+    color: var(--color-tertiary);
     font-size: 2rem;
   }
 }

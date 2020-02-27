@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <h1>{{ questionLocal.declare }}</h1>
-    <img v-if="questionLocal.img" :src="questionLocal.img" />
+    <img height="100px" v-if="questionLocal.img" :src="questionLocal.img" />
     <highlight-code lang="css" v-if="this.questionLocal.declare2">{{
       questionLocal.declare2.value
     }}</highlight-code>

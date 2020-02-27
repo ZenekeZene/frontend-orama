@@ -9,14 +9,17 @@
     height: 100%;
 
     img {
-      border-radius: 0.5rem;
-      max-height: 30vh;
+      width: calc(100% + 2rem);
+      height: 25vh;
       margin: 0 auto;
+      margin-left: -1rem;
+      border-radius: 0;
     }
 
     h1 {
       margin-bottom: 1rem;
       padding: 0 1rem 0 0;
+      font-size: 1rem;
     }
 
     &.--expanded {
@@ -38,6 +41,11 @@
         font-size: 1rem;
         padding-bottom: 1rem;
       }
+    }
+
+    pre {
+      width: calc(100% + 2rem);
+      margin-left: -1rem;
     }
   }
 
@@ -64,6 +72,7 @@
       position: relative;
       height: 100%;
       padding: 0;
+      font-family: "Museo Sans Rounded 700";
       border: 3px solid var(--color-primary);
     }
   }

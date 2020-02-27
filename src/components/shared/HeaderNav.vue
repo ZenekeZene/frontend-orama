@@ -7,6 +7,11 @@
       class="--right icon-menu"
       @click="onToggleCollapse"
     ></span>
+    <span
+      v-if="withClose && !withMenu"
+      class="--right icon-close"
+      @click="goHome"
+    ></span>
   </section>
 </template>
 <script>
@@ -29,6 +34,10 @@ export default {
     withMenu: {
       type: Boolean,
       default: true
+    },
+    withClose: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -40,6 +49,9 @@ export default {
       this.isSidebarOpened = false;
       this.$emit("onToggleCollapse", this.isSidebarOpened);
       this.$emit("goBack");
+    },
+    goHome() {
+      this.$router.push("/");
     }
   }
 };

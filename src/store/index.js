@@ -56,6 +56,9 @@ export default new Vuex.Store({
     },
     incrementCurrentQuestionIndex(state) {
       state.currentQuestionIndex++;
+    },
+    resetCurrentQuestionIndex(state) {
+      state.currentQuestionIndex = 0;
     }
   },
   actions: {},

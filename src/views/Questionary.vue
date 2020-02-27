@@ -51,7 +51,8 @@ export default {
       "incrementPoint",
       "setTotalQuestions",
       "resetPoints",
-      "incrementCurrentQuestionIndex"
+      "incrementCurrentQuestionIndex",
+      "resetCurrentQuestionIndex"
     ]),
     optionSelected(index) {
       this.answerIndexSelected = index;
@@ -71,6 +72,7 @@ export default {
       this.incrementCurrentQuestionIndex();
       if (this.currentQuestionIndex === this.totalQuestions) {
         this.$router.push({ name: "Result" });
+        this.resetCurrentQuestionIndex();
       } else {
         this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
       }
