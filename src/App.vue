@@ -1,8 +1,11 @@
 <template>
-  <main style="height: 100%;">
+  <main class="main">
     <theme-select class="no-pusheable"></theme-select>
+    <visit-book class="no-pusheable"></visit-book>
     <article id="app" class="app">
-      <router-view @onToggleCollapse="isCollapsed = $event" />
+      <fade-transition mode="in-out">
+        <router-view @onToggleCollapse="isCollapsed = $event" />
+      </fade-transition>
       <side-menu
         :isCollapsed="isCollapsed"
         width="70%"
@@ -17,6 +20,7 @@
 </template>
 <script>
 import ThemeSelect from "@/components/ThemeSelect";
+import VisitBook from "@/components/VisitBook";
 import SideMenu from "@/components/shared/SideMenu";
 import MenuCustom from "@/components/shared/MenuCustom";
 
@@ -25,7 +29,8 @@ export default {
   components: {
     ThemeSelect,
     SideMenu,
-    MenuCustom
+    MenuCustom,
+    VisitBook
   },
   data() {
     return {
