@@ -7,11 +7,6 @@ body {
   color: white;
   background-color: teal;
   font-family: "Museo Sans Rounded 500", sans-serif;
-
-  @include mq($until: phablet) {
-    padding: 0;
-    background-color: var(--color-primary);
-  }
 }
 
 input,

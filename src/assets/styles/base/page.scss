@@ -1,6 +1,11 @@
 .main {
   height: 100%;
   padding: 2rem;
+
+  @include mq($until: phablet) {
+    padding: 0;
+    background-color: var(--color-primary);
+  }
 }
 
 .app {
