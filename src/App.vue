@@ -1,7 +1,10 @@
 <template>
-  <main class="main">
+  <main class="main" :class="{ '--expanded': expandedVisitBook }">
     <theme-select class="no-pusheable"></theme-select>
-    <visit-book class="no-pusheable"></visit-book>
+    <visit-book
+      class="no-pusheable"
+      @expandedVisitBook="expandedVisitBook = $event"
+    ></visit-book>
     <article id="app" class="app">
       <fade-transition mode="in-out">
         <router-view @onToggleCollapse="isCollapsed = $event" />
@@ -34,7 +37,8 @@ export default {
   },
   data() {
     return {
-      isCollapsed: false
+      isCollapsed: false,
+      expandedVisitBook: false
     };
   },
   mounted() {
@@ -44,3 +48,4 @@ export default {
   }
 };
 </script>
+style

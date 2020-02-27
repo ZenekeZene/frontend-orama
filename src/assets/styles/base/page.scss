@@ -6,6 +6,11 @@
     padding: 0;
     background-color: var(--color-primary);
   }
+
+  &.--expanded {
+    display: grid;
+    grid-template-columns: 1fr 18rem;
+  }
 }
 
 .app {

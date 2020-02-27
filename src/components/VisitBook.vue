@@ -3,7 +3,7 @@
     <h3 v-if="expanded">VISIT BOOK</h3>
     <span
       v-if="!expanded"
-      @click="expanded = !expanded"
+      @click="launch"
       class="icon-to-launch icon-pen"
     ></span>
     <span
@@ -18,6 +18,7 @@
         :minHeight="1"
         :maxHeight="160"
         placeholder="¡Envianos un saludo!"
+        ref="textarea"
       ></textarea-autosize>
       <button-custom v-ripple style="margin-top: 1rem" simple
         >Enviar</button-custom
@@ -32,6 +33,19 @@ export default {
     return {
       expanded: false
     };
+  },
+  watch: {
+    expanded() {
+      this.$emit("expandedVisitBook", this.expanded);
+    }
+  },
+  methods: {
+    launch() {
+      this.expanded = !this.expanded;
+      this.$nextTick(() => {
+        this.$refs.textarea.$el.focus();
+      });
+    }
   }
 };
 </script>
@@ -40,15 +54,15 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-  display: block;
+  display: flex;
   width: 3rem;
   height: 3rem;
   padding: 1rem;
-  transition: all 150ms ease-in;
 
   &.--expanded {
     width: 18rem;
     height: 100%;
+    background-color: #007b7b;
   }
 
   [class^="icon"] {
@@ -78,6 +92,7 @@ export default {
     bottom: 0;
     left: 0;
     width: 100%;
+    min-height: 8rem;
     padding: 1rem;
   }
 }
