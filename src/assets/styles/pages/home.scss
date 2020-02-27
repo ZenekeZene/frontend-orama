@@ -3,70 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  h1 {
-    position: absolute;
-    top: 9rem;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    span {
-      display: block;
-      text-transform: uppercase;
-    }
-  }
-
-  p {
-    padding: 1rem;
-    word-break: break-all;
-  }
-
-  .edit {
-    position: absolute;
-    top: 6.5rem;
-    right: 1rem;
-    width: 3rem;
-    height: 3rem;
-    padding: 0;
-    letter-spacing: 1px;
-    font-size: 0.5rem;
-    color: white;
-    border-bottom: none;
-    border-radius: 150px;
-    background: linear-gradient(145deg, #515495, #6064b1);
-    box-shadow:  11px 11px 21px #4d4f8c, 
-             -11px -11px 21px #686bbe;
-
-    [class^='icon-'] {
-      color: white;
-      font-size: 1.5rem;
-    }
-  }
-
-  textarea {
-    min-height: 7rem;
-    margin: 0;
-    padding: 1rem;
-    font-size: 1.7rem;
-    border-bottom: none;
-    font-family: 'Museo Sans Rounded 1000', Helvetica, sans-serif;
-
-    &.--fixed {
-      min-height: 2rem;
-      font-size: 2rem;
-      text-align: center;
-    }
-  }
 }
 
 .launch {
   position: absolute;
   bottom: 1.6rem;
-  left: 50%;
-  width: calc(100% - 3rem);
-  transform: translateX(-50%) scale(1);
 }
 
 .winner {

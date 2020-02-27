@@ -1,0 +1,12 @@
+:root {
+  --vh: 1;
+  --color-primary: #5a5da5; //#5a5da5;
+  --color-secondary: #d87a53; //#e49541;
+  --color-tertiary: #d5c553; //#2b2b2b;
+  --color-incorrect: #e3665c;
+  --color-correct: #65a681;
+  --color-dark: #333560;
+  --duration: 150ms;
+}
+
+@import 'breakpoints';

@@ -15,7 +15,7 @@
       :data-index="index"
     >
       <a :href="player.link">
-        <img src="../../assets/boy2.gif" />
+        <img src="../../assets/images/boy.gif" />
         <div class="info">
           <span class="name">{{ player.name }}</span>
           <span class="message">- {{ player.message }}</span>

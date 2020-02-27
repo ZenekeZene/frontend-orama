@@ -2,9 +2,9 @@
   <div class="question">
     <h1>{{ questionLocal.declare }}</h1>
     <img height="100px" v-if="questionLocal.img" :src="questionLocal.img" />
-    <highlight-code lang="css" v-if="this.questionLocal.declare2">{{
-      questionLocal.declare2.value
-    }}</highlight-code>
+    <highlight-code lang="css" v-if="this.questionLocal.declare2">
+      {{ questionLocal.declare2.value }}
+    </highlight-code>
     <fade-transition>
       <options
         key="options"
@@ -15,7 +15,8 @@
       ></options>
     </fade-transition>
     <p class="author">
-      Contribuida por <a href="">{{ questionLocal.author }}</a>
+      Contribuida por
+      <a href>{{ questionLocal.author }}</a>
     </p>
   </div>
 </template>
@@ -47,3 +48,34 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.question {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100%;
+
+  img {
+    width: calc(100% + 2rem);
+    height: 25vh;
+    margin: 0 auto;
+    margin-left: -1rem;
+    border-radius: 0;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+    padding: 0 1rem 0 0;
+    font-size: 1.2rem;
+  }
+
+  pre {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+  }
+}
+
+.author {
+  text-align: center;
+}
+</style>

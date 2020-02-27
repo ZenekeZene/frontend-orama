@@ -1,0 +1,30 @@
+@import 'button';
+@import 'input';
+@import 'radio';
+@import 'ranking';
+@import 'clock';
+
+.aka {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  color: var(--color-dark);
+  background-color: var(--color-tertiary);
+  border-radius: 5px;
+}
+
+.category {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  z-index: 1;
+  opacity: 1;
+  display: inline-block;
+  padding: 0.2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(white, 0.36);
+  background-color: var(--color-primary);
+  transform: translateX(-50%);
+}

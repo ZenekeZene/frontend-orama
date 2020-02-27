@@ -60,3 +60,29 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  list-style: none;
+  padding: 1rem;
+
+  li {
+    flex: 1 1 auto;
+    max-height: 70px;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  button {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-family: "Museo Sans Rounded 700";
+    border: 3px solid var(--color-primary);
+  }
+}
+</style>

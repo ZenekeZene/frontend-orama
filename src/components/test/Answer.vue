@@ -33,3 +33,33 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.option {
+  &:hover:not(.--incorrect) {
+    border-color: #b96441;
+  }
+
+  &.--incorrect {
+    opacity: 0.5 !important;
+    width: 95%;
+  }
+
+  &.--correct {
+    position: relative;
+    opacity: 1 !important;
+    background: var(--color-correct) !important;
+    border-color: var(--color-correct) !important;
+    max-width: 100%;
+  }
+
+  &.--selected {
+    border: 3px solid var(--color-secondary);
+  }
+
+  &.--selected.--incorrect {
+    opacity: 1 !important;
+    background: var(--color-incorrect) !important;
+    border-color: var(--color-incorrect) !important;
+  }
+}
+</style>

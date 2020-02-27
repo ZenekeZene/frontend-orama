@@ -81,3 +81,19 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.questionary {
+  height: 100%;
+  padding: 3rem 1rem;
+}
+
+.indicator {
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+  z-index: 1;
+  padding: 0.5rem;
+  color: white;
+  background-color: var(--color-primary);
+}
+</style>

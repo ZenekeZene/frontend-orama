@@ -1,5 +1,4 @@
 .clock {
-  @extend .fab;
   @include neomorphs;
   display: flex;
   margin: 0 auto;
@@ -11,18 +10,6 @@
   &.pulse-clock {
     animation-name: pulse-clock;
     animation-play-state: running;
-  }
-
-  &.--mini {
-    $size: 2.5rem;
-    display: inline-flex;
-    min-width: $size;
-    min-height: $size;
-    width: $size;
-    height: $size;
-    font-size: 1rem;
-    background-color: transparent;
-    box-shadow: none;
   }
 
   &.--is-progress {

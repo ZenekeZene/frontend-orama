@@ -1,7 +1,7 @@
 <template>
   <article>
     <p class="subtitle">Enunciado:</p>
-    <div style="padding: 0; padding-left: 5px;" class="input --title">
+    <div class="input --title">
       <textarea-autosize
         v-model="questionLocal"
         :minHeight="30"
@@ -39,7 +39,12 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.input.--title {
+  padding: 0;
+  padding-left: 5px;
+}
+
 .attachments {
   display: flex;
   justify-content: flex-end;

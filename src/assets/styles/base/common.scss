@@ -1,0 +1,72 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  padding: 2rem;
+  color: white;
+  background-color: teal;
+  font-family: "Museo Sans Rounded 500", sans-serif;
+
+  @include mq($until: phablet) {
+    padding: 0;
+    background-color: var(--color-primary);
+  }
+}
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+canvas {
+  width: 100%;
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: all var(--duration) ease-in-out;
+
+  &:hover {
+    @include mq($from: phablet) {
+      transform: scale(0.95);
+    }
+  }
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+a  {
+  padding: 0.5rem 0;
+  text-align: center;
+  text-decoration: underline;
+  color: var(--color-secondary);
+}
+
+code {
+  border: none;
+  //font-size: 1rem;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+.--disabled {
+  opacity: 0.5;
+
+  &:hover {
+    background: initial;
+  }
+}
+
+.list-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.list-enter-active {
+  transform: translateX(100%);
+  transition: all 1s;
+}
