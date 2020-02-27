@@ -1,5 +1,6 @@
 <template>
   <article class="questionary" page>
+    <h1 class="category">{ Vue }</h1>
     <span class="indicator"
       >{{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span
     >
