@@ -10,7 +10,7 @@
     <section class="result__avatar">
       <mini-avatar name="ZenekeZene" level="Ninja Developer"></mini-avatar>
     </section>
-    <p class="ranking-table-title">Ranking global</p>
+    <p class="ranking-table-title">Clasificación</p>
     <section class="ranking-table-wrapper">
       <ranking-table></ranking-table>
     </section>

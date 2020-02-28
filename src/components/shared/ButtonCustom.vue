@@ -30,6 +30,7 @@ export default {
     mobileHover: {
       inserted: (el, binding, vNode) => {
         el.addEventListener("touchstart", event => {
+          if (el.hasAttribute("transparent")) return false;
           const colorInitial = el.style.background;
           if (!el.parentNode.classList.contains("--disabled")) {
             el.style.background = vNode.context.colorHover;

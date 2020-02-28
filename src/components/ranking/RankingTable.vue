@@ -124,7 +124,7 @@ export default {
     position: relative;
     flex: 1 1 auto;
     overflow-y: auto;
-    padding: 1rem 2rem 2rem 2rem;
+    padding: 1rem 0rem 2rem 0rem;
     background: linear-gradient(-180deg, #292a3a, transparent);
   }
 

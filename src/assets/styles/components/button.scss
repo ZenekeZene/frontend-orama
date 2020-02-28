@@ -7,9 +7,7 @@ $gradient-button: linear-gradient(145deg, #515495, #6064b1);
 }
 
 button {
-  appearance: none;
   -webkit-appearance: none;
-  max-width: calc(375px - 2rem);
   width: 100%;
   padding: 1rem;
   font-size: 1rem;

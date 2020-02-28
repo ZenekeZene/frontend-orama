@@ -24,8 +24,9 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   text-decoration: none;
+  border-radius: 0;
 
   .info {
     display: flex;

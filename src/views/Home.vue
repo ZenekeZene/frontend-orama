@@ -56,7 +56,7 @@ export default {
     },
     launch() {
       if (!this.wasLaunched) {
-        //this.wasLaunched = true;
+        this.wasLaunched = true;
         this.angularVelocity = this.calculateAngularVelocity();
       }
     },

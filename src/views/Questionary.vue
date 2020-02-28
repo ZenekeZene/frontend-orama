@@ -71,12 +71,12 @@ export default {
       }, 2000);
     },
     nextQuestion() {
-      this.incrementCurrentQuestionIndex();
-      if (this.currentQuestionIndex === this.totalQuestions) {
+      if (this.currentQuestionIndex < this.totalQuestions) {
+        this.incrementCurrentQuestionIndex();
+        this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
+      } else if (this.currentQuestionIndex === this.totalQuestions) {
         this.$router.push({ name: "Result" });
         this.resetCurrentQuestionIndex();
-      } else {
-        this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
       }
     }
   }
