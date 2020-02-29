@@ -5,8 +5,8 @@
       :withBack="false"
     ></header-nav>
     <div class="home">
-      <h1 class="home__points" v-show="currentQuestionIndex > 0">
-        Aciertos: {{ points }}
+      <h1 class="home__points">
+        <span v-show="currentQuestionIndex > 0">Aciertos: {{ points }}</span>
       </h1>
       <wheel
         :forceAngularVelocity="angularVelocity"

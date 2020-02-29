@@ -1,6 +1,6 @@
 <template>
   <section class="questionary" page>
-    <h1 class="category">{ Vue }</h1>
+    <h1 class="category">{{ question.categories[0] }}</h1>
     <span class="indicator" v-if="points > 0">Aciertos: {{ points }}</span>
     <question
       :question="question"
@@ -11,8 +11,8 @@
     <fade-transition appear>
       <clock
         :isProgress="true"
-        :isStop="true"
-        :seconds="10"
+        :isStop="false"
+        :seconds="question.seconds || 10"
         v-if="clockIsVisible"
         @finished="timeFinished"
       ></clock>

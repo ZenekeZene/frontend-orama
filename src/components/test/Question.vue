@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <h1 v-if="question.declare">{{ question.declare }}</h1>
+    <h1 v-if="question.declare" v-text="questionLocal.declare"></h1>
     <img height="100" v-if="question.img" :src="question.img" />
     <highlight-code
       v-if="question.declare2 && question.declare2.type === 'code'"
@@ -39,6 +39,15 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  data() {
+    return {
+      questionLocal: this.question
+    };
+  },
+  mounted() {
+    //let tags = this.question.declare.match(/(<([^>]+)>)/ig);
+    //this.questionLocal.declare = this.questionLocal.declare.replace(/(<([^>]+)>)/ig, "'$1'");
   },
   methods: {
     selectOption(index) {
@@ -79,5 +88,7 @@ export default {
 
 .author {
   text-align: center;
+  font-size: 0.8rem;
+  color: #9697c5;
 }
 </style>

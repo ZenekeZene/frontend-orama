@@ -68,7 +68,7 @@ export default {
   justify-content: flex-start;
   height: 100%;
   list-style: none;
-  padding: 1rem;
+  padding: 1rem 0;
 
   li {
     flex: 1 1 auto;

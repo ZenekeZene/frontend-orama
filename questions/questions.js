@@ -52,6 +52,7 @@ alert(          );`
     },
     options: ["person.firstName", "person", 'person["lasName"]', '"John"'],
     categories: ["js"],
-    correctIndex: 0
+    correctIndex: 0,
+    seconds: 15
   }
 ];

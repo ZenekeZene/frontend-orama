@@ -1,5 +1,11 @@
 <template>
-  <div class="clock" :class="{ '--is-progress': isProgress }">
+  <div
+    class="clock"
+    :class="{
+      '--is-progress': isProgress,
+      '--last-seconds': effectLastSeconds
+    }"
+  >
     <span>{{ secondsLocal }}s</span>
     <div class="progress" v-if="isProgress">
       <span :class="{ launched: launched }" :style="style"></span>
@@ -12,7 +18,8 @@ export default {
   data() {
     return {
       secondsLocal: 0,
-      launched: false
+      launched: false,
+      effectLastSeconds: false
     };
   },
   props: {
@@ -48,6 +55,10 @@ export default {
   methods: {
     launchCountDown() {
       const timer = setInterval(() => {
+        if (this.secondsLocal < 5) {
+          this.effectLastSeconds = true;
+        }
+
         if (this.secondsLocal > 1) {
           this.secondsLocal -= 1;
         } else {

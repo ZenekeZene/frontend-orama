@@ -4,12 +4,11 @@
   align-items: center;
   justify-content: center;
   
-  .points {
+  &__points {
     width: 100%;
     padding: 1rem;
     font-size: 1.2rem;
     text-align: center;
-    background-color: #515176;
   }
 }
 
