@@ -21,7 +21,7 @@
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
-import questions from "../../questions/javascript";
+import questions from "../../questions/questions";
 import Question from "@/components/test/Question";
 import Clock from "@/components/test/Clock";
 

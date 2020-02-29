@@ -2,7 +2,10 @@
   <div class="question">
     <h1 v-if="question.declare">{{ question.declare }}</h1>
     <img height="100" v-if="question.img" :src="question.img" />
-    <highlight-code lang="css" v-if="question.declare2">
+    <highlight-code
+      v-if="question.declare2 && question.declare2.type === 'code'"
+      :lang="question.declare2.lang"
+    >
       {{ question.declare2.value }}
     </highlight-code>
     <fade-transition>
@@ -13,7 +16,7 @@
         @optionSelected="selectOption($event)"
       ></options>
     </fade-transition>
-    <p class="author">
+    <p class="author" v-if="question.author">
       Contribuida por
       <a href="">{{ question.author }}</a>
     </p>

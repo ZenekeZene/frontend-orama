@@ -23,7 +23,7 @@
 </template>
 <script>
 import { mapMutations } from "vuex";
-import questions from "../questions/javascript";
+import questions from "../questions/questions";
 import ThemeSelect from "@/components/ThemeSelect";
 import VisitBook from "@/components/VisitBook";
 import SideMenu from "@/components/shared/SideMenu";
