@@ -10,6 +10,7 @@
     <section class="result__avatar">
       <mini-avatar name="ZenekeZene" level="Ninja Developer"></mini-avatar>
     </section>
+    <canvas id="conffeti-canvas" class="confetti"></canvas>
     <p class="ranking-table-title">Clasificación</p>
     <section class="ranking-table-wrapper">
       <ranking-table></ranking-table>
@@ -29,6 +30,16 @@ export default {
   computed: {
     ...mapState(["points", "totalQuestions"])
   },
+  mounted() {
+    this.$confetti.start({
+      canvasId: "conffeti-canvas",
+      defaultDropRate: 10,
+      particles: [{ type: "heart" }]
+    });
+    setTimeout(() => {
+      this.$confetti.stop();
+    }, 2000);
+  },
   methods: {
     goToStart() {
       this.$router.push("/");
@@ -47,5 +58,11 @@ export default {
       text-align: center;
     }
   }
+}
+.confetti {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: calc(100% + 2rem);
 }
 </style>
