@@ -6,9 +6,6 @@
       class="wheel"
       style="text-align: center;"
     ></div>
-    <fade-transition>
-      <p v-if="winner.length > 0" class="winner">{{ winner }}</p>
-    </fade-transition>
     <p v-show="getNumOfPlayers === 0">
       ¡Hola!
       <br />Añade un título y opciones a tu super ruleta de la suerte.
@@ -43,7 +40,7 @@ export default {
       pointerY: 30,
       wheelY: 200,
       genVendor: gen,
-      winner: "",
+      category: "",
       wasLaunchedLocal: false,
       lockLaunch: false
     };
@@ -67,7 +64,10 @@ export default {
       this.finished = false;
       this.angularVelocity = newValue;
       this.angularVelocityInitial = this.angularVelocity;
-      this.winner = "";
+      this.category = "";
+    },
+    category() {
+      this.$emit("update:category", this.category);
     }
   },
   mounted() {
@@ -148,7 +148,7 @@ export default {
         () => {
           if (!this.lockLaunch) {
             this.controlled = false;
-            this.winner = "";
+            this.category = "";
             this.angularVelocity = this.getAverageAngularVelocity() * 5;
             this.angularVelocityInitial = this.angularVelocity;
 
@@ -280,8 +280,11 @@ export default {
               .getParent()
               .findOne("Text")
               .text();
-            const winner = text.split("\n").join("");
-            this.winner = winner;
+            const category = text
+              .split("\n")
+              .join("")
+              .trim();
+            this.category = category;
             setTimeout(() => {
               this.$router.push("questionary");
             }, 1000);

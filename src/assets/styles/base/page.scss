@@ -10,6 +10,14 @@
   &.--expanded {
     display: grid;
     grid-template-columns: 1fr 18rem;
+
+    @include mq($until: 760px) {
+      display: block;
+
+      .visit-book {
+        display: none;
+      }
+    }
   }
 }
 
@@ -94,6 +102,10 @@
 
   &.--right {
     right: 0;
+  }
+
+  &.--column {
+    flex-direction: column;
   }
 }
 

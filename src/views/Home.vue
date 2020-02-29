@@ -5,13 +5,19 @@
       :withBack="false"
     ></header-nav>
     <div class="home">
-      <h1>Resultado: {{ points }} / {{ totalQuestions }}</h1>
+      <h1 class="home__points" v-show="currentQuestionIndex > 0">
+        Aciertos: {{ points }}
+      </h1>
       <wheel
         :forceAngularVelocity="angularVelocity"
         :wasLaunched="wasLaunched"
         @lockLaunch="wasLaunched = true"
+        @update:category="category = $event"
       ></wheel>
-      <div class="fixed">
+      <div class="fixed --column">
+        <fade-transition>
+          <p v-if="category !== ''" class="winner">{{ category }}</p>
+        </fade-transition>
         <button-custom
           simple
           big
@@ -20,7 +26,7 @@
           @click="launch"
           style="position: relative;"
         >
-          ¡Lanzar!🤞
+          {{ currentQuestionIndex === 0 ? "Jugar!🤞" : "¡Siguiente pregunta!" }}
         </button-custom>
       </div>
     </div>
@@ -44,7 +50,8 @@ export default {
       angularVelocity: 0,
       minAngularVelocity: 10,
       maxAngularVelocity: 20,
-      wasLaunched: false
+      wasLaunched: false,
+      category: null
     };
   },
   mounted() {

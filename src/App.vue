@@ -22,6 +22,8 @@
   </main>
 </template>
 <script>
+import { mapMutations } from "vuex";
+import questions from "../questions/javascript";
 import ThemeSelect from "@/components/ThemeSelect";
 import VisitBook from "@/components/VisitBook";
 import SideMenu from "@/components/shared/SideMenu";
@@ -41,7 +43,12 @@ export default {
       expandedVisitBook: false
     };
   },
+  methods: {
+    ...mapMutations(["setTotalQuestions", "resetPoints"])
+  },
   mounted() {
+    this.setTotalQuestions({ totalQuestions: questions.length });
+    this.resetPoints();
     // Hack mobile viewport with vh units:
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);

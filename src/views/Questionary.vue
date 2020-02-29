@@ -1,9 +1,7 @@
 <template>
   <section class="questionary" page>
     <h1 class="category">{ Vue }</h1>
-    <span class="indicator"
-      >{{ currentQuestionIndex + 1 }}/{{ totalQuestions }}</span
-    >
+    <span class="indicator" v-if="points > 0">Aciertos: {{ points }}</span>
     <question
       :question="question"
       :showCorrect="completed"
@@ -41,18 +39,19 @@ export default {
     };
   },
   computed: {
-    ...mapState(["totalQuestions", "currentQuestionIndex"])
+    ...mapState(["totalQuestions", "currentQuestionIndex", "points"])
   },
   created() {
-    this.question = { ...questions[this.currentQuestionIndex] };
-    this.resetPoints();
-    this.setTotalQuestions({ totalQuestions: questions.length });
+    if (questions[this.currentQuestionIndex]) {
+      this.question = { ...questions[this.currentQuestionIndex] };
+    } else {
+      console.log("Algo fue mal");
+      this.$router.push({ name: "Home" });
+    }
   },
   methods: {
     ...mapMutations([
       "incrementPoint",
-      "setTotalQuestions",
-      "resetPoints",
       "incrementCurrentQuestionIndex",
       "resetCurrentQuestionIndex"
     ]),
@@ -71,10 +70,10 @@ export default {
       }, 2000);
     },
     nextQuestion() {
-      if (this.currentQuestionIndex < this.totalQuestions) {
+      if (this.currentQuestionIndex < this.totalQuestions - 1) {
         this.incrementCurrentQuestionIndex();
-        this.$router.push({ name: "Home", params: { angularVelocity: 10 } });
-      } else if (this.currentQuestionIndex === this.totalQuestions) {
+        this.$router.push({ name: "Home" });
+      } else if (this.currentQuestionIndex === this.totalQuestions - 1) {
         this.$router.push({ name: "Result" });
         this.resetCurrentQuestionIndex();
       }

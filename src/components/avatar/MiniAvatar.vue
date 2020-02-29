@@ -4,7 +4,7 @@
       <img src="../../assets/images/boy.gif" :alt="`Avatar de ${name}`" />
     </section>
     <p class="points">
-      Has acertado 7 preguntas en
+      Has acertado {{ points }} pregunta {{ points > 1 ? "s" : "" }} en
       <span class="time">5:12</span> minutos. Lo que te da:
       <span class="points__value">65</span> puntos. <br />Eres todo un
       <span>{{ level }}</span
@@ -16,6 +16,7 @@
   </article>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   name: "MiniAvatar",
   props: {
@@ -27,6 +28,9 @@ export default {
       type: String,
       default: ""
     }
+  },
+  computed: {
+    ...mapState(["points"])
   }
 };
 </script>

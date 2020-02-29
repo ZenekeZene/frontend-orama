@@ -3,6 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
+  .points {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #515176;
+  }
 }
 
 .winner {
