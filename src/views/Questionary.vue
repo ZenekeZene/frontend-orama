@@ -56,15 +56,9 @@ export default {
     ])
   },
   async created() {
-    if (this.questions.length === 0) {
-      this.isLoading = true;
-      console.log("Llamamos una sola vez");
-      await this.loadQuestions();
-      this.isLoading = false;
-      this.question = this.questions[this.currentQuestionIndex];
-    } else {
-      this.question = this.questions[this.currentQuestionIndex];
-    }
+    this.isLoading = true;
+    await this.loadQuestion();
+    this.isLoading = false;
   },
   methods: {
     ...mapMutations([
@@ -73,6 +67,12 @@ export default {
       "resetCurrentQuestionIndex"
     ]),
     ...mapActions(["loadQuestions"]),
+    async loadQuestion() {
+      if (this.questions.length === 0) {
+        await this.loadQuestions();
+      }
+      this.question = this.questions[this.currentQuestionIndex];
+    },
     optionSelected(index) {
       this.answerIndexSelected = index;
       if (this.question.correctIndex === index) {
