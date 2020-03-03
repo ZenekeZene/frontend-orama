@@ -7,7 +7,7 @@
       <h1 class="category" v-if="question.categories[0]">
         {{ question.categories[0] }}
       </h1>
-      <span class="indicator" v-if="points > 0">Aciertos: {{ points }}</span>
+      <!--<span class="indicator" v-if="points > 0">{{ points }}</span>-->
       <question
         :question="question"
         :showCorrect="completed"
@@ -27,7 +27,7 @@
   </section>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import Question from "@/components/test/Question";
 import Clock from "@/components/test/Clock";
 import Spinner from "@/components/shared/Spinner";
@@ -48,17 +48,24 @@ export default {
     };
   },
   computed: {
-    ...mapState(["totalQuestions", "currentQuestionIndex", "points"])
+    ...mapState([
+      "totalQuestions",
+      "currentQuestionIndex",
+      "points",
+      "questions"
+    ])
   },
-  created() {
-    this.isLoading = true;
-    window.db
-      .collection("questions")
-      .get()
-      .then(snapshot => {
+  async created() {
+    if (this.questions.length === 0) {
+      this.isLoading = true;
+      console.log("Llamamos una sola vez");
+      this.loadQuestions().then(() => {
         this.isLoading = false;
-        this.question = snapshot.docs[this.currentQuestionIndex].data();
+        this.question = this.questions[this.currentQuestionIndex];
       });
+    } else {
+      this.question = this.questions[this.currentQuestionIndex];
+    }
   },
   methods: {
     ...mapMutations([
@@ -66,6 +73,7 @@ export default {
       "incrementCurrentQuestionIndex",
       "resetCurrentQuestionIndex"
     ]),
+    ...mapActions(["loadQuestions"]),
     optionSelected(index) {
       this.answerIndexSelected = index;
       if (this.question.correctIndex === index) {

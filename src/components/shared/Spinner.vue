@@ -1,12 +1,12 @@
 <template>
-  <pulse-loader :color="color"></pulse-loader>
+  <pacman-loader :color="color"></pacman-loader>
 </template>
 <script>
-import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import PacmanLoader from "vue-spinner/src/PacmanLoader.vue";
 export default {
   name: "Spinner",
   components: {
-    PulseLoader
+    PacmanLoader
   },
   data() {
     return {

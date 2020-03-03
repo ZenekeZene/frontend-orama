@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
+import questionAPI from "../api/questions";
 
 Vue.use(Vuex);
 
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     },
     currentQuestionIndex: 0,
     points: 0,
+    questions: [],
     totalQuestions: 0
   },
   getters: {
@@ -48,6 +50,9 @@ export default new Vuex.Store({
     incrementPoint(state) {
       state.points += 1;
     },
+    setQuestions(state, payload) {
+      state.questions = payload.questions;
+    },
     setTotalQuestions(state, payload) {
       state.totalQuestions = payload.totalQuestions;
     },
@@ -61,6 +66,15 @@ export default new Vuex.Store({
       state.currentQuestionIndex = 0;
     }
   },
-  actions: {},
+  actions: {
+    async loadQuestions({ commit }) {
+      return new Promise(resolve => {
+        questionAPI.loadQuestions().then(questions => {
+          commit("setQuestions", { questions });
+          resolve(questions);
+        });
+      });
+    }
+  },
   modules: {}
 });
