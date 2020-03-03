@@ -1,15 +1,22 @@
 <template>
   <section class="header">
-    <span v-if="withBack" class="--left icon-forward" @click="goBack"></span>
+    <span
+      v-if="withBack"
+      class="--left icon-forward"
+      v-mobile-hover:#4992a9
+      @click="goBack"
+    ></span>
     <h1>{{ title }}</h1>
     <span
       v-if="withMenu"
       class="--right icon-menu"
+      v-mobile-hover:#4992a9
       @click="onToggleCollapse"
     ></span>
     <span
       v-if="withClose && !withMenu"
       class="--right icon-close"
+      v-mobile-hover:#4992a9
       @click="goHome"
     ></span>
   </section>
