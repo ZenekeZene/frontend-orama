@@ -59,10 +59,9 @@ export default {
     if (this.questions.length === 0) {
       this.isLoading = true;
       console.log("Llamamos una sola vez");
-      this.loadQuestions().then(() => {
-        this.isLoading = false;
-        this.question = this.questions[this.currentQuestionIndex];
-      });
+      await this.loadQuestions();
+      this.isLoading = false;
+      this.question = this.questions[this.currentQuestionIndex];
     } else {
       this.question = this.questions[this.currentQuestionIndex];
     }
