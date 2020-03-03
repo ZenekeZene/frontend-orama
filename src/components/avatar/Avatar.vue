@@ -1,19 +1,25 @@
 <template>
   <article class="avatar">
-    <h2 v-if="withGreetins">Buenos días, {{ name }}</h2>
+    <h2 v-if="withGreetins">{{ getGreetings }}</h2>
     <section class="image">
       <img src="../../assets/images/boy.gif" :alt="`Avatar de ${name}`" />
-      <span class="aka">{{ level }}</span>
+      <div class="info">
+        <span class="aka">{{ level }}</span>
+        <p class="points">
+          Record:
+          <span class="points__value">65</span> puntos.
+        </p>
+      </div>
     </section>
-    <p class="points">
-      Record:
-      <span class="points__value">65</span>puntos.
-    </p>
-    <button-custom simple v-ripple color-secondary>Compartir</button-custom>
+    <button-custom class="share" simple v-ripple color-secondary
+      >Compartir</button-custom
+    >
     <slot></slot>
   </article>
 </template>
 <script>
+import * as moment from "moment";
+
 export default {
   name: "Avatar",
   props: {
@@ -29,12 +35,37 @@ export default {
       type: Boolean,
       default: true
     }
+  },
+  computed: {
+    getGreetings() {
+      return `${this.getGreetingTime(moment())}, ${this.name}.`;
+    }
+  },
+  methods: {
+    getGreetingTime: currentTime => {
+      if (!currentTime || !currentTime.isValid()) {
+        return "Hello";
+      }
+
+      const splitAfternoon = 12; // 24hr time to split the afternoon
+      const splitEvening = 17; // 24hr time to split the evening
+      const currentHour = parseFloat(currentTime.format("HH"));
+
+      if (currentHour >= splitAfternoon && currentHour <= splitEvening) {
+        // Between 12 PM and 5PM
+        return "Buenas tardes";
+      } else if (currentHour >= splitEvening) {
+        // Between 5PM and Midnight
+        return "Buenas noches";
+      }
+      // Between dawn and noon
+      return "Buenos días";
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
 .avatar {
-  margin-bottom: auto;
   padding: 1rem;
 
   > * {
@@ -46,27 +77,44 @@ export default {
   }
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
 .image {
   position: relative;
+  display: flex;
   margin-bottom: 0;
 }
 
 img {
-  width: 50vw;
+  width: 28vw;
   max-width: 226px;
   height: auto;
   display: block;
-  margin: 0 auto;
   border-radius: 0.5rem;
 }
 
 .points {
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1rem;
 
   &__value {
-    padding: 0 0.2rem;
     color: var(--color-tertiary);
-    font-size: 2rem;
   }
+}
+
+.share {
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 </style>

@@ -6,7 +6,6 @@
   
   &__points {
     width: 100%;
-    padding: 1rem;
     font-size: 1.2rem;
     text-align: center;
   }
@@ -24,5 +23,9 @@
 
   > .konvajs-content {
     display: inline-block;
+  }
+
+  @include mq($until: phablet) {
+    transform: scale(0.9);
   }
 }

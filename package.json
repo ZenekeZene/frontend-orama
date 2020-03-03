@@ -13,6 +13,7 @@
     "core-js": "^3.6.4",
     "fontfaceobserver": "^2.1.0",
     "konva": "^4.1.4",
+    "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
     "sass-mq": "^5.0.1",
     "vue": "^2.6.11",

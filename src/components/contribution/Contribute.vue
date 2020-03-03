@@ -32,6 +32,7 @@ export default {
   margin-bottom: 0;
   padding: 1rem;
   background-color: #2d2f50;
+  text-align: center;
 
   > * {
     margin-bottom: 1rem;
