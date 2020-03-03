@@ -74,6 +74,7 @@ export default {
         node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
       });
       const direction = this.side === "left" ? -1 : 1;
+      this.$el.style.transition = `transition: transform 0s ${this.easing}`;
       this.$el.style.transform = `translateX(${direction * 101 + "%"})`;
     }
   },

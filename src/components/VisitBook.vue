@@ -50,6 +50,8 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "../assets/styles/base/breakpoints.scss";
+
 .visit-book {
   position: absolute;
   right: 0;
@@ -58,6 +60,10 @@ export default {
   width: 3rem;
   height: 3rem;
   padding: 1rem;
+
+  @include mq($until: phablet) {
+    display: none;
+  }
 
   &.--expanded {
     width: 18rem;

@@ -1,17 +1,14 @@
 <template>
   <div class="question">
-    <h1 v-if="question.declare" v-text="questionLocal.declare"></h1>
+    <h1 v-if="question.wording" v-text="questionLocal.wording"></h1>
     <img height="100" v-if="question.img" :src="question.img" />
-    <highlight-code
-      v-if="question.declare2 && question.declare2.type === 'code'"
-      :lang="question.declare2.lang"
-    >
-      {{ question.declare2.value }}
+    <highlight-code v-if="question.code" :lang="question.code.lang">
+      {{ question.code.value }}
     </highlight-code>
     <fade-transition>
       <options
         :options="question.options"
-        :correctIndex="question.correctIndex"
+        :correctIndex="Number(question.correctIndex)"
         :showCorrect="showCorrect"
         @optionSelected="selectOption($event)"
       ></options>

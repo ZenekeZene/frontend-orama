@@ -23,6 +23,7 @@
     "vue-konva": "^2.1.1",
     "vue-ripple-directive": "^2.0.1",
     "vue-router": "^3.1.5",
+    "vue-spinner": "^1.0.3",
     "vue-textarea-autosize": "^1.1.1",
     "vue2-transitions": "^0.3.0",
     "vuex": "^3.1.2",

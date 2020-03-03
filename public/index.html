@@ -20,6 +20,34 @@
       >
     </noscript>
     <div id="app"></div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+
+		<!-- Add Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+		<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-storage.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>-->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBqcjH-LRya-PRjCurQ09dGu-V-c8nC6pg",
+        authDomain: "techiwall.firebaseapp.com",
+        databaseURL: "https://techiwall.firebaseio.com",
+        projectId: "techiwall",
+        storageBucket: "techiwall.appspot.com",
+        messagingSenderId: "713533972018",
+        appId: "1:713533972018:web:5738967796d7b554e7e62b",
+        measurementId: "G-VCSR05EQ9N",
+      };
+      // Initialize Firebase
+      defaultProject = firebase.initializeApp(firebaseConfig);
+      db = defaultProject.firestore();
+      //firebase.analytics();
+    </script>
     <!-- built files will be auto injected -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
   </body>

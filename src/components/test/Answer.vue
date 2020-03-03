@@ -41,7 +41,7 @@ export default {
 
   &.--incorrect {
     opacity: 0.5 !important;
-    width: 95%;
+    transform: scale(0.9);
   }
 
   &.--correct {

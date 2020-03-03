@@ -4,10 +4,6 @@
   </button>
 </template>
 <script>
-const colorDefault = getComputedStyle(
-  document.documentElement
-).getPropertyValue("--color-secondary");
-
 export default {
   name: "ButtonCustom",
   methods: {
@@ -18,7 +14,10 @@ export default {
   props: {
     colorHover: {
       type: String,
-      default: () => colorDefault
+      default: () =>
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--color-secondary"
+        )
     }
   },
   computed: {

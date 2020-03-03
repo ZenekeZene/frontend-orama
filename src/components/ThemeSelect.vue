@@ -48,12 +48,17 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "../assets/styles/base/breakpoints.scss";
 .theme {
   position: absolute;
   bottom: 0;
   left: 0;
   display: flex;
   padding: 1rem;
+
+  @include mq($until: phablet) {
+    display: none;
+  }
 
   &__item {
     display: inline-block;

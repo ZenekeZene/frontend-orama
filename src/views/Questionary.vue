@@ -1,38 +1,47 @@
 <template>
   <section class="questionary" page>
-    <h1 class="category">{{ question.categories[0] }}</h1>
-    <span class="indicator" v-if="points > 0">Aciertos: {{ points }}</span>
-    <question
-      :question="question"
-      :showCorrect="completed"
-      @optionSelected="optionSelected"
-      :key="`question-${currentQuestionIndex}`"
-    ></question>
-    <fade-transition appear>
-      <clock
-        :isProgress="true"
-        :isStop="false"
-        :seconds="question.seconds || 10"
-        v-if="clockIsVisible"
-        @finished="timeFinished"
-      ></clock>
-    </fade-transition>
+    <div v-if="isLoading" class="spinner-wrapper">
+      <spinner></spinner>
+    </div>
+    <div v-else style="height: 100%;">
+      <h1 class="category" v-if="question.categories[0]">
+        {{ question.categories[0] }}
+      </h1>
+      <span class="indicator" v-if="points > 0">Aciertos: {{ points }}</span>
+      <question
+        :question="question"
+        :showCorrect="completed"
+        @optionSelected="optionSelected"
+        :key="`question-${currentQuestionIndex}`"
+      ></question>
+      <fade-transition appear>
+        <clock
+          :isProgress="true"
+          :isStop="true"
+          :seconds="question.seconds || 10"
+          v-if="clockIsVisible"
+          @finished="timeFinished"
+        ></clock>
+      </fade-transition>
+    </div>
   </section>
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
-import questions from "../../questions/questions";
 import Question from "@/components/test/Question";
 import Clock from "@/components/test/Clock";
+import Spinner from "@/components/shared/Spinner";
 
 export default {
   name: "Questionary",
   components: {
     Question,
-    Clock
+    Clock,
+    Spinner
   },
   data() {
     return {
+      isLoading: false,
       question: null,
       completed: false,
       clockIsVisible: true
@@ -42,12 +51,14 @@ export default {
     ...mapState(["totalQuestions", "currentQuestionIndex", "points"])
   },
   created() {
-    if (questions[this.currentQuestionIndex]) {
-      this.question = { ...questions[this.currentQuestionIndex] };
-    } else {
-      console.log("Algo fue mal");
-      this.$router.push({ name: "Home" });
-    }
+    this.isLoading = true;
+    window.db
+      .collection("questions")
+      .get()
+      .then(snapshot => {
+        this.isLoading = false;
+        this.question = snapshot.docs[this.currentQuestionIndex].data();
+      });
   },
   methods: {
     ...mapMutations([
@@ -82,6 +93,12 @@ export default {
 };
 </script>
 <style lang="scss">
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .questionary {
   height: 100%;
   padding: 3rem 1rem;
