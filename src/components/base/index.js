@@ -11,7 +11,7 @@ const requireComponent = require.context(
   /(Base|The)[A-Z]\w+\.(vue|js)$/
 );
 
-function registerComponents() {
+(() => {
   requireComponent.keys().forEach(fileName => {
     // Get component config
     const componentConfig = requireComponent(fileName);
@@ -33,6 +33,4 @@ function registerComponents() {
       componentConfig.default || componentConfig
     );
   });
-}
-
-export { registerComponents };
+})();
