@@ -1,7 +1,36 @@
 export default {
   namespaced: true,
   state: {
-    categories: ["JS", "CSS", "HTML", "A11Y", "INTERNET", "Otros", "GIT"]
+    categories: [
+      {
+        id: "JS",
+        color: "#d4b831"
+      },
+      {
+        id: "CSS",
+        color: "#1870b5"
+      },
+      {
+        id: "HTML",
+        color: "#dd4b26"
+      },
+      {
+        id: "A11Y",
+        color: "#4c4949"
+      },
+      {
+        id: "INTERNET",
+        color: "#638bc4"
+      },
+      {
+        id: "GIT",
+        color: "#e94d31"
+      },
+      {
+        id: "Otros",
+        color: "#929292"
+      }
+    ]
   },
   getters: {
     numOfCategories: state => state.categories.length

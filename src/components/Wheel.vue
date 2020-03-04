@@ -192,7 +192,7 @@ export default {
       }, 1000);
     },
     getColor() {
-      return this.genVendor(0.5, 0.8).hexString();
+      //return this.genVendor(0.5, 0.8).hexString();
     },
     getAverageAngularVelocity() {
       let total = 0;
@@ -215,11 +215,10 @@ export default {
         rotation: (2 * n * Math.PI) / this.numWedges
       });
 
-      const randomColor = this.getColor();
       const wedgeBackground = new Konva.Wedge({
         radius: this.width / 2,
         angle: angle,
-        fill: randomColor,
+        fill: this.categories[n].color,
         fillPriority: "red"
       });
 
@@ -229,9 +228,9 @@ export default {
       const cMini = (90 - A) / 2;
 
       const text = new Konva.Text({
-        text: `        ${this.categories[n]}`,
+        text: `        ${this.categories[n].id}`,
         fontFamily: "Museo Sans Rounded, Helvetica, sans-serif",
-        fontSize: 30 - this.categories[n].length * 0.9,
+        fontSize: 30 - this.categories[n].id.length * 0.9,
         fill: "white",
         align: "left",
         rotation: cMini * 2,

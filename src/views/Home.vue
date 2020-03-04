@@ -52,7 +52,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(["points", "currentQuestionIndex"]),
+    ...mapState(["points"]),
+    ...mapState("questions", ["currentQuestionIndex"]),
     ...mapGetters("questions", ["totalQuestions"])
   },
   mounted() {
