@@ -2,18 +2,18 @@
   <div>
     <div
       id="container"
-      v-show="getNumOfPlayers > 0"
+      v-show="categories.length > 0"
       class="wheel"
       style="text-align: center;"
     ></div>
-    <p v-show="getNumOfPlayers === 0">
+    <p v-show="categories.length === 0">
       ¡Hola!
       <br />Añade un título y opciones a tu super ruleta de la suerte.
     </p>
   </div>
 </template>
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 import gen from "color-generator";
 import FontFaceObserver from "fontfaceobserver";
 
@@ -56,8 +56,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["players"]),
-    ...mapGetters(["getNumOfPlayers"])
+    ...mapState("categories", ["categories"])
   },
   watch: {
     forceAngularVelocity(newValue) {

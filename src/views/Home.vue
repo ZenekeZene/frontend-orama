@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import Wheel from "@/components/Wheel.vue";
 
 export default {
@@ -52,7 +52,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(["points", "totalQuestions", "currentQuestionIndex"])
+    ...mapState(["points", "currentQuestionIndex"]),
+    ...mapGetters("questions", ["totalQuestions"])
   },
   mounted() {
     this.wasLaunched = false;

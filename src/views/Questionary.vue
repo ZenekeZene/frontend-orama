@@ -27,7 +27,7 @@
   </section>
 </template>
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 import Question from "@/components/test/Question";
 import Clock from "@/components/test/Clock";
 
@@ -46,12 +46,9 @@ export default {
     };
   },
   computed: {
-    ...mapState([
-      "totalQuestions",
-      "currentQuestionIndex",
-      "points",
-      "questions"
-    ])
+    ...mapState(["points"]),
+    ...mapState("questions", ["questions", "currentQuestionIndex"]),
+    ...mapGetters("questions", ["totalQuestions"])
   },
   async created() {
     this.isLoading = true;
@@ -59,12 +56,12 @@ export default {
     this.isLoading = false;
   },
   methods: {
-    ...mapMutations([
-      "incrementPoint",
+    ...mapMutations(["incrementPoint"]),
+    ...mapMutations("questions", [
       "incrementCurrentQuestionIndex",
       "resetCurrentQuestionIndex"
     ]),
-    ...mapActions(["loadQuestions"]),
+    ...mapActions("questions", ["loadQuestions"]),
     async loadQuestion() {
       if (this.questions.length === 0) {
         await this.loadQuestions();
