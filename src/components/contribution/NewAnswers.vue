@@ -6,9 +6,9 @@
     </p>
     <fade-transition group tag="ul" class="list">
       <li
-        class="input"
         v-for="(answer, index) in answersLocal"
-        :key="`player-${index}`"
+        :key="`answer-${index}`"
+        class="input"
       >
         <input
           type="radio"
@@ -18,16 +18,16 @@
           :class="{ '--correct': correctAnswerIndex === index }"
         />
         <textarea-autosize
-          :ref="`player-${index}`"
+          :ref="`answer-${index}`"
+          v-model="answers[index]"
           rows="1"
           max-length="70"
           :max-height="60"
-          placeholder="Inserta aquí tu respuesta"
-          v-model="answers[index]"
           :class="{
             '--correct': correctAnswerIndex === index,
             '--incorrect': correctAnswerIndex !== index
           }"
+          placeholder="Inserta aquí tu respuesta"
         ></textarea-autosize>
         <span class="input__clear" @click="removeAnswer(index)">
           <span class="icon-cross"></span>
@@ -61,7 +61,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["questionToBeAdded"])
+    ...mapState("questionToBeAdded", ["questionToBeAdded"])
   },
   watch: {
     answersLocal() {
@@ -96,7 +96,7 @@ export default {
     },
     focusOnAnswer(indexAnswer) {
       this.$nextTick(() => {
-        this.$refs[`player-${indexAnswer}`][0].$el.focus();
+        this.$refs[`answer-${indexAnswer}`][0].$el.focus();
       });
     }
   }

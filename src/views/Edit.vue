@@ -65,7 +65,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["questionToBeAdded"]),
+    ...mapState("questionToBeAdded", ["questionToBeAdded"]),
     haveBeenChanges() {
       const diffAnswers = this.answers.filter(x =>
         this.questionToBeAdded.answers.includes(x)
@@ -78,7 +78,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["setQuestionToBeAdded"]),
+    ...mapMutations("questionToBeAdded", ["setQuestionToBeAdded"]),
     save() {
       const questionToBeAdded = {
         question: this.question,
@@ -88,7 +88,7 @@ export default {
       this.setQuestionToBeAdded({ questionToBeAdded });
     },
     handSend() {
-      if (this.$_newQuestionValid_errors.length === 0) {
+      if (this.errors.length === 0) {
         this.send();
       }
     },

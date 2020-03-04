@@ -1,9 +1,9 @@
 <template>
   <section class="contribute">
-    <p v-if="!existQuestionToBeAdded">
+    <p v-if="!existsQuestionToBeAdded">
       ¿Quieres contribuir con tus propias preguntas?
     </p>
-    <p v-if="existQuestionToBeAdded">
+    <p v-if="existsQuestionToBeAdded">
       Tienes una pregunta a medias, ¡termina de enviarla!
     </p>
     <BaseButton simple v-ripple @click="goToEdit">Contribuir</BaseButton>
@@ -14,7 +14,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Contribute",
   computed: {
-    ...mapGetters(["existQuestionToBeAdded"])
+    ...mapGetters("questionToBeAdded", ["existsQuestionToBeAdded"])
   },
   methods: {
     goToEdit() {

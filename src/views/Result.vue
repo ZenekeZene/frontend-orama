@@ -27,7 +27,7 @@ export default {
     RankingTable
   },
   computed: {
-    ...mapState(["points", "totalQuestions"])
+    ...mapState(["points"])
   },
   mounted() {
     this.$confetti.start({

@@ -1,18 +1,4 @@
 export const answersValidation = {
-  watch: {
-    question() {
-      this.$_validate();
-    },
-    answers() {
-      if (!this._newQuestionValid_flagValidate) {
-        this._newQuestionValid_flagValidate = true;
-      }
-      this.$_validate();
-    },
-    correctAnswerIndex() {
-      this.$_validate();
-    }
-  },
   data() {
     return {
       $_validators: [
@@ -39,6 +25,25 @@ export const answersValidation = {
       flagValidate: false
     };
   },
+  computed: {
+    haveErrors() {
+      return this.errors.length > 0;
+    }
+  },
+  watch: {
+    question() {
+      this.$_validate();
+    },
+    answers() {
+      if (!this.flagValidate) {
+        this.flagValidate = true;
+      }
+      this.$_validate();
+    },
+    correctAnswerIndex() {
+      this.$_validate();
+    }
+  },
   mounted() {
     this.$_validate();
   },
@@ -50,9 +55,6 @@ export const answersValidation = {
           answers: this.answers
         });
       });
-    },
-    haveErrors() {
-      return this.errors.length > 0;
     }
   }
 };

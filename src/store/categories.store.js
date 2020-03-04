@@ -4,7 +4,7 @@ export default {
     categories: ["JS", "CSS", "HTML", "A11Y", "INTERNET", "Otros", "GIT"]
   },
   getters: {
-    getNumOfCategories: state => state.categories.length
+    numOfCategories: state => state.categories.length
   },
   mutations: {
     addCategory(state, payload) {

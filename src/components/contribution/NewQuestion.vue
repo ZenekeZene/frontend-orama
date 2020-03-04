@@ -25,7 +25,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["questionToBeAdded"])
+    ...mapState("questionToBeAdded", ["questionToBeAdded"])
   },
   watch: {
     questionLocal() {

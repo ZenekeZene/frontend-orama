@@ -1,19 +1,20 @@
 <template>
   <div>
     <div
+      v-if="numOfCategories > 0"
+      key="wheel"
       id="container"
-      v-show="categories.length > 0"
       class="wheel"
       style="text-align: center;"
     ></div>
-    <p v-show="categories.length === 0">
+    <p v-else key="empty">
       ¡Hola!
       <br />Añade un título y opciones a tu super ruleta de la suerte.
     </p>
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import gen from "color-generator";
 import FontFaceObserver from "fontfaceobserver";
 
@@ -56,7 +57,8 @@ export default {
     };
   },
   computed: {
-    ...mapState("categories", ["categories"])
+    ...mapState("categories", ["categories"]),
+    ...mapGetters("categories", ["numOfCategories"])
   },
   watch: {
     forceAngularVelocity(newValue) {
@@ -71,7 +73,7 @@ export default {
   },
   mounted() {
     Konva.angleDeg = false;
-    this.numWedges = this.players.length;
+    this.numWedges = this.numOfCategories;
     this.angularVelocity = this.forceAngularVelocity;
     this.wasLaunchedLocal = this.wasLaunched;
     const font = new FontFaceObserver("Museo Sans Rounded 500");
@@ -227,9 +229,9 @@ export default {
       const cMini = (90 - A) / 2;
 
       const text = new Konva.Text({
-        text: `        ${this.players[n]}`,
+        text: `        ${this.categories[n]}`,
         fontFamily: "Museo Sans Rounded, Helvetica, sans-serif",
-        fontSize: 30 - this.players[n].length * 0.9,
+        fontSize: 30 - this.categories[n].length * 0.9,
         fill: "white",
         align: "left",
         rotation: cMini * 2,
