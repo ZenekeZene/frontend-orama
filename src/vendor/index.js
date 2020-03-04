@@ -12,19 +12,17 @@ import javascript from "highlight.js/lib/languages/javascript";
 import vue from "vue-highlight.js/lib/languages/vue";
 import "highlight.js/styles/monokai-sublime.css";
 
-(() => {
-  Vue.use(VModal, { dialog: true });
-  Vue.use(Transitions);
-  Vue.use(VueConfetti);
-  Vue.use(VueTextareaAutosize);
-  Vue.use(VueHighlightJS, {
-    languages: {
-      css,
-      javascript,
-      vue
-    }
-  });
+Vue.use(VModal, { dialog: true });
+Vue.use(Transitions);
+Vue.use(VueConfetti);
+Vue.use(VueTextareaAutosize);
+Vue.use(VueHighlightJS, {
+  languages: {
+    css,
+    javascript,
+    vue
+  }
+});
 
-  Vue.directive("ripple", Ripple);
-  Ripple.color = "rgba(255, 255, 255, 0.35)";
-})();
+Vue.directive("ripple", Ripple);
+Ripple.color = "rgba(255, 255, 255, 0.35)";
