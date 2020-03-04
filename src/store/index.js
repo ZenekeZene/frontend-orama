@@ -14,7 +14,7 @@ export default new Vuex.Store({
     })
   ],
   state: {
-    players: ["JS", "CSS", "HTML", "A11y", "Vue", "React", "Semántica"],
+    players: ["JS", "CSS", "HTML", "A11Y", "INTERNET", "Otros", "GIT"],
     questionToBeAdded: {
       question: "",
       answers: [],

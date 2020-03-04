@@ -1,25 +1,35 @@
 import { database } from "./FirebaseService";
 const _db = database;
 
-const _COLLECTIONS = {
-  QUESTIONS: {
-    id: "questions",
-    async get() {
-      return _db
-        .collection(this.id)
-        .get()
-        .then(snapshot => snapshot.docs);
-    }
+const QUESTIONS = {
+  id: "questions",
+  ref() {
+    return _db.collection(this.id);
+  },
+  async get() {
+    return _db
+      .collection(this.id)
+      .get()
+      .then(snapshot => snapshot.docs);
   }
 };
 
+function getDocs(snapshot) {
+  const docs = [];
+  snapshot.forEach(item => docs.push(item.data()));
+  return docs;
+}
+
 export default class QuestionsService {
   async loadQuestions() {
-    const questionDocs = await _COLLECTIONS.QUESTIONS.get();
-    const questions = [];
-    questionDocs.forEach(question => questions.push(question.data()));
-    return questions;
+    const snapshot = await QUESTIONS.ref().get();
+    return getDocs(snapshot);
   }
 
-  async loadQuestionsByLimit() {}
+  async loadQuestionsByLimit(limitSize) {
+    const snapshot = await QUESTIONS.ref()
+      .limit(limitSize)
+      .get();
+    return getDocs(snapshot);
+  }
 }
