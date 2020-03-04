@@ -1,27 +1,27 @@
 <template>
   <section class="questionary" page>
-    <div v-if="isLoading" class="spinner-wrapper">
-      <spinner></spinner>
+    <div v-if="isLoading" class="spinner-wrapper" key="spinner">
+      <BaseSpinner />
     </div>
-    <div v-else style="height: 100%;">
+    <div v-else style="height: 100%;" key="questions">
       <h1 class="category" v-if="question.categories[0]">
         {{ question.categories[0] }}
       </h1>
       <!--<span class="indicator" v-if="points > 0">{{ points }}</span>-->
-      <question
+      <Question
         :question="question"
         :showCorrect="completed"
         @optionSelected="optionSelected"
         :key="`question-${currentQuestionIndex}`"
-      ></question>
+      />
       <fade-transition appear>
-        <clock
+        <Clock
           :isProgress="true"
           :isStop="true"
           :seconds="question.seconds || 10"
           v-if="clockIsVisible"
           @finished="timeFinished"
-        ></clock>
+        />
       </fade-transition>
     </div>
   </section>
@@ -30,14 +30,12 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import Question from "@/components/test/Question";
 import Clock from "@/components/test/Clock";
-import Spinner from "@/components/shared/Spinner";
 
 export default {
   name: "Questionary",
   components: {
     Question,
-    Clock,
-    Spinner
+    Clock
   },
   data() {
     return {

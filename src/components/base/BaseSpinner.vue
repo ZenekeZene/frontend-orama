@@ -4,7 +4,7 @@
 <script>
 import PacmanLoader from "vue-spinner/src/PacmanLoader.vue";
 export default {
-  name: "Spinner",
+  name: "BaseSpinner",
   components: {
     PacmanLoader
   },

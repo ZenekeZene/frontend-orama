@@ -1,40 +1,34 @@
 <template>
   <main class="main" :class="{ '--expanded': expandedVisitBook }">
-    <theme-select class="no-pusheable"></theme-select>
-    <visit-book
+    <TheThemeSelect class="no-pusheable" />
+    <VisitBook
       class="no-pusheable"
       @expandedVisitBook="expandedVisitBook = $event"
-    ></visit-book>
+    />
     <article id="app" class="app">
       <fade-transition mode="in-out">
         <router-view @onToggleCollapse="isCollapsed = $event" />
       </fade-transition>
-      <side-menu
-        :isCollapsed="isCollapsed"
+      <TheSidebar
+        :is-collapsed="isCollapsed"
         width="70%"
         duration="450ms"
         easing="ease-in-out"
         side="right"
       >
-        <menu-custom></menu-custom>
-      </side-menu>
+        <TheMenu />
+      </TheSidebar>
     </article>
   </main>
 </template>
 <script>
 import { mapMutations } from "vuex";
 import questions from "../questions/questions";
-import ThemeSelect from "@/components/ThemeSelect";
 import VisitBook from "@/components/VisitBook";
-import SideMenu from "@/components/shared/SideMenu";
-import MenuCustom from "@/components/shared/MenuCustom";
 
 export default {
   name: "App",
   components: {
-    ThemeSelect,
-    SideMenu,
-    MenuCustom,
     VisitBook
   },
   data() {

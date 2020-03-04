@@ -1,29 +1,29 @@
 <template>
   <main page>
-    <header-nav
+    <TheHeader
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       @goBack="handGoBack"
       title="Nueva pregunta"
       :withBack="true"
       :withMenu="false"
-    ></header-nav>
+    />
     <div class="edit">
       <article class="edit__question">
-        <new-question :question.sync="question"></new-question>
-        <new-answers
+        <NewQuestion :question.sync="question" />
+        <NewAnswers
           :answers.sync="answers"
           :correctAnswerIndex.sync="correctAnswerIndex"
-        ></new-answers>
+        />
       </article>
       <aside class="errors fixed">
-        <p class="error-message" v-if="errors.length > 0 && flagValidate">
+        <p class="error-message" v-if="haveErrors && flagValidate">
           {{ errors[0].message }}.
         </p>
         <fade-transition>
           <button
-            v-if="errors.length === 0"
+            v-if="!haveErrors"
             class="send hidden-keyboard-opened"
-            :class="{ '--disabled': errors.length > 0 }"
+            :class="{ '--disabled': haveErrors }"
             @click="handSend"
             simple
             color-secondary
@@ -32,30 +32,31 @@
           </button>
         </fade-transition>
       </aside>
-      <v-dialog
+      <VDialog
         name="save-dialog"
         :adaptive="true"
         :pivotY="0"
         width="320"
         height="auto"
         transition="fadeInDown"
-      ></v-dialog>
+      />
     </div>
   </main>
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
-import { answersValidation } from "../mixins/NewQuestion.validation";
-import SaveNewQuestion from "../mixins/SaveNewQuestion.dialog";
+import { answersValidation } from "@/mixins/NewQuestionValid";
+import SaveNewQuestion from "@/mixins/SaveNewQuestion.dialog";
 import NewQuestion from "@/components/contribution/NewQuestion.vue";
 import NewAnswers from "@/components/contribution/NewAnswers.vue";
+
 export default {
   name: "Configuration",
-  mixins: [answersValidation, SaveNewQuestion],
   components: {
     NewQuestion,
     NewAnswers
   },
+  mixins: [answersValidation, SaveNewQuestion],
   data() {
     return {
       question: "",
@@ -87,7 +88,7 @@ export default {
       this.setQuestionToBeAdded({ questionToBeAdded });
     },
     handSend() {
-      if (this.errors.length === 0) {
+      if (this.$_newQuestionValid_errors.length === 0) {
         this.send();
       }
     },

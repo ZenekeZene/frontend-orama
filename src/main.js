@@ -1,33 +1,32 @@
 import Vue from "vue";
-import VModal from "vue-js-modal";
+import { registerComponents } from "./components/base/base.components";
+registerComponents();
+
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+
+import VModal from "vue-js-modal";
+Vue.use(VModal, { dialog: true });
+
 import Transitions from "vue2-transitions";
+Vue.use(Transitions);
+
 import MobileHoverDirective from "./directives/mobileHover.directive";
-import ButtonCustom from "./components/shared/ButtonCustom";
-import HeaderNav from "./components/shared/HeaderNav";
-import Avatar from "./components/avatar/Avatar";
+Vue.directive("mobile-hover", MobileHoverDirective);
+
 import Ripple from "vue-ripple-directive";
 Vue.directive("ripple", Ripple);
 Ripple.color = "rgba(255, 255, 255, 0.35)";
+
 import VueTextareaAutosize from "vue-textarea-autosize";
 Vue.use(VueTextareaAutosize);
+
 import VueHighlightJS from "vue-highlight.js";
-// Highlight.js languages (Only required languages)
 import css from "highlight.js/lib/languages/css";
 import javascript from "highlight.js/lib/languages/javascript";
 import vue from "vue-highlight.js/lib/languages/vue";
-import VueConfetti from "vue-confetti";
-Vue.directive("mobile-hover", MobileHoverDirective);
-
-Vue.use(VueConfetti);
-
-/*
- * Import Highlight.js theme
- * Find more: https://highlightjs.org/static/demo/
- */
 import "highlight.js/styles/monokai-sublime.css";
 Vue.use(VueHighlightJS, {
   // Register only languages that you want
@@ -38,15 +37,10 @@ Vue.use(VueHighlightJS, {
   }
 });
 
-Vue.use(Transitions);
-Vue.component(ButtonCustom.name, ButtonCustom);
-Vue.component(HeaderNav.name, HeaderNav);
-Vue.component(Avatar.name, Avatar);
+import VueConfetti from "vue-confetti";
+Vue.use(VueConfetti);
 
 import "./assets/styles/main.scss";
-
-Vue.use(VModal, { dialog: true });
-
 Vue.config.productionTip = false;
 
 new Vue({

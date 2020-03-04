@@ -11,7 +11,7 @@
         :correctIndex="Number(question.correctIndex)"
         :showCorrect="showCorrect"
         @optionSelected="selectOption($event)"
-      ></options>
+      />
     </fade-transition>
     <p class="author" v-if="question.author">
       Contribuida por
@@ -30,21 +30,19 @@ export default {
   props: {
     question: {
       type: Object,
-      default: () => {}
+      default: () => {},
+      required: true
     },
     showCorrect: {
       type: Boolean,
-      default: false
+      default: false,
+      required: false
     }
   },
   data() {
     return {
       questionLocal: this.question
     };
-  },
-  mounted() {
-    //let tags = this.question.declare.match(/(<([^>]+)>)/ig);
-    //this.questionLocal.declare = this.questionLocal.declare.replace(/(<([^>]+)>)/ig, "'$1'");
   },
   methods: {
     selectOption(index) {

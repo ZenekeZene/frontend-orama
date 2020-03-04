@@ -20,9 +20,7 @@
         placeholder="¡Envianos un saludo!"
         ref="textarea"
       ></textarea-autosize>
-      <button-custom v-ripple style="margin-top: 1rem" simple
-        >Enviar</button-custom
-      >
+      <base-button v-ripple style="margin-top: 1rem" simple>Enviar</base-button>
     </div>
   </div>
 </template>

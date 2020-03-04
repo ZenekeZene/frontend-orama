@@ -4,8 +4,8 @@
     <div class="input --title">
       <textarea-autosize
         v-model="questionLocal"
-        :minHeight="30"
-        :maxHeight="100"
+        :min-height="30"
+        :max-height="100"
         maxlength="135"
         type="text"
       ></textarea-autosize>
@@ -24,18 +24,18 @@ export default {
       questionLocal: this.question
     };
   },
-  mounted() {
-    if (this.questionToBeAdded.question.length > 0) {
-      this.questionLocal = this.questionToBeAdded.question;
-    }
+  computed: {
+    ...mapState(["questionToBeAdded"])
   },
   watch: {
     questionLocal() {
       this.$emit("update:question", this.questionLocal);
     }
   },
-  computed: {
-    ...mapState(["questionToBeAdded"])
+  mounted() {
+    if (this.questionToBeAdded.question.length > 0) {
+      this.questionLocal = this.questionToBeAdded.question;
+    }
   }
 };
 </script>

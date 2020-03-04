@@ -1,24 +1,24 @@
 <template>
   <section page>
-    <header-nav
+    <TheHeader
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       :withBack="false"
-    ></header-nav>
+    />
     <div class="home">
       <h1 class="home__points">
         <span v-show="currentQuestionIndex > 0">Aciertos: {{ points }}</span>
       </h1>
-      <wheel
+      <Wheel
         :forceAngularVelocity="angularVelocity"
         :wasLaunched="wasLaunched"
         @lockLaunch="wasLaunched = true"
         @update:category="category = $event"
-      ></wheel>
+      />
       <div class="fixed --column">
         <fade-transition>
           <p v-if="category !== ''" class="winner">{{ category }}</p>
         </fade-transition>
-        <button-custom
+        <BaseButton
           simple
           big
           color-secondary
@@ -27,7 +27,7 @@
           style="position: relative;"
         >
           {{ currentQuestionIndex === 0 ? "Jugar!🤞" : "¡Siguiente pregunta!" }}
-        </button-custom>
+        </BaseButton>
       </div>
     </div>
   </section>
@@ -42,9 +42,6 @@ export default {
   components: {
     Wheel
   },
-  computed: {
-    ...mapState(["points", "totalQuestions", "currentQuestionIndex"])
-  },
   data() {
     return {
       angularVelocity: 0,
@@ -53,6 +50,9 @@ export default {
       wasLaunched: false,
       category: null
     };
+  },
+  computed: {
+    ...mapState(["points", "totalQuestions", "currentQuestionIndex"])
   },
   mounted() {
     this.wasLaunched = false;

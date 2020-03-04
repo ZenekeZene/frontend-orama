@@ -12,6 +12,7 @@
   </transition-group>
 </template>
 <script>
+import Velocity from "velocity-animate";
 export default {
   name: "AnswerTransition",
   props: {

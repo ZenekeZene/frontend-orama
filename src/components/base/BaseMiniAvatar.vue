@@ -10,8 +10,8 @@
       <span>{{ level }}</span
       >.
     </p>
-    <button-custom class="share" v-ripple simple color-secondary
-      >Compartir resultado</button-custom
+    <base-button class="share" v-ripple simple color-secondary
+      >Compartir resultado</base-button
     >
   </article>
 </template>

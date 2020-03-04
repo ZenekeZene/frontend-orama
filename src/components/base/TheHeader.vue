@@ -23,7 +23,7 @@
 </template>
 <script>
 export default {
-  name: "HeaderNav",
+  name: "TheHeader",
   data() {
     return {
       isSidebarOpened: false

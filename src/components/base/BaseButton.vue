@@ -6,25 +6,6 @@
 <script>
 export default {
   name: "ButtonCustom",
-  methods: {
-    handleClick(event) {
-      this.$emit("click", event);
-    }
-  },
-  props: {
-    colorHover: {
-      type: String,
-      default: () =>
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--color-secondary"
-        )
-    }
-  },
-  computed: {
-    defaultColor() {
-      return "#4992a9";
-    }
-  },
   directives: {
     mobileHover: {
       inserted: (el, binding, vNode) => {
@@ -45,6 +26,25 @@ export default {
           }
         });
       }
+    }
+  },
+  props: {
+    colorHover: {
+      type: String,
+      default: () =>
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--color-secondary"
+        )
+    }
+  },
+  computed: {
+    defaultColor() {
+      return "#4992a9";
+    }
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit("click", event);
     }
   }
 };

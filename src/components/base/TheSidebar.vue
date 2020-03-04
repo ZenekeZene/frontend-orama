@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-  name: "SideMenu",
+  name: "TheSidebar",
   props: {
     isCollapsed: {
       type: Boolean,
@@ -33,6 +33,11 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      isCollapsedLocal: false
+    };
+  },
   computed: {
     cssProps() {
       const direction = this.side === "left" ? -1 : 1;
@@ -53,11 +58,6 @@ export default {
     transition() {
       return `transition: transform ${this.duration} ${this.easing}`;
     }
-  },
-  data() {
-    return {
-      isCollapsedLocal: false
-    };
   },
   watch: {
     isCollapsed() {

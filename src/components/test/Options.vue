@@ -1,7 +1,7 @@
 <template>
   <section style="height: 100%;">
-    <answer-transition
-      :optionsLength="options.length"
+    <AnswerTransition
+      :options-length="options.length"
       :class="{ '--is-completed': showCorrect }"
       class="options"
     >
@@ -10,16 +10,16 @@
         :key="`option-${index}`"
         :data-index="index"
       >
-        <answer
+        <Answer
           :index="index"
-          :isCorrect="correctIndex === index"
-          :showCorrect="showCorrect"
+          :is-correct="correctIndex === index"
+          :show-correct="showCorrect"
           :class="{ '--selected': optionSelectedIndex === index }"
           @click.native="selectOption(index)"
-          >{{ option }}</answer
+          >{{ option }}</Answer
         >
       </li>
-    </answer-transition>
+    </AnswerTransition>
   </section>
 </template>
 <script>

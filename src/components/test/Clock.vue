@@ -15,13 +15,6 @@
 <script>
 export default {
   name: "Clock",
-  data() {
-    return {
-      secondsLocal: 0,
-      launched: false,
-      effectLastSeconds: false
-    };
-  },
   props: {
     isProgress: {
       type: Boolean,
@@ -35,6 +28,13 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  data() {
+    return {
+      secondsLocal: 0,
+      launched: false,
+      effectLastSeconds: false
+    };
   },
   computed: {
     style() {

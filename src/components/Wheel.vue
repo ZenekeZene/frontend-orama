@@ -19,6 +19,16 @@ import FontFaceObserver from "fontfaceobserver";
 
 export default {
   name: "Wheel",
+  props: {
+    forceAngularVelocity: {
+      type: Number,
+      default: 0
+    },
+    wasLaunched: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       width: 375,
@@ -48,16 +58,6 @@ export default {
   computed: {
     ...mapState(["players"]),
     ...mapGetters(["getNumOfPlayers"])
-  },
-  props: {
-    forceAngularVelocity: {
-      type: Number,
-      default: 0
-    },
-    wasLaunched: {
-      type: Boolean,
-      default: false
-    }
   },
   watch: {
     forceAngularVelocity(newValue) {

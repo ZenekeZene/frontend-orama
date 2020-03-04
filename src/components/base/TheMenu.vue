@@ -1,29 +1,29 @@
 <template>
   <section class="menu">
-    <avatar name="ZenekeZene" level="Ninja Developer">
-      <button-custom
+    <base-avatar name="ZenekeZene" level="Ninja Developer">
+      <base-button
         @click="$router.push('ranking')"
         style="color: var(--color-secondary);"
         simple
         transparent
         v-ripple
-        >Ver clasificación</button-custom
+        >Ver clasificación</base-button
       >
-    </avatar>
+    </base-avatar>
     <contribute v-if="$route.path !== '/edit'"></contribute>
     <credits></credits>
-    <version></version>
+    <base-version></base-version>
   </section>
 </template>
 <script>
-import Version from "@/components/shared/Version";
+import BaseVersion from "@/components/base/BaseVersion";
 import Credits from "@/components/Credits";
 import Contribute from "@/components/contribution/Contribute";
 
 export default {
   name: "MenuCustom",
   components: {
-    Version,
+    BaseVersion,
     Credits,
     Contribute
   }

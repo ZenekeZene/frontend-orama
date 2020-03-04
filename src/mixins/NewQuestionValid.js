@@ -1,21 +1,21 @@
 export const answersValidation = {
   watch: {
     question() {
-      this.validate();
+      this.$_validate();
     },
     answers() {
-      if (!this.flagValidate) {
-        this.flagValidate = true;
+      if (!this._newQuestionValid_flagValidate) {
+        this._newQuestionValid_flagValidate = true;
       }
-      this.validate();
+      this.$_validate();
     },
     correctAnswerIndex() {
-      this.validate();
+      this.$_validate();
     }
   },
   data() {
     return {
-      validators: [
+      $_validators: [
         {
           message: "Inserta al menos 2 respuestas",
           validator: () => this.answers.length > 1
@@ -40,16 +40,19 @@ export const answersValidation = {
     };
   },
   mounted() {
-    this.validate();
+    this.$_validate();
   },
   methods: {
-    validate() {
-      this.errors = this.validators.filter(validator => {
+    $_validate() {
+      this.errors = this.$data.$_validators.filter(validator => {
         return !validator.validator({
           question: this.question,
           answers: this.answers
         });
       });
+    },
+    haveErrors() {
+      return this.errors.length > 0;
     }
   }
 };

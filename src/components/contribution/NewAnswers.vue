@@ -20,8 +20,8 @@
         <textarea-autosize
           :ref="`player-${index}`"
           rows="1"
-          maxlength="70"
-          :maxHeight="60"
+          max-length="70"
+          :max-height="60"
           placeholder="Inserta aquí tu respuesta"
           v-model="answers[index]"
           :class="{
@@ -60,6 +60,9 @@ export default {
       correctAnswerIndex: -1
     };
   },
+  computed: {
+    ...mapState(["questionToBeAdded"])
+  },
   watch: {
     answersLocal() {
       this.$emit("update:answers", this.answersLocal);
@@ -67,9 +70,6 @@ export default {
     correctAnswerIndex() {
       this.$emit("update:correctAnswerIndex", this.correctAnswerIndex);
     }
-  },
-  computed: {
-    ...mapState(["questionToBeAdded"])
   },
   mounted() {
     if (this.questionToBeAdded.answers.length > 0) {

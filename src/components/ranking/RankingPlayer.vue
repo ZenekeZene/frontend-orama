@@ -1,12 +1,12 @@
 <template>
-  <button-custom simple transparent v-ripple class="ranking-player">
+  <base-button simple transparent v-ripple class="ranking-player">
     <img src="../../assets/images/boy.gif" />
     <div class="info">
       <span class="name">{{ player.name }}</span>
       <span class="message">- {{ player.message }}</span>
     </div>
     <span class="value">{{ player.record }}</span>
-  </button-custom>
+  </base-button>
 </template>
 <script>
 export default {

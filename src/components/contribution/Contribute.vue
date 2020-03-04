@@ -6,7 +6,7 @@
     <p v-if="existQuestionToBeAdded">
       Tienes una pregunta a medias, ¡termina de enviarla!
     </p>
-    <button-custom simple v-ripple @click="goToEdit">Contribuir</button-custom>
+    <BaseButton simple v-ripple @click="goToEdit">Contribuir</BaseButton>
   </section>
 </template>
 <script>

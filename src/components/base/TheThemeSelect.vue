@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  name: "ThemeSelect",
+  name: "TheThemeSelect",
   data() {
     return {
       root: document.documentElement,
@@ -48,7 +48,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "../assets/styles/base/breakpoints.scss";
+@import "../../assets/styles/base/breakpoints.scss";
 .theme {
   position: absolute;
   bottom: 0;

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
-import questionAPI from "../api/questions";
+import QuestionsService from "../api/QuestionsService";
 
 Vue.use(Vuex);
 
@@ -69,7 +69,8 @@ export default new Vuex.Store({
   actions: {
     async loadQuestions({ commit }) {
       return new Promise(resolve => {
-        questionAPI.loadQuestions().then(questions => {
+        const questionsService = new QuestionsService();
+        questionsService.loadQuestions().then(questions => {
           commit("setQuestions", { questions });
           resolve(questions);
         });

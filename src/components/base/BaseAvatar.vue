@@ -11,8 +11,8 @@
         </p>
       </div>
     </section>
-    <button-custom class="share" simple v-ripple color-secondary
-      >Compartir</button-custom
+    <base-button class="share" simple v-ripple color-secondary
+      >Compartir</base-button
     >
     <slot></slot>
   </article>
@@ -75,6 +75,10 @@ export default {
       margin-bottom: 0;
     }
   }
+
+  h2 {
+    font-size: 1.2rem;
+  }
 }
 
 .info {
@@ -84,22 +88,18 @@ export default {
   padding: 0.5rem;
 }
 
-h2 {
-  font-size: 1.2rem;
-}
-
 .image {
   position: relative;
   display: flex;
   margin-bottom: 0;
-}
 
-img {
-  width: 28vw;
-  max-width: 226px;
-  height: auto;
-  display: block;
-  border-radius: 0.5rem;
+  img {
+    width: 28vw;
+    max-width: 226px;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+  }
 }
 
 .points {

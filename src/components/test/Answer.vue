@@ -1,5 +1,5 @@
 <template>
-  <button-custom
+  <BaseButton
     simple
     class="option"
     :class="{
@@ -8,7 +8,7 @@
     }"
   >
     <slot></slot>
-  </button-custom>
+  </BaseButton>
 </template>
 <script>
 export default {

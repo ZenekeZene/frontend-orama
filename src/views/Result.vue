@@ -1,31 +1,30 @@
 <template>
   <article page class="result column-with-scroll">
-    <header-nav
+    <TheHeader
       @onToggleCollapse="$emit('onToggleCollapse', $event)"
       title="Test finalizado"
-      :withBack="false"
-      :withMenu="false"
-      :withClose="true"
-    ></header-nav>
+      :with-back="false"
+      :with-menu="false"
+      :with-close="true"
+    />
     <section class="result__avatar">
-      <mini-avatar name="ZenekeZene" level="Ninja Developer"></mini-avatar>
+      <BaseMiniAvatar name="ZenekeZene" level="Ninja Developer" />
     </section>
     <canvas id="conffeti-canvas" class="confetti"></canvas>
     <p class="ranking-table-title">Clasificación</p>
     <section class="ranking-table-wrapper">
-      <ranking-table></ranking-table>
+      <RankingTable />
     </section>
   </article>
 </template>
 <script>
 import { mapState } from "vuex";
-import MiniAvatar from "@/components/avatar/MiniAvatar";
 import RankingTable from "@/components/ranking/RankingTable";
+
 export default {
   name: "Result",
   components: {
-    RankingTable,
-    MiniAvatar
+    RankingTable
   },
   computed: {
     ...mapState(["points", "totalQuestions"])
