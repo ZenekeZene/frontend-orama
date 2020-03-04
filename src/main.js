@@ -4,9 +4,10 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-/* eslint-disable no-unused-vars */
-import components from "./components/base";
-import vendor from "./vendor";
+import BaseComponents from "./components/base";
+Vue.use(BaseComponents);
+import VendorComponents from "./vendor";
+Vue.use(VendorComponents);
 
 import MobileHoverDirective from "./directives/mobileHover.directive";
 Vue.directive("mobile-hover", MobileHoverDirective);
