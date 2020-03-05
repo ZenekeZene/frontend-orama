@@ -1,42 +1,22 @@
 <template>
-  <div class="github">
+  <div class="user-auth">
     <div v-if="user">
       <h2>Bienvenido, {{ user.displayName }}</h2>
-      <img :src="user.photoURL" class="imageGithub" />
+      <img :src="user.photoURL" class="image" />
     </div>
-    <BaseButton v-if="!user" simple @click="loginUserWithPopup()"
-      >Register with Github <span class="icon-github"></span
-    ></BaseButton>
+    <span v-if="!user" @click="loginUserWithPopup()" class="icon-github"></span>
   </div>
 </template>
 <script>
+import AuthCommonMixin from "../../mixins/AuthCommon.mixin";
 export default {
   name: "AuthGithub",
-  services: ["$authGithubService"],
+  services: ["$githubAuthService"],
+  mixins: [AuthCommonMixin],
   data() {
     return {
-      user: null
+      auth: this.$services.$githubAuthService
     };
-  },
-  mounted() {
-    this.$services.$authGithubService.getRedirectResult().then(({ user }) => {
-      this.user = user;
-    });
-  },
-  methods: {
-    async loginUserWithRedirect() {
-      const result = await this.$services.$authGithubService.signInWithRedirect();
-      this.user = result.user;
-    },
-    async loginUserWithPopup() {
-      const result = await this.$services.$authGithubService.signInWithPopup();
-      this.user = result.user;
-    }
   }
 };
 </script>
-<style lang="scss" scoped>
-.github {
-  padding: 1rem;
-}
-</style>

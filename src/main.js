@@ -4,9 +4,7 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import AuthGithubService from "./auth/AuthGithubService";
-import AuthGoogleService from "./auth/AuthGoogleService";
-import AuthTwitterService from "./auth/AuthTwitterService";
+import AuthService from "./auth/AuthService";
 
 import BaseComponents from "./components/base";
 Vue.use(BaseComponents);
@@ -22,9 +20,13 @@ import "./assets/styles/main.scss";
 Vue.config.productionTip = false;
 
 Vue.use(Vuec);
-Vue.$ioc.register("$authGithubService", new AuthGithubService());
-Vue.$ioc.register("$authGoogleService", new AuthGoogleService());
-Vue.$ioc.register("$authTwitterService", new AuthTwitterService());
+Vue.$ioc.register("$authService", new AuthService());
+Vue.$ioc.register("$githubAuthService", new AuthService("GithubAuthProvider"));
+Vue.$ioc.register("$googleAuthService", new AuthService("GoogleAuthProvider"));
+Vue.$ioc.register(
+  "$twitterAuthService",
+  new AuthService("TwitterAuthProvider")
+);
 
 new Vue({
   router,

@@ -5,16 +5,6 @@
       :withBack="false"
     />
     <section class="form">
-      <p>Registro con email:</p>
-      <input v-model="email" type="email" placeholder="Inserta tu email" />
-      <input
-        v-model="password"
-        type="password"
-        placeholder="Inserta tu contraseña"
-      />
-      <BaseButton simple @click="registerUser()">Registrar</BaseButton>
-    </section>
-    <section class="form">
       <p>Login con email:</p>
       <input v-model="emailLogin" type="email" placeholder="Inserta tu email" />
       <input
@@ -25,30 +15,34 @@
       <BaseButton simple @click="loginUser()">Login</BaseButton>
     </section>
     <section class="form">
-      <p>Registro con Github</p>
+      <p>Registro con email:</p>
+      <input v-model="email" type="email" placeholder="Inserta tu email" />
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Inserta tu contraseña"
+      />
+      <BaseButton simple @click="registerUser()">Registrar</BaseButton>
+    </section>
+    <p class="socials-intro">o identificarse con:</p>
+    <div class="socials">
       <AuthGithub />
-    </section>
-    <section class="form">
-      <p>Registro con Google</p>
       <AuthGoogle />
-    </section>
-    <section class="form">
-      <p>Registro con Twitter</p>
       <AuthTwitter />
-    </section>
-    <section class="form">
+    </div>
+    <div class="form">
       <BaseButton simple @click="logoutUser()">Logout</BaseButton>
-    </section>
+    </div>
   </section>
 </template>
 <script>
-import AuthService from "@/auth/AuthService";
 import AuthGithub from "@/components/auth/AuthGithub";
 import AuthGoogle from "@/components/auth/AuthGoogle";
 import AuthTwitter from "@/components/auth/AuthTwitter";
 
 export default {
   name: "Auth",
+  services: ["$authService"],
   components: {
     AuthGithub,
     AuthGoogle,
@@ -56,7 +50,7 @@ export default {
   },
   data() {
     return {
-      authService: new AuthService(),
+      auth: this.$services.$authService,
       email: "",
       password: "",
       emailLogin: "asdf@gmail.com",
@@ -67,27 +61,13 @@ export default {
   },
   methods: {
     registerUser() {
-      this.authService.register(this.email, this.password);
+      this.auth.register(this.email, this.password);
     },
     loginUser() {
-      this.authService
-        .login(this.emailLogin, this.passwordLogin)
-        .then(result => {
-          if (!result) {
-            console.log("No existe el usuario");
-          } else if (result.user) {
-            console.log("Existe!");
-          }
-        });
+      this.auth.login(this.emailLogin, this.passwordLogin);
     },
     logoutUser() {
-      this.authService.logout();
-    },
-    loginUserWithGithub() {
-      this.authService.launchGithubAuth().then(user => {
-        this.githubImageUrl = user.photoURL;
-        this.githubNick = user.displayName;
-      });
+      this.auth.logout();
     }
   }
 };
@@ -106,9 +86,25 @@ export default {
     }
   }
 
-  .imageGithub {
+  .image {
     width: 100px;
     border-radius: 50%;
+  }
+
+  .socials {
+    display: flex;
+    justify-content: space-around;
+    max-width: 62%;
+    margin: 1rem auto;
+
+    &-intro {
+      text-align: center;
+    }
+
+    .user-auth {
+      padding: 1rem;
+      cursor: pointer;
+    }
   }
 }
 </style>

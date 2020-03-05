@@ -2,12 +2,17 @@ import firebase from "firebase/app";
 import { auth } from "../api/FirebaseService";
 
 export default class AuthService {
-  constructor(withLog = false) {
+  constructor(idProvider, withLog = false) {
     this.auth = auth;
+    if (idProvider) this.provider = this.$_getProvider(idProvider);
 
     if (withLog) {
       this.$_launchObserver();
     }
+  }
+
+  $_getProvider(idProvider) {
+    return new firebase.auth[idProvider]();
   }
 
   register(email, password) {
@@ -40,10 +45,6 @@ export default class AuthService {
     } else {
       console.error("Wrong login.");
     }
-  }
-
-  $_getProvider(idProvider) {
-    return new firebase.auth[idProvider]();
   }
 
   $_handResponse(result) {

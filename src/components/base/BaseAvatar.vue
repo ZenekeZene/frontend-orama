@@ -94,8 +94,7 @@ export default {
   margin-bottom: 0;
 
   img {
-    width: 28vw;
-    max-width: 226px;
+    width: 100px;
     height: auto;
     display: block;
     border-radius: 0.5rem;
