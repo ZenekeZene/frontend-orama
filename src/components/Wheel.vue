@@ -225,7 +225,7 @@ export default {
       const text = new Konva.Text({
         text: `        ${this.categories[n].name}`,
         fontFamily: "Museo Sans Rounded, Helvetica, sans-serif",
-        fontSize: 30 - this.categories[n].name.length * 0.9,
+        fontSize: 30,
         fill: "white",
         align: "left",
         rotation: cMini * 2,

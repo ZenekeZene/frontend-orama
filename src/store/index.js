@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import questionToBeAdded from "./questionToBeAdded.store";
 import questions from "./questions.store";
 import categories from "./categories.store";
+import user from "./user.store";
 
 Vue.use(Vuex);
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
+    user,
     questionToBeAdded: questionToBeAdded,
     categories,
     questions
