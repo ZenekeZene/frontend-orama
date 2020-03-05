@@ -1,27 +1,41 @@
 <template>
   <article class="avatar">
-    <h2 v-if="withGreetins">{{ getGreetings }}</h2>
-    <section class="image">
-      <img src="../../assets/images/boy.gif" :alt="`Avatar de ${name}`" />
-      <div class="info">
-        <span class="aka">{{ level }}</span>
-        <p class="points">
-          Record:
-          <span class="points__value">65</span> puntos.
-        </p>
-      </div>
+    <AuthGithub v-if="!user" />
+    <AuthGoogle v-if="!user" />
+    <AuthTwitter v-if="!user" />
+    <section v-else>
+      <h2 v-if="withGreetins">{{ getGreetings }}</h2>
+      <section class="image">
+        <img :src="user.photoURL" :alt="`Avatar de ${user.displayName}`" />
+        <div class="info">
+          <span class="aka">{{ level }}</span>
+          <p class="points">
+            Record:
+            <span class="points__value">65</span> puntos.
+          </p>
+        </div>
+      </section>
+      <base-button class="share" simple v-ripple color-secondary
+        >Compartir</base-button
+      >
+      <slot></slot>
     </section>
-    <base-button class="share" simple v-ripple color-secondary
-      >Compartir</base-button
-    >
-    <slot></slot>
   </article>
 </template>
 <script>
 import * as moment from "moment";
+import { mapState } from "vuex";
+import AuthGithub from "../auth/AuthGithub";
+import AuthGoogle from "../auth/AuthGoogle";
+import AuthTwitter from "../auth/AuthTwitter";
 
 export default {
   name: "Avatar",
+  components: {
+    AuthGithub,
+    AuthGoogle,
+    AuthTwitter
+  },
   props: {
     name: {
       type: String,
@@ -38,8 +52,9 @@ export default {
   },
   computed: {
     getGreetings() {
-      return `${this.getGreetingTime(moment())}, ${this.name}.`;
-    }
+      return `${this.getGreetingTime(moment())}, ${this.user.displayName}.`;
+    },
+    ...mapState("userS", ["user"])
   },
   methods: {
     getGreetingTime: currentTime => {
@@ -48,7 +63,7 @@ export default {
       }
 
       const splitAfternoon = 12; // 24hr time to split the afternoon
-      const splitEvening = 17; // 24hr time to split the evening
+      const splitEvening = 21; // 24hr time to split the evening
       const currentHour = parseFloat(currentTime.format("HH"));
 
       if (currentHour >= splitAfternoon && currentHour <= splitEvening) {

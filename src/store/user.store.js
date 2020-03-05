@@ -1,17 +1,34 @@
+import createPersistedState from "vuex-persistedstate";
+
 export default {
   namespaced: true,
+  plugins: [
+    createPersistedState({
+      key: "techiwall-state",
+      paths: ["redirectWasLaunched"]
+    })
+  ],
   state: {
     user: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    redirectWasLaunched: false
   },
   mutations: {
     setUser(state, payload) {
-      state.user = payload.user;
-      this.isLoggedIn = true;
+      if (!payload.user) return;
+      const user = {
+        displayName: payload.user.displayName,
+        photoURL: payload.user.photoURL
+      };
+      state.user = user;
+      state.isLoggedIn = true;
     },
     clearUser(state) {
       state.user = null;
-      this.isLoggedIn = false;
+      state.isLoggedIn = false;
+    },
+    setRedirectWasLaunched(state, payload) {
+      state.redirectWasLaunched = payload.redirectWasLaunched;
     }
   }
 };

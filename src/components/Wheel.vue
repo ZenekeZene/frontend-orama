@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <fade-transition>
+  <div
+    style="position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;"
+  >
+    <fade-transition mode="in-out">
       <div
         v-if="numOfCategories > 0"
         key="wheel"
@@ -8,9 +13,8 @@
         class="wheel"
         style="text-align: center;"
       ></div>
-      <p v-else key="empty">
-        ¡Hola!
-        <br />Añade un título y opciones a tu super ruleta de la suerte.
+      <p v-else key="spinner" class="spinner-wrapper">
+        <BaseSpinner />
       </p>
     </fade-transition>
   </div>
@@ -75,7 +79,6 @@ export default {
   },
   mounted() {
     Konva.angleDeg = false;
-    this.numWedges = this.numOfCategories;
     this.angularVelocity = this.forceAngularVelocity;
     this.wasLaunchedLocal = this.wasLaunched;
     const font = new FontFaceObserver("Museo Sans Rounded 500");
@@ -85,6 +88,7 @@ export default {
   methods: {
     ...mapActions("categories", ["loadCategories"]),
     init() {
+      this.numWedges = this.numOfCategories;
       this.stage = new Konva.Stage({
         container: "container",
         width: this.width,

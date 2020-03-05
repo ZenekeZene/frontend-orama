@@ -4,11 +4,16 @@
       <h2>Bienvenido, {{ user.displayName }}</h2>
       <img :src="user.photoURL" class="image" />
     </div>
-    <span v-if="!user" @click="loginUserWithPopup()" class="icon-github"></span>
+    <span
+      v-if="!user"
+      @click="loginUserWithRedirect()"
+      class="icon-github"
+    ></span>
   </div>
 </template>
 <script>
 import AuthCommonMixin from "../../mixins/AuthCommon.mixin";
+
 export default {
   name: "AuthGithub",
   services: ["$githubAuthService"],

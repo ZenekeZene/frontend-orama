@@ -1,22 +1,27 @@
+import { mapState, mapMutations } from "vuex";
 export default {
-  data() {
-    return {
-      user: null
-    };
+  computed: {
+    ...mapState("userS", ["user", "redirectWasLaunched"])
   },
   created() {
-    this.auth.getRedirectResult().then(({ user }) => {
-      this.user = user;
-    });
+    if (this.redirectWasLaunched) {
+      this.auth.getRedirectResult().then(({ user }) => {
+        this.setUser({ user });
+        this.redirectWasLaunched = false;
+      });
+    }
   },
   methods: {
-    async loginUserWithRedirect() {
-      const result = await this.auth.signInWithRedirect();
-      this.user = result.user;
+    ...mapMutations("userS", ["setUser", "setRedirectWasLaunched"]),
+    loginUserWithRedirect() {
+      const result = this.auth.signInWithRedirect();
+      this.setUser({ user: result.user });
+      this.setRedirectWasLaunched({ redirectWasLaunched: true });
     },
-    async loginUserWithPopup() {
-      const result = await this.auth.signInWithPopup();
-      this.user = result.user;
+    loginUserWithPopup() {
+      this.auth.signInWithPopup().then(({ user }) => {
+        this.setUser({ user });
+      });
     }
   }
 };
