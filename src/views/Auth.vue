@@ -22,28 +22,36 @@
       />
       <BaseButton simple @click="loginUser()">Login</BaseButton>
     </section>
+    <AuthGithub />
     <BaseButton simple @click="logoutUser()">Logout</BaseButton>
   </section>
 </template>
 <script>
-import AuthenticationService from "../api/AuthenticationService";
+import AuthService from "@/auth/AuthService";
+import AuthGithub from "@/components/auth/AuthGithub";
+
 export default {
   name: "Auth",
+  components: {
+    AuthGithub
+  },
   data() {
     return {
-      authenticationService: new AuthenticationService(),
+      authService: new AuthService(),
       email: "",
       password: "",
       emailLogin: "asdf@gmail.com",
-      passwordLogin: "asdf@gmail.com"
+      passwordLogin: "asdf@gmail.com",
+      githubImageUrl: "",
+      githubNick: ""
     };
   },
   methods: {
     registerUser() {
-      this.authenticationService.register(this.email, this.password);
+      this.authService.register(this.email, this.password);
     },
     loginUser() {
-      this.authenticationService
+      this.authService
         .login(this.emailLogin, this.passwordLogin)
         .then(result => {
           if (!result) {
@@ -54,7 +62,13 @@ export default {
         });
     },
     logoutUser() {
-      this.authenticationService.logout();
+      this.authService.logout();
+    },
+    loginUserWithGithub() {
+      this.authService.launchGithubAuth().then(user => {
+        this.githubImageUrl = user.photoURL;
+        this.githubNick = user.displayName;
+      });
     }
   }
 };
@@ -65,6 +79,11 @@ export default {
 
   .form {
     padding: 3rem;
+  }
+
+  .imageGithub {
+    width: 100px;
+    border-radius: 50%;
   }
 }
 </style>

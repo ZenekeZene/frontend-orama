@@ -1,8 +1,10 @@
 import Vue from "vue";
+import Vuec from "vue-container";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import AuthGithubService from "./auth/AuthGithubService";
 
 import BaseComponents from "./components/base";
 Vue.use(BaseComponents);
@@ -16,6 +18,9 @@ Vue.directive("mobile-hover", MobileHoverDirective);
 import "./assets/styles/main.scss";
 
 Vue.config.productionTip = false;
+
+Vue.use(Vuec);
+Vue.$ioc.register("$authGithubService", new AuthGithubService());
 
 new Vue({
   router,
