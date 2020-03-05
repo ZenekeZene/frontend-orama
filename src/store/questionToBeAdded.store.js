@@ -1,13 +1,6 @@
-import createPersistedState from "vuex-persistedstate";
-
 export default {
   namespaced: true,
-  plugins: [
-    createPersistedState({
-      key: "techiwall-state",
-      paths: ["questionToBeAdded"]
-    })
-  ],
+
   state: {
     questionToBeAdded: {
       question: "",

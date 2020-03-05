@@ -54,7 +54,7 @@ export default {
     getGreetings() {
       return `${this.getGreetingTime(moment())}, ${this.user.displayName}.`;
     },
-    ...mapState("userS", ["user"])
+    ...mapState("user", ["user"])
   },
   methods: {
     getGreetingTime: currentTime => {
