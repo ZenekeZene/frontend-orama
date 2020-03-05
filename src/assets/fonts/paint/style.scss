@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?oozwvv');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?oozwvv#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?oozwvv') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?oozwvv') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?oozwvv##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?5bjucs');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?5bjucs#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?5bjucs') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?5bjucs') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?5bjucs##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-github {
+  &:before {
+    content: $icon-github; 
+  }
+}
 .icon-close {
   &:before {
     content: $icon-close; 

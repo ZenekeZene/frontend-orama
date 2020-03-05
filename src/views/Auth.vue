@@ -5,6 +5,7 @@
       :withBack="false"
     />
     <section class="form">
+      <p>Registro con email:</p>
       <input v-model="email" type="email" placeholder="Inserta tu email" />
       <input
         v-model="password"
@@ -14,6 +15,7 @@
       <BaseButton simple @click="registerUser()">Registrar</BaseButton>
     </section>
     <section class="form">
+      <p>Login con email:</p>
       <input v-model="emailLogin" type="email" placeholder="Inserta tu email" />
       <input
         v-model="passwordLogin"
@@ -22,18 +24,35 @@
       />
       <BaseButton simple @click="loginUser()">Login</BaseButton>
     </section>
-    <AuthGithub />
-    <BaseButton simple @click="logoutUser()">Logout</BaseButton>
+    <section class="form">
+      <p>Registro con Github</p>
+      <AuthGithub />
+    </section>
+    <section class="form">
+      <p>Registro con Google</p>
+      <AuthGoogle />
+    </section>
+    <section class="form">
+      <p>Registro con Twitter</p>
+      <AuthTwitter />
+    </section>
+    <section class="form">
+      <BaseButton simple @click="logoutUser()">Logout</BaseButton>
+    </section>
   </section>
 </template>
 <script>
 import AuthService from "@/auth/AuthService";
 import AuthGithub from "@/components/auth/AuthGithub";
+import AuthGoogle from "@/components/auth/AuthGoogle";
+import AuthTwitter from "@/components/auth/AuthTwitter";
 
 export default {
   name: "Auth",
   components: {
-    AuthGithub
+    AuthGithub,
+    AuthGoogle,
+    AuthTwitter
   },
   data() {
     return {
@@ -76,9 +95,15 @@ export default {
 <style lang="scss">
 .auth {
   display: block;
+  min-height: auto !important;
+  overflow-y: scroll;
 
   .form {
-    padding: 3rem;
+    padding: 0 2rem;
+
+    > * {
+      margin-bottom: 1rem;
+    }
   }
 
   .imageGithub {

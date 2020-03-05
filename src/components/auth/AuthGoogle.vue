@@ -5,31 +5,31 @@
       <img :src="user.photoURL" class="imageGithub" />
     </div>
     <BaseButton v-if="!user" simple @click="loginUserWithPopup()"
-      >Register with Github <span class="icon-github"></span
+      >Register with Google <span class="icon-github"></span
     ></BaseButton>
   </div>
 </template>
 <script>
 export default {
-  name: "AuthGithub",
-  services: ["$authGithubService"],
+  name: "AuthGoogle",
+  services: ["$authGoogleService"],
   data() {
     return {
       user: null
     };
   },
   mounted() {
-    this.$services.$authGithubService.getRedirectResult().then(({ user }) => {
+    this.$services.$authGoogleService.getRedirectResult().then(({ user }) => {
       this.user = user;
     });
   },
   methods: {
     async loginUserWithRedirect() {
-      const result = await this.$services.$authGithubService.signInWithRedirect();
+      const result = await this.$services.$authGoogleService.signInWithRedirect();
       this.user = result.user;
     },
     async loginUserWithPopup() {
-      const result = await this.$services.$authGithubService.signInWithPopup();
+      const result = await this.$services.$authGoogleService.signInWithPopup();
       this.user = result.user;
     }
   }

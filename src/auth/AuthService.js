@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 import { auth } from "../api/FirebaseService";
 
 export default class AuthService {
@@ -38,6 +39,48 @@ export default class AuthService {
       console.error("Wrong password.");
     } else {
       console.error("Wrong login.");
+    }
+  }
+
+  $_getProvider(idProvider) {
+    return new firebase.auth[idProvider]();
+  }
+
+  $_handResponse(result) {
+    if (!result.credential) throw new Error("Error with token or similar");
+    return {
+      token: result.credential.accessToken,
+      user: result.user
+    };
+  }
+
+  async signInWithPopup() {
+    try {
+      const result = await this.auth.signInWithPopup(this.provider);
+      return this.$_handResponse(result);
+    } catch (error) {
+      this.$_logError(error);
+      return error;
+    }
+  }
+
+  async signInWithRedirect() {
+    try {
+      const result = await this.auth.signInWithRedirect(this.provider);
+      return this.$_handResponse(result);
+    } catch (error) {
+      this.$_logError(error);
+      return error;
+    }
+  }
+
+  async getRedirectResult() {
+    try {
+      const result = await this.auth.getRedirectResult();
+      return this.$_handResponse(result);
+    } catch (error) {
+      this.$_logError(error);
+      return error;
     }
   }
 }
