@@ -1,20 +1,22 @@
 <template>
   <div>
-    <div
-      v-if="numOfCategories > 0"
-      key="wheel"
-      id="container"
-      class="wheel"
-      style="text-align: center;"
-    ></div>
-    <p v-else key="empty">
-      ¡Hola!
-      <br />Añade un título y opciones a tu super ruleta de la suerte.
-    </p>
+    <fade-transition>
+      <div
+        v-if="numOfCategories > 0"
+        key="wheel"
+        id="container"
+        class="wheel"
+        style="text-align: center;"
+      ></div>
+      <p v-else key="empty">
+        ¡Hola!
+        <br />Añade un título y opciones a tu super ruleta de la suerte.
+      </p>
+    </fade-transition>
   </div>
 </template>
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import gen from "color-generator";
 import FontFaceObserver from "fontfaceobserver";
 
@@ -78,17 +80,10 @@ export default {
     this.wasLaunchedLocal = this.wasLaunched;
     const font = new FontFaceObserver("Museo Sans Rounded 500");
 
-    font
-      .load()
-      .then(() => {
-        console.log("Museo Sans Rounded 500 has loaded.");
-        this.init();
-      })
-      .catch(error => {
-        console.warn(error);
-      });
+    Promise.all([font.load(), this.loadCategories()]).then(() => this.init());
   },
   methods: {
+    ...mapActions("categories", ["loadCategories"]),
     init() {
       this.stage = new Konva.Stage({
         container: "container",
@@ -228,9 +223,9 @@ export default {
       const cMini = (90 - A) / 2;
 
       const text = new Konva.Text({
-        text: `        ${this.categories[n].id}`,
+        text: `        ${this.categories[n].name}`,
         fontFamily: "Museo Sans Rounded, Helvetica, sans-serif",
-        fontSize: 30 - this.categories[n].id.length * 0.9,
+        fontSize: 30 - this.categories[n].name.length * 0.9,
         fill: "white",
         align: "left",
         rotation: cMini * 2,

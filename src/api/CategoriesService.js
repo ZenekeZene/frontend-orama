@@ -2,7 +2,7 @@ import { database } from "./FirebaseService";
 const _db = database;
 
 const COLLECTION = {
-  id: "questions",
+  id: "categories",
   ref() {
     return _db.collection(this.id);
   },

@@ -7,10 +7,6 @@ import Result from "../views/Result";
 import Ranking from "../views/Ranking";
 import Auth from "../views/Auth";
 
-import VueKonva from "vue-konva";
-
-Vue.use(VueKonva);
-
 Vue.use(VueRouter);
 
 const routes = [

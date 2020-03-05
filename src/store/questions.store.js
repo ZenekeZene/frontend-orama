@@ -24,7 +24,7 @@ export default {
     async loadQuestions({ commit }) {
       return new Promise(resolve => {
         const questionsService = new QuestionsService();
-        questionsService.loadQuestions().then(questions => {
+        questionsService.loadAll().then(questions => {
           commit("setQuestions", { questions });
           resolve(questions);
         });
