@@ -5,6 +5,7 @@ import Edit from "../views/Edit";
 import Questionary from "../views/Questionary";
 import Result from "../views/Result";
 import Ranking from "../views/Ranking";
+import Auth from "../views/Auth";
 
 import VueKonva from "vue-konva";
 
@@ -37,6 +38,11 @@ const routes = [
     path: "/ranking",
     name: "Ranking",
     component: Ranking
+  },
+  {
+    path: "/auth",
+    name: "Auth",
+    component: Auth
   }
 ];
 
