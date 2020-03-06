@@ -1,11 +1,12 @@
 <template>
   <div class="user-auth">
-    <div v-if="user">
+    <div v-if="user && !isLoading">
       <h2>Bienvenido, {{ user.displayName }}</h2>
       <img :src="user.photoURL" class="image" />
     </div>
+    <BaseSpinner v-if="isLoading" />
     <span
-      v-if="!user"
+      v-if="!user && !isLoading"
       @click="loginUserWithRedirect()"
       class="icon-github"
     ></span>
