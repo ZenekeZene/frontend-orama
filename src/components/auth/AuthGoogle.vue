@@ -1,10 +1,11 @@
 <template>
   <div class="user-auth">
-    <div v-if="user">
-      <h2>Bienvenido, {{ user.displayName }}</h2>
-      <img :src="user.photoURL" class="image" />
-    </div>
-    <span v-if="!user" @click="loginUserWithPopup()" class="icon-google"></span>
+    <BaseSpinner v-if="isLoading" />
+    <span
+      v-if="!user && !isLoading"
+      @click="loginUserWithRedirect()"
+      class="icon-google"
+    ></span>
   </div>
 </template>
 <script>

@@ -10,26 +10,25 @@ export default {
   },
   created() {
     if (this.redirectWasLaunched) {
-      this.isLoading = true;
+      this.$emit("isLoading", true);
       this.auth.getRedirectResult().then(({ user }) => {
         this.setUser({ user });
         this.setRedirectWasLaunched({ redirectWasLaunched: false });
+        this.$emit("isLoading", false);
       });
     }
   },
   methods: {
     ...mapMutations("user", ["setUser", "setRedirectWasLaunched"]),
     loginUserWithRedirect() {
-      this.isLoading = true;
-      const result = this.auth.signInWithRedirect();
-      this.setUser({ user: result.user });
       this.setRedirectWasLaunched({ redirectWasLaunched: true });
-      this.isLoading = false;
+      this.auth.signInWithRedirect();
     },
     loginUserWithPopup() {
+      this.$emit("isLoading", true);
       this.auth.signInWithPopup().then(({ user }) => {
         this.setUser({ user });
-        this.isLoading = false;
+        this.$emit("isLoading", false);
       });
     }
   }

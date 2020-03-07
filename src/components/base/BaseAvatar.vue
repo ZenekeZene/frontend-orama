@@ -1,8 +1,6 @@
 <template>
   <article class="avatar">
-    <AuthGithub v-if="!user" />
-    <AuthGoogle v-if="!user" />
-    <AuthTwitter v-if="!user" />
+    <AuthSocial v-if="!user && !isLoggedIn" />
     <section v-else>
       <h2 v-if="withGreetins">{{ getGreetings }}</h2>
       <section class="image">
@@ -25,16 +23,12 @@
 <script>
 import * as moment from "moment";
 import { mapState } from "vuex";
-import AuthGithub from "../auth/AuthGithub";
-import AuthGoogle from "../auth/AuthGoogle";
-import AuthTwitter from "../auth/AuthTwitter";
+import AuthSocial from "../auth/AuthSocial";
 
 export default {
   name: "Avatar",
   components: {
-    AuthGithub,
-    AuthGoogle,
-    AuthTwitter
+    AuthSocial
   },
   props: {
     name: {
@@ -54,7 +48,7 @@ export default {
     getGreetings() {
       return `${this.getGreetingTime(moment())}, ${this.user.displayName}.`;
     },
-    ...mapState("user", ["user"])
+    ...mapState("user", ["user", "isLoggedIn"])
   },
   methods: {
     getGreetingTime: currentTime => {
