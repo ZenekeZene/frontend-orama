@@ -1,8 +1,8 @@
 <template>
   <article class="auth-social">
-    <AuthGithub @isLoading="isLoading = $event" />
-    <AuthTwitter @isLoading="isLoading = $event" />
-    <AuthGoogle @isLoading="isLoading = $event" />
+    <AuthGithub @isLoading="$emit('isLoading', $event)" />
+    <AuthTwitter @isLoading="$emit('isLoading', $event)" />
+    <AuthGoogle @isLoading="$emit('isLoading', $event)" />
   </article>
 </template>
 <script>
@@ -15,11 +15,6 @@ export default {
     AuthGithub,
     AuthTwitter,
     AuthGoogle
-  },
-  data() {
-    return {
-      isLoading: false
-    };
   }
 };
 </script>

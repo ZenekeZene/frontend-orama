@@ -5,6 +5,7 @@
   </nav>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "TheSidebar",
   props: {
@@ -39,6 +40,7 @@ export default {
     };
   },
   computed: {
+    ...mapState("user", ["wasSidebarOpened"]),
     cssProps() {
       const direction = this.side === "left" ? -1 : 1;
       return {
@@ -62,6 +64,7 @@ export default {
   watch: {
     isCollapsed() {
       this.isCollapsedLocal = this.isCollapsed;
+      this.setWasSidebarOpened({ wasSidebarOpened: this.isCollapsed });
     },
     isCollapsedLocal(value) {
       this.loopSiblings(
@@ -80,7 +83,7 @@ export default {
   },
   mounted() {
     const direction = this.side === "left" ? -1 : 1;
-    this.isCollapsedLocal = this.isCollapsed;
+    this.isCollapsedLocal = this.wasSidebarOpened;
     this.loopSiblings(node => {
       node.$el.style.transform = this.pulled;
       node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
@@ -91,6 +94,7 @@ export default {
     this.$el.style.transform = `translateX(${direction * 101 + "%"})`;
   },
   methods: {
+    ...mapMutations("user", ["setWasSidebarOpened"]),
     loopSiblings(iterationCallback) {
       this.$parent.$children.forEach(node => {
         if (

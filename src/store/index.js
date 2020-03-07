@@ -13,7 +13,11 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       key: "techiwall-state",
-      paths: ["questionToBeAdded.questionToBeAdded", "user.redirectWasLaunched"]
+      paths: [
+        "questionToBeAdded.questionToBeAdded",
+        "user.redirectWasLaunched",
+        "user.wasSidebarOpened"
+      ]
     })
   ],
   state: {

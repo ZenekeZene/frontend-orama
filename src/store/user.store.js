@@ -11,7 +11,8 @@ export default {
   state: {
     user: null,
     isLoggedIn: false,
-    redirectWasLaunched: false
+    redirectWasLaunched: false,
+    wasSidebarOpened: false
   },
   mutations: {
     setUser(state, payload) {
@@ -29,6 +30,9 @@ export default {
     },
     setRedirectWasLaunched(state, payload) {
       state.redirectWasLaunched = payload.redirectWasLaunched;
+    },
+    setWasSidebarOpened(state, payload) {
+      state.wasSidebarOpened = payload.wasSidebarOpened;
     }
   }
 };
