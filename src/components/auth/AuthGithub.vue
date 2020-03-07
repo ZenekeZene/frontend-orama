@@ -1,5 +1,5 @@
 <template>
-  <div class="user-auth">
+  <div class="auth-user">
     <BaseSpinner v-if="isLoading" />
     <span
       v-if="!user && !isLoading"

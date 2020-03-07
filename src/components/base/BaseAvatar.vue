@@ -1,7 +1,6 @@
 <template>
   <article class="avatar">
-    <AuthSocial v-if="!user && !isLoggedIn" />
-    <section v-else>
+    <section>
       <h2 v-if="withGreetins">{{ getGreetings }}</h2>
       <section class="image">
         <img :src="user.photoURL" :alt="`Avatar de ${user.displayName}`" />
@@ -23,13 +22,9 @@
 <script>
 import * as moment from "moment";
 import { mapState } from "vuex";
-import AuthSocial from "../auth/AuthSocial";
 
 export default {
   name: "Avatar",
-  components: {
-    AuthSocial
-  },
   props: {
     name: {
       type: String,
@@ -86,6 +81,7 @@ export default {
   }
 
   h2 {
+    padding-bottom: 0.5rem;
     font-size: 1.2rem;
   }
 }

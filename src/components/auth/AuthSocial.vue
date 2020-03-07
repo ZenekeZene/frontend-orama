@@ -1,13 +1,8 @@
 <template>
   <article class="auth-social">
-    <section v-if="isLoading" key="empty">
-      <BaseSpinner />
-    </section>
-    <section v-else key="social">
-      <AuthGithub @isLoading="isLoading = $event" />
-      <AuthTwitter @isLoading="isLoading = $event" />
-      <AuthGoogle @isLoading="isLoading = $event" />
-    </section>
+    <AuthGithub @isLoading="isLoading = $event" />
+    <AuthTwitter @isLoading="isLoading = $event" />
+    <AuthGoogle @isLoading="isLoading = $event" />
   </article>
 </template>
 <script>
@@ -28,3 +23,15 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.auth-social {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+
+  .auth-user {
+    padding: 1rem;
+    font-size: 2rem;
+  }
+}
+</style>

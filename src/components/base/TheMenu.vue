@@ -1,6 +1,7 @@
 <template>
   <section class="menu">
-    <base-avatar name="ZenekeZene" level="Ninja Developer">
+    <AuthSignUp v-if="!user" key="auth-sign-up" />
+    <BaseAvatar v-else key="avatar" name="ZenekeZene" level="Ninja Developer">
       <base-button
         @click="$router.push('ranking')"
         style="color: var(--color-secondary);"
@@ -9,23 +10,27 @@
         v-ripple
         >Ver clasificación</base-button
       >
-    </base-avatar>
+    </BaseAvatar>
     <contribute v-if="$route.path !== '/edit'"></contribute>
     <credits></credits>
     <base-version></base-version>
   </section>
 </template>
 <script>
-import BaseVersion from "@/components/base/BaseVersion";
+import { mapState } from "vuex";
+import AuthSignUp from "@/components/auth/AuthSignUp";
 import Credits from "@/components/Credits";
 import Contribute from "@/components/contribution/Contribute";
 
 export default {
   name: "MenuCustom",
   components: {
-    BaseVersion,
+    AuthSignUp,
     Credits,
     Contribute
+  },
+  computed: {
+    ...mapState("user", ["user", "isLoggedIn"])
   }
 };
 </script>

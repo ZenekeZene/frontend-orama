@@ -1,5 +1,5 @@
 <template>
-  <div class="user-auth">
+  <div class="auth-user">
     <span
       v-if="!user"
       @click="loginUserWithPopup()"

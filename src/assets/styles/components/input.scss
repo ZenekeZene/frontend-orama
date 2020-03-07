@@ -5,14 +5,21 @@ textarea {
   -webkit-appearance: none;
   display: block;
   width: 100%;
-  padding: 0.5rem 3rem 0.5rem 0;
+  padding: 0.5rem;
   font-size: 1rem;
   color: white;
   font-family: Helvetica;
+  margin-bottom: 0.5rem;
   background: transparent;
   border: none;
   border-bottom: 3px solid var(--color-primary);
   outline: none;
+
+  &::placeholder {
+    color: rgba(white, 0.5);
+    font-size: 0.8rem;
+    font-family: 'Museo Sans Rounded 100';
+  }
 
   &.--correct {
     border-bottom-color: var(--color-correct);
