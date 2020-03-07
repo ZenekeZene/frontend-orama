@@ -3,6 +3,7 @@
     <BaseSpinner v-if="isLoading" />
     <span
       v-if="!user && !isLoading"
+      v-mobile-hover:#4992a9
       @click="loginUserWithRedirect()"
       class="icon-github"
     ></span>

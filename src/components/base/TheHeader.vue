@@ -9,7 +9,8 @@
     <h1>{{ title }}</h1>
     <span
       v-if="withMenu"
-      class="--right icon-menu"
+      class="--right"
+      :class="isSidebarOpened ? 'icon-close' : 'icon-menu'"
       v-mobile-hover:#4992a9
       @click="onToggleCollapse"
     ></span>
@@ -79,6 +80,7 @@ export default {
     z-index: 3;
     padding: 1.5rem;
     font-size: 1.2rem;
+    cursor: pointer;
 
     &.--left {
       left: 0;

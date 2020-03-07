@@ -2,6 +2,7 @@
   <div class="auth-user">
     <span
       v-if="!user"
+      v-mobile-hover:#4992a9
       @click="loginUserWithPopup()"
       class="icon-twitter"
     ></span>

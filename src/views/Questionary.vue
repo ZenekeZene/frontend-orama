@@ -17,7 +17,7 @@
       <fade-transition appear>
         <Clock
           :isProgress="true"
-          :isStop="true"
+          :isStop="false"
           :seconds="question.seconds || 10"
           v-if="clockIsVisible"
           @finished="timeFinished"

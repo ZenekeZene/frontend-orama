@@ -27,6 +27,7 @@ export default {
   .auth-user {
     padding: 1rem;
     font-size: 2rem;
+    cursor: pointer;
   }
 }
 </style>
