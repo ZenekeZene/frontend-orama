@@ -9,4 +9,6 @@
   --duration: 150ms;
 }
 
-@import 'breakpoints';
+$gutter: 1rem;
+
+@import "breakpoints";

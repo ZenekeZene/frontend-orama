@@ -11,7 +11,7 @@
       </fade-transition>
       <TheSidebar
         :is-collapsed="isCollapsed"
-        width="70%"
+        width="85%"
         duration="450ms"
         easing="ease-in-out"
         side="right"

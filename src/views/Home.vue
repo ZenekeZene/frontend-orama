@@ -21,6 +21,7 @@
         <BaseButton
           simple
           big
+          m-b-0
           color-secondary
           v-ripple
           @click="launch"

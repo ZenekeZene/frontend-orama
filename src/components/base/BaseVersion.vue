@@ -4,7 +4,7 @@
 <style lang="scss" scoped>
 .version {
   position: absolute;
-  bottom: 1rem;
+  top: 1rem;
   right: 1rem;
   opacity: 0.3;
   z-index: 3;

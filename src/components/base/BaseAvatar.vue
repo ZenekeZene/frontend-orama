@@ -70,7 +70,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .avatar {
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
 
   > * {
     margin-bottom: 1rem;

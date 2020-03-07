@@ -1,12 +1,6 @@
 @import "base/base";
 @import "icons/icons";
-
 @import "components/components";
 @import "pages/pages";
+@import "utils/utils";
 @import "vendor/vendor";
-
-.hidden-keyboard-opened {
-  @media screen and (max-height: 400px) {
-    display: none;
-  }
-}

@@ -1,12 +1,9 @@
 <template>
   <section class="contribute">
-    <p v-if="!existsQuestionToBeAdded">
-      ¿Quieres contribuir con tus propias preguntas?
-    </p>
     <p v-if="existsQuestionToBeAdded">
       Tienes una pregunta a medias, ¡termina de enviarla!
     </p>
-    <BaseButton simple v-ripple @click="goToEdit">Contribuir</BaseButton>
+    <BaseButton simple v-ripple @click="goToEdit">Mis preguntas</BaseButton>
   </section>
 </template>
 <script>

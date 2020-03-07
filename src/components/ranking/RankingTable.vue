@@ -10,11 +10,11 @@
     v-on:leave="leave"
   >
     <li
-      v-for="(player, index) in mockPlayers"
+      v-for="(player, index) in mockPlayersFiltered"
       :key="`option-${index}`"
       :data-index="index"
     >
-      <ranking-player :player="player"></ranking-player>
+      <RankingPlayer :player="player" />
     </li>
   </transition-group>
 </template>
@@ -24,6 +24,17 @@ export default {
   name: "RankingTable",
   components: {
     RankingPlayer
+  },
+  props: {
+    numPlayers: {
+      type: Number,
+      default: 10
+    }
+  },
+  computed: {
+    mockPlayersFiltered() {
+      return this.mockPlayers.slice(0, this.numPlayers);
+    }
   },
   data() {
     return {
