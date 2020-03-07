@@ -1,9 +1,9 @@
 <template>
   <section page>
-    <TheHeader
-      @onToggleCollapse="$emit('onToggleCollapse', $event)"
-      :withBack="false"
-    />
+    <fade-transition>
+      <div v-show="isCollapsed" class="backdrop-sidebar"></div>
+    </fade-transition>
+    <TheHeader @onToggleCollapse="onToggleCollapse" :withBack="false" />
     <div class="home">
       <h1 class="home__points">
         <span v-show="currentQuestionIndex > 0">Aciertos: {{ points }}</span>
@@ -49,16 +49,19 @@ export default {
       minAngularVelocity: 10,
       maxAngularVelocity: 20,
       wasLaunched: false,
-      category: null
+      category: null,
+      isCollapsed: false
     };
   },
   computed: {
     ...mapState(["points"]),
+    ...mapState("user", ["wasSidebarOpened"]),
     ...mapState("questions", ["currentQuestionIndex"]),
     ...mapGetters("questions", ["totalQuestions"])
   },
   mounted() {
     this.wasLaunched = false;
+    this.isCollapsed = this.wasSidebarOpened;
   },
   methods: {
     goToEdit() {
@@ -75,6 +78,10 @@ export default {
         Math.random() * (this.minAngularVelocity - this.maxAngularVelocity) +
         this.maxAngularVelocity
       );
+    },
+    onToggleCollapse($event) {
+      this.isCollapsed = $event;
+      this.$emit("onToggleCollapse", $event);
     }
   }
 };

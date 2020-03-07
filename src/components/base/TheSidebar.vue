@@ -6,6 +6,7 @@
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "TheSidebar",
   props: {

@@ -4,7 +4,7 @@
       <section v-if="!isLoading" key="sign-up">
         <h2>Registrate con</h2>
         <AuthSocial @isLoading="isLoading = $event" />
-        <p class="or">O usa tu cuenta de email</p>
+        <p class="or">O usa tu cuenta de email:</p>
         <input type="email" placeholder="Inserta tu email" />
         <input type="password" placeholder="Inserta tu contraseña" />
         <input type="password" placeholder="¡Repite la contraseña!" />
