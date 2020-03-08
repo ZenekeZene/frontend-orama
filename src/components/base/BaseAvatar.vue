@@ -89,8 +89,10 @@ export default {
 .info {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 0.5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
 }
 
 .image {
@@ -101,6 +103,7 @@ export default {
   img {
     width: 100px;
     height: auto;
+    margin-top: 0.5rem;
     display: block;
     border-radius: 0.5rem;
   }
@@ -109,7 +112,6 @@ export default {
 .points {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  padding-left: 0.5rem;
   font-size: 1rem;
 
   &__value {

@@ -10,7 +10,7 @@
         <router-view />
       </fade-transition>
       <TheSidebar
-        width="85%"
+        width="82%"
         duration="450ms"
         easing="ease-in-out"
         side="right"
