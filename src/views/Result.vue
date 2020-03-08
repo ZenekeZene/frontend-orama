@@ -11,7 +11,7 @@
       <BaseMiniAvatar name="ZenekeZene" level="Ninja Developer" />
     </section>
     <canvas id="conffeti-canvas" class="confetti"></canvas>
-    <p class="ranking-table-title">Clasificación</p>
+    <p m-b-0 class="ranking-table-title">Clasificación</p>
     <section class="ranking-table-wrapper">
       <RankingTable />
     </section>

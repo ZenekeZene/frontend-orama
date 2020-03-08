@@ -10,7 +10,7 @@
     <span
       v-if="withMenu"
       class="--right"
-      :class="isSidebarOpened ? 'icon-close' : 'icon-menu'"
+      :class="wasSidebarOpened ? 'icon-close' : 'icon-menu'"
       v-mobile-hover:#4992a9
       @click="onToggleCollapse"
     ></span>
@@ -23,13 +23,9 @@
   </section>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "TheHeader",
-  data() {
-    return {
-      isSidebarOpened: false
-    };
-  },
   props: {
     title: {
       type: String,
@@ -48,14 +44,17 @@ export default {
       default: false
     }
   },
+  computed: {
+    ...mapState("user", ["wasSidebarOpened"])
+  },
   methods: {
+    ...mapMutations("user", ["toggleSidebar", "setWasSidebarOpened"]),
     onToggleCollapse() {
-      this.isSidebarOpened = !this.isSidebarOpened;
-      this.$emit("onToggleCollapse", this.isSidebarOpened);
+      this.toggleSidebar();
     },
     goBack() {
       this.isSidebarOpened = false;
-      this.$emit("onToggleCollapse", this.isSidebarOpened);
+      this.toggleSidebar();
       this.$emit("goBack");
     },
     goHome() {

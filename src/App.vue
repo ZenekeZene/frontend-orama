@@ -7,10 +7,9 @@
     />
     <article id="app" class="app">
       <fade-transition mode="in-out">
-        <router-view @onToggleCollapse="isCollapsed = $event" />
+        <router-view />
       </fade-transition>
       <TheSidebar
-        :is-collapsed="isCollapsed"
         width="85%"
         duration="450ms"
         easing="ease-in-out"
@@ -31,7 +30,6 @@ export default {
   },
   data() {
     return {
-      isCollapsed: false,
       expandedVisitBook: false
     };
   },

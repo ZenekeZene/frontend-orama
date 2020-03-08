@@ -1,9 +1,13 @@
 <template>
   <section page>
     <fade-transition>
-      <div v-show="isCollapsed" class="backdrop-sidebar"></div>
+      <div
+        v-show="wasSidebarOpened"
+        class="backdrop-sidebar"
+        @click="toggleSidebar"
+      ></div>
     </fade-transition>
-    <TheHeader @onToggleCollapse="onToggleCollapse" :withBack="false" />
+    <TheHeader :withBack="false" />
     <div class="home">
       <h1 class="home__points">
         <span v-show="currentQuestionIndex > 0">Aciertos: {{ points }}</span>
@@ -35,7 +39,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import Wheel from "@/components/Wheel.vue";
 
 export default {
@@ -49,8 +53,7 @@ export default {
       minAngularVelocity: 10,
       maxAngularVelocity: 20,
       wasLaunched: false,
-      category: null,
-      isCollapsed: false
+      category: null
     };
   },
   computed: {
@@ -61,9 +64,9 @@ export default {
   },
   mounted() {
     this.wasLaunched = false;
-    this.isCollapsed = this.wasSidebarOpened;
   },
   methods: {
+    ...mapMutations("user", ["toggleSidebar"]),
     goToEdit() {
       this.$router.push("edit");
     },
@@ -78,10 +81,6 @@ export default {
         Math.random() * (this.minAngularVelocity - this.maxAngularVelocity) +
         this.maxAngularVelocity
       );
-    },
-    onToggleCollapse($event) {
-      this.isCollapsed = $event;
-      this.$emit("onToggleCollapse", $event);
     }
   }
 };

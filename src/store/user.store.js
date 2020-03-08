@@ -33,6 +33,9 @@ export default {
     },
     setWasSidebarOpened(state, payload) {
       state.wasSidebarOpened = payload.wasSidebarOpened;
+    },
+    toggleSidebar(state) {
+      state.wasSidebarOpened = !state.wasSidebarOpened;
     }
   }
 };

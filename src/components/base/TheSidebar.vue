@@ -1,6 +1,6 @@
 <template>
   <nav class="side-menu" :style="cssProps">
-    <span v-if="withClose" @click="isCollapsedLocal = false">X</span>
+    <span v-if="withClose" @click="toggleSidebar">X</span>
     <slot></slot>
   </nav>
 </template>
@@ -10,10 +10,6 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "TheSidebar",
   props: {
-    isCollapsed: {
-      type: Boolean,
-      default: false
-    },
     width: {
       type: String,
       default: "60%"
@@ -35,18 +31,13 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      isCollapsedLocal: false
-    };
-  },
   computed: {
     ...mapState("user", ["wasSidebarOpened"]),
     cssProps() {
       const direction = this.side === "left" ? -1 : 1;
       return {
         transform: `translateX(${
-          this.isCollapsedLocal ? "0%" : direction * 101 + "%"
+          this.wasSidebarOpened ? 0 : direction * 101 + "%"
         })`
       };
     },
@@ -63,14 +54,12 @@ export default {
     }
   },
   watch: {
-    isCollapsed() {
-      this.isCollapsedLocal = this.isCollapsed;
-      this.setWasSidebarOpened({ wasSidebarOpened: this.isCollapsed });
-    },
-    isCollapsedLocal(value) {
-      this.loopSiblings(
-        node => (node.$el.style.transform = value ? this.pushed : this.pulled)
-      );
+    wasSidebarOpened: {
+      handler(newVal) {
+        this.loopSiblings(node => {
+          node.$el.style.transform = newVal ? this.pushed : this.pulled;
+        });
+      }
     },
     $route() {
       this.loopSiblings(node => {
@@ -83,19 +72,18 @@ export default {
     }
   },
   mounted() {
-    const direction = this.side === "left" ? -1 : 1;
-    this.isCollapsedLocal = this.wasSidebarOpened;
     this.loopSiblings(node => {
-      node.$el.style.transform = this.pulled;
+      node.$el.style.transform = this.wasSidebarOpened
+        ? this.pushed
+        : this.pulled;
       node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
     });
     this.$el.style.width = this.width;
     this.$el.style[this.side] = 0;
     this.$el.style.transition = `transform ${this.duration} ${this.easing}`;
-    this.$el.style.transform = `translateX(${direction * 101 + "%"})`;
   },
   methods: {
-    ...mapMutations("user", ["setWasSidebarOpened"]),
+    ...mapMutations("user", ["setWasSidebarOpened", "toggleSidebar"]),
     loopSiblings(iterationCallback) {
       this.$parent.$children.forEach(node => {
         if (
