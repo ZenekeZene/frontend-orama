@@ -17,7 +17,7 @@
       <fade-transition appear>
         <Clock
           :isProgress="true"
-          :isStop="false"
+          :isStop="true"
           :seconds="question.seconds || 10"
           v-if="clockIsVisible"
           @finished="timeFinished"
@@ -59,7 +59,9 @@ export default {
     ...mapMutations(["incrementPoint"]),
     ...mapMutations("questions", [
       "incrementCurrentQuestionIndex",
-      "resetCurrentQuestionIndex"
+      "resetCurrentQuestionIndex",
+      "setQuestionCode",
+      "setQuestionTitle"
     ]),
     ...mapActions("questions", ["loadQuestions"]),
     async loadQuestion() {
@@ -67,6 +69,28 @@ export default {
         await this.loadQuestions();
       }
       this.question = this.questions[this.currentQuestionIndex];
+      this.parseWording();
+      if (this.question.code) this.parseCode();
+    },
+    parseWording() {
+      const question = { ...this.question };
+      let title = question.wording;
+      if (question.wording.includes("[html]")) {
+        title = question.wording.replace("[html]", "<pre>");
+        title += question.wording.replace("[/html]", "</pre>");
+      }
+      this.setQuestionTitle({ title });
+    },
+    parseCode() {
+      const question = { ...this.question };
+      let code = "";
+      question.code.value.forEach(item => {
+        if (item.includes("[-->]")) {
+          item = `    ${item.replace("[-->]", "")}`;
+        }
+        code += `${item}\n`;
+      });
+      this.setQuestionCode({ code });
     },
     optionSelected(index) {
       this.answerIndexSelected = index;

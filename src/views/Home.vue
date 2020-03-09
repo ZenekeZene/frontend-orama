@@ -9,9 +9,6 @@
     </fade-transition>
     <TheHeader :withBack="false" />
     <div class="home">
-      <h1 class="home__points">
-        <span v-show="currentQuestionIndex > 0">Aciertos: {{ points }}</span>
-      </h1>
       <Wheel
         :forceAngularVelocity="angularVelocity"
         :wasLaunched="wasLaunched"

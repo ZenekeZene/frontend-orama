@@ -7,7 +7,7 @@
         <p class="or">O usa tu cuenta de email:</p>
         <input type="email" placeholder="Inserta tu email" />
         <input type="password" placeholder="Inserta tu contraseña" />
-        <input type="password" placeholder="¡Repite la contraseña!" />
+        <input type="password" placeholder="¡Repite la contraseña!" m-b-1 />
         <BaseButton simple @click="registerUser()">Registrar</BaseButton>
       </section>
       <section v-else key="loading">

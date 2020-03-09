@@ -6,9 +6,7 @@
       @expandedVisitBook="expandedVisitBook = $event"
     />
     <article id="app" class="app">
-      <fade-transition mode="in-out">
-        <router-view />
-      </fade-transition>
+      <router-view />
       <TheSidebar
         width="82%"
         duration="450ms"

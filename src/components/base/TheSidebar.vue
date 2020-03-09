@@ -50,7 +50,7 @@ export default {
       return `translateX(0%)`;
     },
     transition() {
-      return `transition: transform ${this.duration} ${this.easing}`;
+      return `transform ${this.duration} ${this.easing}`;
     }
   },
   watch: {
@@ -64,14 +64,8 @@ export default {
     $route() {
       this.loopSiblings(node => {
         node.$el.style.transform = this.pulled;
-        node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
+        node.$el.style.transition = this.transition;
       });
-      /*
-      const direction = this.side === "left" ? -1 : 1;
-      this.$el.style.transition = `transition: transform 0s ${this.easing}`;
-      this.$el.style.transform = `translateX(${direction * 101 + "%"})`;
-      */
-      //this.$el.style.transform = `translateX("101%"})`;
       this.setWasSidebarOpened({ wasSidebarOpened: false });
     }
   },
@@ -80,11 +74,11 @@ export default {
       node.$el.style.transform = this.wasSidebarOpened
         ? this.pushed
         : this.pulled;
-      node.$el.style.transition = `transform ${this.duration} ${this.easing}`;
+      node.$el.style.transition = this.transition;
     });
     this.$el.style.width = this.width;
     this.$el.style[this.side] = 0;
-    this.$el.style.transition = `transform ${this.duration} ${this.easing}`;
+    this.$el.style.transition = this.transition;
   },
   methods: {
     ...mapMutations("user", ["setWasSidebarOpened", "toggleSidebar"]),

@@ -1,21 +1,21 @@
 <template>
   <div class="question">
-    <h1 v-if="question.wording" v-text="questionLocal.wording"></h1>
-    <img height="100" v-if="question.img" :src="question.img" />
-    <highlight-code v-if="question.code" :lang="question.code.lang">
-      {{ question.code.value }}
+    <h1 ref="wording" v-html="questionLocal.wording"></h1>
+    <img height="100" v-if="questionLocal.img" :src="questionLocal.img" />
+    <highlight-code v-if="questionLocal.code" :lang="questionLocal.code.lang">
+      {{ questionLocal.code.value }}
     </highlight-code>
     <fade-transition>
       <options
-        :options="question.options"
-        :correctIndex="Number(question.correctIndex)"
+        :options="questionLocal.options"
+        :correctIndex="Number(questionLocal.correctIndex)"
         :showCorrect="showCorrect"
         @optionSelected="selectOption($event)"
       />
     </fade-transition>
-    <p class="author" v-if="question.author">
+    <p class="author" v-if="questionLocal.author">
       Contribuida por
-      <a href="">{{ question.author }}</a>
+      <a href>{{ questionLocal.author }}</a>
     </p>
   </div>
 </template>
@@ -39,10 +39,13 @@ export default {
       required: false
     }
   },
-  data() {
-    return {
-      questionLocal: this.question
-    };
+  computed: {
+    questionLocal() {
+      return { ...this.question };
+    }
+  },
+  mounted() {
+    console.log(this.$refs.wording.textContent);
   },
   methods: {
     selectOption(index) {
