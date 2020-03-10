@@ -1,13 +1,10 @@
 <template>
   <div class="question">
-    <h1 ref="wording"></h1>
-    <p class="code">
-      {{ questionLocal.wording }}
-    </p>
+    <h1 ref="wording" v-html="questionLocal.wording"></h1>
     <img height="100" v-if="questionLocal.img" :src="questionLocal.img" />
-    <highlight-code v-if="questionLocal.code" :lang="questionLocal.code.lang">
-      {{ questionLocal.code.value }}
-    </highlight-code>
+    <highlight-code v-if="questionLocal.code" :lang="questionLocal.code.lang">{{
+      questionLocal.code.value
+    }}</highlight-code>
     <fade-transition>
       <options
         :options="questionLocal.options"
@@ -18,12 +15,11 @@
     </fade-transition>
     <p class="author" v-if="questionLocal.author">
       Contribuida por
-      <a href="">{{ questionLocal.author }}</a>
+      <a href>{{ questionLocal.author }}</a>
     </p>
   </div>
 </template>
 <script>
-import hljs from "highlight.js";
 import Options from "./Options";
 import { mapMutations } from "vuex";
 
@@ -48,14 +44,6 @@ export default {
     questionLocal() {
       return { ...this.question };
     }
-  },
-  mounted() {
-    let title = this.questionLocal.wording;
-    hljs.configure({ useBR: true });
-    document.querySelectorAll(".code").forEach(block => {
-      hljs.highlightBlock(block);
-    });
-    this.setQuestionTitle({ title: title.value });
   },
   methods: {
     ...mapMutations("questions", ["setQuestionTitle"]),
@@ -87,6 +75,14 @@ export default {
     margin-bottom: 1rem;
     padding: 0 1rem 0 0;
     font-size: 1.2rem;
+
+    [code] {
+      color: #03edf9;
+    }
+
+    [quote] {
+      color: #f4f903;
+    }
   }
 
   pre {
