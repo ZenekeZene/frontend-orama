@@ -1,22 +1,14 @@
 <template>
-  <div
-    style="position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    left: 50%;"
-  >
-    <fade-transition mode="in-out">
-      <div
-        v-if="numOfCategories > 0"
-        key="wheel"
-        id="container"
-        class="wheel"
-        style="text-align: center;"
-      ></div>
-      <p v-else key="spinner" class="spinner-wrapper">
-        <BaseSpinner />
-      </p>
-    </fade-transition>
+  <div class="wheel-wrapper">
+    <div
+      v-if="numOfCategories > 0"
+      key="wheel"
+      id="wheel-container"
+      class="wheel"
+    ></div>
+    <p v-else key="spinner" class="spinner-wrapper">
+      <BaseSpinner />
+    </p>
   </div>
 </template>
 <script>
@@ -82,15 +74,19 @@ export default {
     this.angularVelocity = this.forceAngularVelocity;
     this.wasLaunchedLocal = this.wasLaunched;
     const font = new FontFaceObserver("Museo Sans Rounded 500");
-
-    Promise.all([font.load(), this.loadCategories()]).then(() => this.init());
+    font.load();
+    if (this.numOfCategories === 0) {
+      this.loadCategories().then(() => this.init());
+    } else {
+      this.init();
+    }
   },
   methods: {
     ...mapActions("categories", ["loadCategories"]),
     init() {
       this.numWedges = this.numOfCategories;
       this.stage = new Konva.Stage({
-        container: "container",
+        container: "wheel-container",
         width: this.width,
         height: this.height
       });
@@ -315,3 +311,13 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.wheel {
+  &-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+</style>

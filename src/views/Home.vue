@@ -26,6 +26,7 @@
           color-secondary
           v-ripple
           @click="launch"
+          class="draw-border"
           style="position: relative;"
         >
           {{ currentQuestionIndex === 0 ? "Jugar!🤞" : "¡Siguiente pregunta!" }}

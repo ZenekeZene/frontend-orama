@@ -16,7 +16,8 @@ export default new Vuex.Store({
       paths: [
         "questionToBeAdded.questionToBeAdded",
         "user.redirectWasLaunched",
-        "user.wasSidebarOpened"
+        "user.wasSidebarOpened",
+        "categories.categories"
       ]
     })
   ],
