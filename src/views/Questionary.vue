@@ -4,9 +4,6 @@
       <BaseSpinner />
     </div>
     <div v-else style="height: 100%;" key="questions">
-      <h1 class="category" v-if="question.categories[0]">
-        {{ question.categories[0] }}
-      </h1>
       <!--<span class="indicator" v-if="points > 0">{{ points }}</span>-->
       <Question
         :question="question"
@@ -69,17 +66,7 @@ export default {
         await this.loadQuestions();
       }
       this.question = this.questions[this.currentQuestionIndex];
-      this.parseWording();
       if (this.question.code) this.parseCode();
-    },
-    parseWording() {
-      const question = { ...this.question };
-      let title = question.wording;
-      if (question.wording.includes("[html]")) {
-        title = question.wording.replace("[html]", "<pre>");
-        title += question.wording.replace("[/html]", "</pre>");
-      }
-      this.setQuestionTitle({ title });
     },
     parseCode() {
       const question = { ...this.question };
