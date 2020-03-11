@@ -1,5 +1,5 @@
 <template>
-  <section class="header">
+  <header class="header">
     <span
       v-if="withBack"
       class="--left icon-forward"
@@ -32,7 +32,7 @@
       v-mobile-hover:#4992a9
       @click="goHome"
     ></span>
-  </section>
+  </header>
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
@@ -65,8 +65,7 @@ export default {
       this.toggleSidebar();
     },
     goBack() {
-      this.isSidebarOpened = false;
-      this.toggleSidebar();
+      this.setWasSidebarOpened({ setWasSidebarOpened: false });
       this.$emit("goBack");
     },
     goHome() {
