@@ -9,6 +9,7 @@ import VueHighlightJS from "vue-highlight.js";
 import css from "highlight.js/lib/languages/css";
 import javascript from "highlight.js/lib/languages/javascript";
 import vue from "vue-highlight.js/lib/languages/vue";
+import scss from "highlight.js/lib/languages/scss";
 import "highlight.js/styles/monokai-sublime.css";
 
 import Ripple from "vue-ripple-directive";
@@ -23,6 +24,7 @@ export default {
     Vue.use(VueHighlightJS, {
       languages: {
         css,
+        scss,
         javascript,
         vue
       }

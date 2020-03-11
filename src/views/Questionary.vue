@@ -56,9 +56,7 @@ export default {
     ...mapMutations(["incrementPoint"]),
     ...mapMutations("questions", [
       "incrementCurrentQuestionIndex",
-      "resetCurrentQuestionIndex",
-      "setQuestionCode",
-      "setQuestionTitle"
+      "resetCurrentQuestionIndex"
     ]),
     ...mapActions("questions", ["loadQuestions"]),
     async loadQuestion() {
@@ -66,18 +64,6 @@ export default {
         await this.loadQuestions();
       }
       this.question = this.questions[this.currentQuestionIndex];
-      if (this.question.code) this.parseCode();
-    },
-    parseCode() {
-      const question = { ...this.question };
-      let code = "";
-      question.code.value.forEach(item => {
-        if (item.includes("[-->]")) {
-          item = `    ${item.replace("[-->]", "")}`;
-        }
-        code += `${item}\n`;
-      });
-      this.setQuestionCode({ code });
     },
     optionSelected(index) {
       this.answerIndexSelected = index;

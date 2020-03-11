@@ -2,9 +2,9 @@
   <div class="question">
     <h1 ref="wording" v-html="questionLocal.wording"></h1>
     <img height="100" v-if="questionLocal.img" :src="questionLocal.img" />
-    <highlight-code v-if="questionLocal.code" :lang="questionLocal.code.lang">{{
-      questionLocal.code.value
-    }}</highlight-code>
+    <highlight-code v-if="questionLocal.code" :lang="questionLocal.code.lang">
+      {{ codeParsed }}
+    </highlight-code>
     <fade-transition>
       <options
         :options="questionLocal.options"
@@ -43,10 +43,18 @@ export default {
   computed: {
     questionLocal() {
       return { ...this.question };
+    },
+    codeParsed() {
+      let code = "";
+      this.questionLocal.code.value.forEach(item => {
+        item = item.replace(/__/g, "    ");
+        code += `${item}\n`;
+      });
+      return code;
     }
   },
   methods: {
-    ...mapMutations("questions", ["setQuestionTitle"]),
+    ...mapMutations("questions", ["setQuestionTitle", "setQuestionCode"]),
     selectOption(index) {
       this.$emit("optionSelected", index);
     },
