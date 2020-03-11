@@ -1,4 +1,7 @@
 # Front-end-ORAMA
+[![Netlify Status](https://api.netlify.com/api/v1/badges/941527ba-a032-4d34-a1ee-4a37cdcd46b4/deploy-status)](https://app.netlify.com/sites/despido/deploys)
+
+[![HitCount](http://hits.dwyl.com/ZenekeZene/https://githubcom/ZenekeZene/frontend-ORAMA.svg)](http://hits.dwyl.com/ZenekeZene/https://github.com/ZenekeZene/frontend-orama)
 
 Juego que consiste en responder a preguntas relacionadas con el desarrollo de software a nivel Front-End.
 
