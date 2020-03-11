@@ -1,5 +1,10 @@
 <template>
-  <main class="main" :class="{ '--expanded': expandedVisitBook }">
+  <main
+    class="main"
+    :class="{ '--expanded': expandedVisitBook }"
+    v-touch:swipe.left="swipeHandlerLeft"
+    v-touch:swipe.right="swipeHandlerRight"
+  >
     <TheThemeSelect class="no-pusheable" />
     <VisitBook
       class="no-pusheable"
@@ -19,6 +24,7 @@
   </main>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 import { debounce } from "lodash";
 import VisitBook from "@/components/VisitBook";
 
@@ -26,6 +32,9 @@ export default {
   name: "App",
   components: {
     VisitBook
+  },
+  computed: {
+    ...mapState("user", ["wasSidebarOpened"])
   },
   data() {
     return {
@@ -46,6 +55,19 @@ export default {
         document.documentElement.style.setProperty("--vh", `${vh}px`);
       }, 100)
     );
+  },
+  methods: {
+    ...mapMutations("user", ["setWasSidebarOpened"]),
+    swipeHandlerLeft() {
+      if (!this.wasSidebarOpened) {
+        this.setWasSidebarOpened({ wasSidebarOpened: true });
+      }
+    },
+    swipeHandlerRight() {
+      if (this.wasSidebarOpened) {
+        this.setWasSidebarOpened({ wasSidebarOpened: false });
+      }
+    }
   }
 };
 </script>

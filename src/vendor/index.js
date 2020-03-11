@@ -3,6 +3,7 @@ import Transitions from "vue2-transitions";
 import VueConfetti from "vue-confetti";
 import VueKonva from "vue-konva";
 import VueTextareaAutosize from "vue-textarea-autosize";
+import Vue2TouchEvents from "vue2-touch-events";
 
 // Vue-HighLight-JS:
 import VueHighlightJS from "vue-highlight.js";
@@ -21,6 +22,7 @@ export default {
     Vue.use(VueConfetti);
     Vue.use(VueKonva);
     Vue.use(VueTextareaAutosize);
+    Vue.use(Vue2TouchEvents);
     Vue.use(VueHighlightJS, {
       languages: {
         css,
