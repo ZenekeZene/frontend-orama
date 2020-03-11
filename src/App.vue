@@ -19,6 +19,7 @@
   </main>
 </template>
 <script>
+import { debounce } from "lodash";
 import VisitBook from "@/components/VisitBook";
 
 export default {
@@ -36,6 +37,15 @@ export default {
     // Hack mobile viewport with vh units:
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+    window.addEventListener(
+      "resize",
+      debounce(() => {
+        // We execute the same script as before
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      }, 100)
+    );
   }
 };
 </script>
