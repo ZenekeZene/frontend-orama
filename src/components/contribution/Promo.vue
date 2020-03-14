@@ -1,15 +1,12 @@
 <template>
-  <section p>
-    <p style="text-align: center; text-transform: uppercase;">¿Por qué?</p>
-    <p>
+  <section p style="margin-top: auto; padding-top: 0;">
+    <p style="text-transform: uppercase;">¿Registrarme? ¿Para qué?</p>
+    <p m-b-0>
       Bueno, si te registras podrás compartir tus resultados en tus redes
-      sociales.
+      sociales, podrás competir en la
+      <router-link to="ranking">clasificación</router-link>&nbsp;con tus amigos
+      y podrás contribuir ¡con tus propias preguntas!
     </p>
-    <p>
-      También podrás competir en la
-      <router-link to="ranking">clasificación</router-link> con tus amigos.
-    </p>
-    <p m-b-0>Y por último, podrás contribuir ¡con tus propias preguntas!</p>
   </section>
 </template>
 <script>

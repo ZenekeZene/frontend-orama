@@ -29,7 +29,7 @@ export default {
     loginUserWithPopup(nameComponent) {
       this.$emit("isLoading", true);
       this.isTimeout = false;
-      timeLimit(this.auth.signInWithPopup(), 8000, {
+      timeLimit(this.auth.signInWithPopup(), 20000, {
         rejectWith: new Error("timeout")
       })
         .then(res => {

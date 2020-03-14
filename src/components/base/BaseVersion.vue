@@ -1,11 +1,12 @@
 <template>
-  <span class="version">v0.2.1</span>
+  <span class="version">v0.2.5</span>
 </template>
 <style lang="scss" scoped>
 .version {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 0.3;
   z-index: 3;
   margin-bottom: 0;
