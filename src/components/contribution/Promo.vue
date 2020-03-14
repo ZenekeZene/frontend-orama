@@ -6,8 +6,8 @@
       sociales.
     </p>
     <p>
-      También podrás competir en la <a href="/ranking">clasificación</a> con tus
-      amigos.
+      También podrás competir en la
+      <router-link to="ranking">clasificación</router-link> con tus amigos.
     </p>
     <p m-b-0>Y por último, podrás contribuir ¡con tus propias preguntas!</p>
   </section>
