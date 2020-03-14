@@ -1,8 +1,17 @@
 <template>
   <article class="auth-social">
-    <AuthGithub @isLoading="$emit('isLoading', $event)" />
-    <AuthTwitter @isLoading="$emit('isLoading', $event)" />
-    <AuthGoogle @isLoading="$emit('isLoading', $event)" />
+    <AuthGithub
+      @isLoading="$emit('isLoading', $event)"
+      @timeout="$emit('timeout', $event)"
+    />
+    <AuthTwitter
+      @isLoading="$emit('isLoading', $event)"
+      @timeout="$emit('timeout', $event)"
+    />
+    <AuthGoogle
+      @isLoading="$emit('isLoading', $event)"
+      @timeout="$emit('timeout', $event)"
+    />
   </article>
 </template>
 <script>

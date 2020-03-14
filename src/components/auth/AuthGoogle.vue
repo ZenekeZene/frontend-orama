@@ -1,16 +1,15 @@
 <template>
   <div class="auth-user">
-    <BaseSpinner v-if="isLoading" />
     <span
-      v-if="!user && !isLoading"
       v-mobile-hover:#4992a9
-      @click="loginUserWithRedirect()"
+      @click="loginUserWithPopup($options.name)"
       class="icon-google"
+      :class="{ timeout: isTimeout }"
     ></span>
   </div>
 </template>
 <script>
-import AuthCommonMixin from "../../mixins/AuthCommon.mixin";
+import AuthCommonMixin from "./AuthCommon.mixin";
 export default {
   name: "AuthGoogle",
   services: ["$googleAuthService"],

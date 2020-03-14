@@ -17,6 +17,7 @@
     "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
     "sass-mq": "^5.0.1",
+    "time-limit-promise": "^1.0.4",
     "velocity-animate": "^1.5.2",
     "vue": "^2.6.11",
     "vue-confetti": "^2.0.7",

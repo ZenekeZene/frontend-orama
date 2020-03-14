@@ -55,19 +55,19 @@ export default class AuthService {
     };
   }
 
-  async signInWithPopup() {
+  async signInWithRedirect() {
     try {
-      const result = await this.auth.signInWithPopup(this.provider);
-      return this.$_handResponse(result);
+      const result = await this.auth.signInWithRedirect(this.provider);
+      return setTimeout(() => this.$_handResponse(result), 10000);
     } catch (error) {
       this.$_logError(error);
       return error;
     }
   }
 
-  async signInWithRedirect() {
+  async signInWithPopup() {
     try {
-      const result = await this.auth.signInWithRedirect(this.provider);
+      const result = await this.auth.signInWithPopup(this.provider);
       return this.$_handResponse(result);
     } catch (error) {
       this.$_logError(error);

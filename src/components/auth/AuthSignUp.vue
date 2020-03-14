@@ -1,20 +1,27 @@
 <template>
   <article class="auth-sign-up">
-    <fade-transition mode="in-out">
-      <section v-if="!isLoading" key="sign-up">
-        <h2>Registrate con</h2>
-        <AuthSocial @isLoading="isLoading = $event" />
+    <section>
+      <h2>Registrate con</h2>
+      <AuthSocial
+        :class="{ hidden: isLoading }"
+        @isLoading="isLoading = $event"
+        @timeout="timeoutSocialName = $event"
+      />
+      <p class="timeout" v-if="timeoutSocialName.length > 0 && !isLoading">
+        {{ timeoutSocialName }} está tardando demasiado en responder.
+      </p>
+      <div :class="{ hidden: isLoading }">
         <p class="or">O usa tu cuenta de email:</p>
         <input type="email" placeholder="Inserta tu email" />
         <input type="password" placeholder="Inserta tu contraseña" />
         <input type="password" placeholder="¡Repite la contraseña!" m-b-1 />
         <BaseButton m-b-0 simple @click="registerUser()">Registrar</BaseButton>
-      </section>
-      <section v-else key="loading">
-        <p>Identificando...</p>
-        <BaseSpinner />
-      </section>
-    </fade-transition>
+      </div>
+    </section>
+    <section v-show="isLoading" key="loading">
+      <p>Identificando...</p>
+      <BaseSpinner />
+    </section>
   </article>
 </template>
 <script>
@@ -26,7 +33,8 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      isLoading: false,
+      timeoutSocialName: ""
     };
   }
 };
@@ -35,7 +43,9 @@ export default {
 .auth-sign-up {
   padding: 1rem;
 
+  .timeout,
   .or {
+    text-align: center;
     font-family: "Museo Sans Rounded 100", sans-serif;
   }
 }

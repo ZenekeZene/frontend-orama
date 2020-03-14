@@ -16,6 +16,14 @@
   }
 }
 
+.hidden {
+  display: none !important;
+}
+
 [p] {
   padding: $gutter;
+}
+
+.timeout {
+  color: red;
 }
