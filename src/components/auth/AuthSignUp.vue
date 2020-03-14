@@ -8,7 +8,7 @@
         <input type="email" placeholder="Inserta tu email" />
         <input type="password" placeholder="Inserta tu contraseña" />
         <input type="password" placeholder="¡Repite la contraseña!" m-b-1 />
-        <BaseButton simple @click="registerUser()">Registrar</BaseButton>
+        <BaseButton m-b-0 simple @click="registerUser()">Registrar</BaseButton>
       </section>
       <section v-else key="loading">
         <p>Identificando...</p>

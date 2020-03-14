@@ -6,8 +6,16 @@
   margin-bottom: $gutter !important;
 }
 
+[p-b-0] {
+  padding-bottom: 0 !important;
+}
+
 .hidden-keyboard-opened {
   @media screen and (max-height: 400px) {
     display: none;
   }
+}
+
+[p] {
+  padding: $gutter;
 }

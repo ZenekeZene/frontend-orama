@@ -14,7 +14,7 @@
       :key="`option-${index}`"
       :data-index="index"
     >
-      <RankingPlayer :player="player" />
+      <RankingPlayer :player="player" withIndex :index="index" />
     </li>
   </transition-group>
 </template>

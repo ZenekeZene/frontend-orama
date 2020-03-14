@@ -1,5 +1,6 @@
 <template>
   <BaseButton simple m-b-0 transparent v-ripple class="ranking-player">
+    <span v-if="withIndex" class="index">{{ index + 1 }}</span>
     <img src="../../assets/images/boy.gif" />
     <div class="info">
       <span class="name">{{ player.name }}</span>
@@ -15,6 +16,14 @@ export default {
     player: {
       type: Object,
       default: () => {}
+    },
+    withIndex: {
+      type: Boolean,
+      default: false
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   }
 };

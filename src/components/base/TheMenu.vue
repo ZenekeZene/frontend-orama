@@ -15,8 +15,12 @@
         v-ripple
         >Ver toda la clasificación</base-button
       >
+      <base-button simple v-ripple style="color: white" transparent
+        >Salir</base-button
+      >
     </section>
-    <Contribute v-if="$route.path !== '/edit'" />
+    <Contribute v-if="$route.path !== '/edit' && user" />
+    <Promo v-if="!user" />
     <Credits />
     <BaseVersion />
   </section>
@@ -26,6 +30,7 @@ import { mapState } from "vuex";
 import AuthSignUp from "@/components/auth/AuthSignUp";
 import Credits from "@/components/Credits";
 import Contribute from "@/components/contribution/Contribute";
+import Promo from "@/components/contribution/Promo";
 import RankingTable from "@/components/ranking/RankingTable";
 
 export default {
@@ -34,6 +39,7 @@ export default {
     AuthSignUp,
     Credits,
     Contribute,
+    Promo,
     RankingTable
   },
   computed: {

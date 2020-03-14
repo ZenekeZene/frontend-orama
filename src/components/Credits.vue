@@ -11,8 +11,10 @@ export default {
 </script>
 <style lang="scss">
 .credits {
-  margin-top: 0;
+  margin-top: auto;
   margin-bottom: 0;
   padding: 1rem;
+  font-family: "Museo Sans Rounded 100", sans-serif;
+  background-color: #2d2e4d;
 }
 </style>
