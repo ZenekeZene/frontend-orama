@@ -6,7 +6,7 @@
         <img :src="user.photoURL" :alt="`Avatar de ${user.displayName}`" />
         <div class="info">
           <span class="aka">{{ level }}</span>
-          <p class="points">
+          <p class="points" m-b-0>
             Record:
             <span class="points__value">65</span> puntos.
           </p>
@@ -98,6 +98,7 @@ export default {
 .image {
   position: relative;
   display: flex;
+  align-items: flex-start;
   margin-bottom: 0;
 
   img {
@@ -120,7 +121,6 @@ export default {
 }
 
 .share {
-  margin-top: 1rem;
   margin-bottom: 0;
 }
 </style>

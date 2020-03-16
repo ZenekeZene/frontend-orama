@@ -1,20 +1,26 @@
 <template>
   <section class="menu">
     <AuthSignUp v-if="!user" key="auth-sign-up" />
-    <BaseAvatar v-else key="avatar" name="ZenekeZene" level="Ninja Developer">
-    </BaseAvatar>
+    <BaseAvatar
+      v-else
+      key="avatar"
+      name="ZenekeZene"
+      level="Ninja Developer"
+    ></BaseAvatar>
     <section v-if="user">
-      <p class="heading">TOP 3:</p>
+      <p class="heading">
+        <span>TOP 3:</span>
+        <base-button
+          @click="$router.push('ranking')"
+          m-b-0
+          style="color: var(--color-secondary);"
+          simple
+          transparent
+          v-ripple
+          >Ver clasificación</base-button
+        >
+      </p>
       <RankingTable :numPlayers="3" />
-      <base-button
-        @click="$router.push('ranking')"
-        m-b-0
-        style="color: var(--color-secondary);"
-        simple
-        transparent
-        v-ripple
-        >Ver toda la clasificación</base-button
-      >
       <base-button simple v-ripple style="color: white" transparent
         >Salir</base-button
       >
@@ -56,10 +62,11 @@ export default {
   background-color: var(--color-dark);
 
   .heading {
+    display: flex;
     margin-bottom: 0;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    text-align: center;
+    padding-left: 1rem;
   }
 }
 </style>
