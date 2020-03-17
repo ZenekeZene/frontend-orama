@@ -1,5 +1,5 @@
 <template>
-  <span class="version">v0.2.5</span>
+  <span class="version hidden-until-phablet">v0.2.5</span>
 </template>
 <style lang="scss" scoped>
 .version {

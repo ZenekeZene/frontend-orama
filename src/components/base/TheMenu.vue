@@ -9,9 +9,9 @@
     ></BaseAvatar>
     <section v-if="user">
       <p class="heading">
-        <span>TOP 3:</span>
+        <span>TOP 5:</span>
       </p>
-      <RankingTable :numPlayers="3" isMini />
+      <RankingTable :numPlayers="5" isMini />
       <base-button
         @click="$router.push('ranking')"
         class="see-ranking"
@@ -66,8 +66,8 @@ export default {
   .heading {
     display: flex;
     align-items: center;
-    margin-bottom: 0;
-    padding-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
 
     span {
       min-width: 4rem;

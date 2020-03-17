@@ -21,7 +21,7 @@
 }
 
 .hidden-until-phablet {
-  @include mq($until: 320px) {
+  @include mq($until: 360px) {
     display: none;
   }
 }

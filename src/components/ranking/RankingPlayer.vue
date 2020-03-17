@@ -1,6 +1,13 @@
 <template>
-  <BaseButton simple m-b-0 transparent v-ripple class="ranking-player">
-    <span v-if="withIndex" class="index">{{ index + 1 }}</span>
+  <BaseButton
+    simple
+    m-b-0
+    transparent
+    v-ripple
+    class="ranking-player"
+    :class="{ '--is-mini': isMini }"
+  >
+    <span v-if="withIndex && !isMini" class="index">{{ index + 1 }}</span>
     <img src="../../assets/images/boy.gif" />
     <div class="info">
       <span class="name">{{ player.name }}</span>
@@ -81,6 +88,21 @@ export default {
 
   .name {
     color: var(--color-secondary);
+  }
+
+  &.--is-mini {
+    padding: 0.2rem 1rem;
+
+    .name {
+      color: white;
+    }
+
+    img {
+      $size: 2rem;
+      width: $size;
+      min-width: $size;
+      height: $size;
+    }
   }
 }
 </style>
