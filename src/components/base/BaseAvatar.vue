@@ -1,5 +1,6 @@
 <template>
   <article class="avatar">
+    <span class="logout" v-mobile-hover:#4992a9>Salir</span>
     <section>
       <h2 v-if="withGreetins">{{ getGreetings }}</h2>
       <section class="image">
@@ -69,6 +70,21 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.logout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 2rem;
+  margin: 0;
+  padding-top: 0.5rem;
+  color: white;
+  text-align: center;
+}
+
 .avatar {
   padding: 0.5rem 1rem 0 1rem;
 

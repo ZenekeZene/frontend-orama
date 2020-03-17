@@ -12,8 +12,9 @@
         <span>TOP 3:</span>
         <base-button
           @click="$router.push('ranking')"
+          class="see-ranking"
+          style="color: var(--color-secondary)"
           m-b-0
-          style="color: var(--color-secondary); text-align: right;"
           simple
           transparent
           v-ripple
@@ -21,9 +22,6 @@
         >
       </p>
       <RankingTable :numPlayers="3" />
-      <base-button simple v-ripple style="color: white" transparent
-        >Salir</base-button
-      >
     </section>
     <Contribute v-if="$route.path !== '/edit' && user" />
     <Promo v-if="!user" />
@@ -54,6 +52,11 @@ export default {
 };
 </script>
 <style lang="scss">
+.see-ranking {
+  text-align: right;
+  text-decoration: underline;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
