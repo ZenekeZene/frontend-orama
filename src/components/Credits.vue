@@ -1,5 +1,5 @@
 <template>
-  <p class="credits">
+  <p class="credits hidden-until-phablet">
     Creado con 🥑 por
     <a href="http://www.twitter.com/zenekezene/">@zenekezene</a> en 2020. Ver
     todos los <a href>agradecimientos</a>.

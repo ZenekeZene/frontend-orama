@@ -20,6 +20,12 @@
   display: none !important;
 }
 
+.hidden-until-phablet {
+  @include mq($until: 320px) {
+    display: none;
+  }
+}
+
 [p] {
   padding: $gutter;
 }
@@ -27,3 +33,4 @@
 .timeout {
   color: red;
 }
+

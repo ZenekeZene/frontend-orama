@@ -14,7 +14,7 @@
           >Accede</span
         >
       </h2>
-      <fade-transition mode="in-out">
+      <fade-transition mode="out-in">
         <AuthSignUp
           v-if="panel === 'register' && !isLoading"
           key="register"

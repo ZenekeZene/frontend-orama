@@ -1,6 +1,8 @@
 <template>
   <article class="avatar">
-    <span class="logout" v-mobile-hover:#4992a9>Salir</span>
+    <span class="logout" v-mobile-hover:#4992a9
+      ><span class="icon-log-out"></span
+    ></span>
     <section>
       <h2 v-if="withGreetins">{{ getGreetings }}</h2>
       <section class="image">
@@ -76,17 +78,19 @@ export default {
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   width: 4rem;
   height: 2rem;
   margin: 0;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  padding-right: 0.5rem;
+  font-size: 1.2rem;
   color: white;
   text-align: center;
 }
 
 .avatar {
-  padding: 0.5rem 1rem 0 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
 
   > * {
     margin-bottom: 1rem;
@@ -97,6 +101,7 @@ export default {
   }
 
   h2 {
+    padding-right: 3rem;
     font-size: 1.2rem;
   }
 }

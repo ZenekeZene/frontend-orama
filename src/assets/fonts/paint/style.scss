@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?hcd8b');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?hcd8b#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?hcd8b') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?hcd8b') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?hcd8b##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?c7ym69');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?c7ym69#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?c7ym69') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?c7ym69') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?c7ym69##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-log-out {
+  &:before {
+    content: $icon-log-out; 
+  }
+}
 .icon-google {
   &:before {
     content: $icon-google; 

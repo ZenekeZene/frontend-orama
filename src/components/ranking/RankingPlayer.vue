@@ -4,7 +4,7 @@
     <img src="../../assets/images/boy.gif" />
     <div class="info">
       <span class="name">{{ player.name }}</span>
-      <span class="message">- {{ player.message }}</span>
+      <span v-if="!isMini" class="message">- {{ player.message }}</span>
     </div>
     <span class="value">{{ player.record }}</span>
   </BaseButton>
@@ -24,6 +24,10 @@ export default {
     index: {
       type: Number,
       default: 0
+    },
+    isMini: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -42,7 +46,8 @@ export default {
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
-    padding-left: 1rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
 
   img {

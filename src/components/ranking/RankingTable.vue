@@ -14,7 +14,12 @@
       :key="`option-${index}`"
       :data-index="index"
     >
-      <RankingPlayer :player="player" withIndex :index="index" />
+      <RankingPlayer
+        :player="player"
+        withIndex
+        :index="index"
+        :isMini="isMini"
+      />
     </li>
   </transition-group>
 </template>
@@ -29,6 +34,10 @@ export default {
     numPlayers: {
       type: Number,
       default: 10
+    },
+    isMini: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

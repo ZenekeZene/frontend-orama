@@ -10,18 +10,18 @@
     <section v-if="user">
       <p class="heading">
         <span>TOP 3:</span>
-        <base-button
-          @click="$router.push('ranking')"
-          class="see-ranking"
-          style="color: var(--color-secondary)"
-          m-b-0
-          simple
-          transparent
-          v-ripple
-          >Ver toda la clasificación</base-button
-        >
       </p>
-      <RankingTable :numPlayers="3" />
+      <RankingTable :numPlayers="3" isMini />
+      <base-button
+        @click="$router.push('ranking')"
+        class="see-ranking"
+        style="color: var(--color-secondary)"
+        m-b-0
+        simple
+        transparent
+        v-ripple
+        >Ver toda la clasificación</base-button
+      >
     </section>
     <Contribute v-if="$route.path !== '/edit' && user" />
     <Promo v-if="!user" />
@@ -53,7 +53,6 @@ export default {
 </script>
 <style lang="scss">
 .see-ranking {
-  text-align: right;
   text-decoration: underline;
 }
 
@@ -72,6 +71,7 @@ export default {
 
     span {
       min-width: 4rem;
+      padding-left: 1rem;
     }
   }
 }
