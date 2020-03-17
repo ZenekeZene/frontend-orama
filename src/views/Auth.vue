@@ -36,9 +36,9 @@
   </section>
 </template>
 <script>
-import AuthGithub from "@/components/auth/AuthGithub";
-import AuthGoogle from "@/components/auth/AuthGoogle";
-import AuthTwitter from "@/components/auth/AuthTwitter";
+import AuthGithub from "@/components/auth/social/AuthGithub";
+import AuthGoogle from "@/components/auth/social/AuthGoogle";
+import AuthTwitter from "@/components/auth/social/AuthTwitter";
 
 export default {
   name: "Auth",

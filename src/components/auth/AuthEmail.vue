@@ -8,11 +8,6 @@
 </template>
 <script>
 export default {
-  name: "AuthEmail",
-  data() {
-    return {
-      isOpen: false
-    };
-  }
+  name: "AuthEmail"
 };
 </script>

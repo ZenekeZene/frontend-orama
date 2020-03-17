@@ -70,7 +70,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .avatar {
-  padding: 1rem 1rem 0 1rem;
+  padding: 0.5rem 1rem 0 1rem;
 
   > * {
     margin-bottom: 1rem;
@@ -81,7 +81,6 @@ export default {
   }
 
   h2 {
-    padding-bottom: 0.5rem;
     font-size: 1.2rem;
   }
 }
@@ -92,7 +91,7 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   flex-grow: 1;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  padding: 0 0.5rem 0.5rem 1rem;
 }
 
 .image {
@@ -102,9 +101,8 @@ export default {
   margin-bottom: 0;
 
   img {
-    width: 100px;
+    width: 70px;
     height: auto;
-    margin-top: 0.5rem;
     display: block;
     border-radius: 0.5rem;
   }
@@ -121,6 +119,7 @@ export default {
 }
 
 .share {
+  margin-top: 0.5rem;
   margin-bottom: 0;
 }
 </style>

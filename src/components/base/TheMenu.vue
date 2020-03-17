@@ -1,6 +1,6 @@
 <template>
   <section class="menu">
-    <AuthSignUp v-if="!user" key="auth-sign-up" />
+    <Auth v-if="!user" key="auth-sign-up" />
     <BaseAvatar
       v-else
       key="avatar"
@@ -13,11 +13,11 @@
         <base-button
           @click="$router.push('ranking')"
           m-b-0
-          style="color: var(--color-secondary);"
+          style="color: var(--color-secondary); text-align: right;"
           simple
           transparent
           v-ripple
-          >Ver clasificación</base-button
+          >Ver toda la clasificación</base-button
         >
       </p>
       <RankingTable :numPlayers="3" />
@@ -33,7 +33,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import AuthSignUp from "@/components/auth/AuthSignUp";
+import Auth from "@/components/auth/Auth";
 import Credits from "@/components/Credits";
 import Contribute from "@/components/contribution/Contribute";
 import Promo from "@/components/contribution/Promo";
@@ -42,7 +42,7 @@ import RankingTable from "@/components/ranking/RankingTable";
 export default {
   name: "MenuCustom",
   components: {
-    AuthSignUp,
+    Auth,
     Credits,
     Contribute,
     Promo,
@@ -63,10 +63,13 @@ export default {
 
   .heading {
     display: flex;
+    align-items: center;
     margin-bottom: 0;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     padding-left: 1rem;
+
+    span {
+      min-width: 4rem;
+    }
   }
 }
 </style>
