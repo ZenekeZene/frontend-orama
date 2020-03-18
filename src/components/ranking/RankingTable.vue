@@ -13,6 +13,7 @@
       v-for="(player, index) in mockPlayersFiltered"
       :key="`option-${index}`"
       :data-index="index"
+      class="ranking-table__item"
     >
       <RankingPlayer
         :player="player"
@@ -153,6 +154,10 @@ export default {
     font-size: 1.5rem;
     text-align: center;
     background-color: var(--color-dark);
+  }
+
+  &__item:hover {
+    background-color: #282a49;
   }
 }
 </style>
