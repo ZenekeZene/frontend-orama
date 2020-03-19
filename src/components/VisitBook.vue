@@ -1,7 +1,7 @@
 <template>
   <div page class="visit-book" :class="{ '--expanded': expanded }">
     <h3 v-if="expanded">VISIT BOOK</h3>
-    <p>
+    <p v-if="expanded">
       En Front-end-ORAMA valoramos tu opinión. Si quieres darnos tu feedback o
       consultar cualquier cosa, este es el lugar. Si por otro lado, prefieres
       insultaros, estaremos encantados de mandarte a la mierda.
@@ -60,6 +60,7 @@ export default {
   right: 0;
   bottom: 0;
   display: flex;
+  flex-direction: column;
   width: 3rem;
   height: 3rem;
   padding: 1rem;
