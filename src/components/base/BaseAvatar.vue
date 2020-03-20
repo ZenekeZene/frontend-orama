@@ -15,7 +15,7 @@
           </p>
         </div>
       </section>
-      <base-button class="share" simple v-ripple color-secondary
+      <base-button class="share" v-ripple color-secondary
         >Compartir</base-button
       >
       <slot></slot>

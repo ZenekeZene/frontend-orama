@@ -3,7 +3,9 @@
     <p v-if="existsQuestionToBeAdded">
       Tienes una pregunta a medias, ¡termina de enviarla!
     </p>
-    <BaseButton simple v-ripple @click="goToEdit">Mis preguntas</BaseButton>
+    <BaseButton color-primary v-ripple @click="goToEdit"
+      >Mis preguntas</BaseButton
+    >
   </section>
 </template>
 <script>

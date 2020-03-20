@@ -68,6 +68,10 @@ export default {
       opacity: 0.3;
       transition: opacity 250ms ease-in;
 
+      &:hover {
+        opacity: 1;
+      }
+
       &.--selected {
         opacity: 1;
       }

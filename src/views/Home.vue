@@ -20,9 +20,7 @@
           <p v-if="category !== ''" class="winner">{{ category }}</p>
         </fade-transition>
         <BaseButton
-          simple
           big
-          m-b-0
           color-secondary
           v-ripple
           @click="launch"
