@@ -12,6 +12,7 @@
       <Wheel
         :forceAngularVelocity="angularVelocity"
         :wasLaunched="wasLaunched"
+        @click.native="launch"
         @lockLaunch="wasLaunched = true"
         @update:category="category = $event"
       />
