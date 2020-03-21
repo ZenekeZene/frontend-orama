@@ -17,6 +17,7 @@ import MobileHoverDirective from "./directives/mobileHover.directive";
 Vue.directive("mobile-hover", MobileHoverDirective);
 
 import "frontend-orama-ui/lib/styles/main.scss";
+import "./assets/styles/main.scss";
 
 Vue.config.productionTip = false;
 
