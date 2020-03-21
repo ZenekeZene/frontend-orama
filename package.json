@@ -13,6 +13,7 @@
     "core-js": "^3.6.4",
     "firebase": "^7.2.3",
     "fontfaceobserver": "^2.1.0",
+    "frontend-orama-ui": "^0.1.2",
     "konva": "^4.1.4",
     "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
