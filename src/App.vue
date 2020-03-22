@@ -1,16 +1,21 @@
 <template>
   <main
     class="main"
-    :class="{ '--expanded': expandedVisitBook }"
+    :class="{
+      '--expanded': expandedVisitBook,
+      '--intro': !tutorialWasLaunched
+    }"
     v-touch:swipe.left="swipeHandlerLeft"
     v-touch:swipe.right="swipeHandlerRight"
   >
-    <TheThemeSelect class="no-pusheable" />
+    <TheThemeSelect class="no-pusheable" v-if="tutorialWasLaunched" />
     <VisitBook
       class="no-pusheable"
       @expandedVisitBook="expandedVisitBook = $event"
+      v-if="tutorialWasLaunched"
     />
-    <article id="app" class="app">
+    <Intro v-if="!tutorialWasLaunched" class="no-pusheable" />
+    <article id="app" class="app" :class="{ mini: !tutorialWasLaunched }">
       <router-view />
       <TheSidebar
         width="82%"
@@ -24,17 +29,21 @@
   </main>
 </template>
 <script>
+import TheMenu from "@/components/TheMenu";
 import { mapState, mapMutations } from "vuex";
 import { debounce } from "lodash";
 import VisitBook from "@/components/VisitBook";
+import Intro from "@/views/Intro";
 
 export default {
   name: "App",
   components: {
-    VisitBook
+    VisitBook,
+    TheMenu,
+    Intro
   },
   computed: {
-    ...mapState("user", ["wasSidebarOpened"])
+    ...mapState("user", ["wasSidebarOpened", "tutorialWasLaunched"])
   },
   data() {
     return {
@@ -57,7 +66,7 @@ export default {
     );
   },
   methods: {
-    ...mapMutations("user", ["setWasSidebarOpened"]),
+    ...mapMutations("user", ["setWasSidebarOpened", "setTutorialWasLaunched"]),
     swipeHandlerLeft() {
       if (!this.wasSidebarOpened) {
         this.setWasSidebarOpened({ wasSidebarOpened: true });
@@ -71,4 +80,12 @@ export default {
   }
 };
 </script>
-style
+<style lang="scss">
+.mini {
+  transform: scale(0.5);
+}
+
+.--intro {
+  display: flex;
+}
+</style>

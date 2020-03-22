@@ -7,7 +7,7 @@ import store from "./store";
 import IoC from "./ioc";
 Vue.use(IoC);
 
-import BaseComponents from "frontend-orama-ui/lib/components";
+import BaseComponents from "./components/base";
 Vue.use(BaseComponents);
 
 import VendorComponents from "./vendor";

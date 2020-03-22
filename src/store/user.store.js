@@ -5,13 +5,14 @@ export default {
   plugins: [
     createPersistedState({
       key: "techiwall-state",
-      paths: ["redirectWasLaunched"]
+      paths: ["redirectWasLaunched", "tutorialWasLaunched"]
     })
   ],
   state: {
     user: null,
     isLoggedIn: false,
     redirectWasLaunched: false,
+    tutorialWasLaunched: false,
     wasSidebarOpened: false
   },
   mutations: {
@@ -30,6 +31,9 @@ export default {
     },
     setRedirectWasLaunched(state, payload) {
       state.redirectWasLaunched = payload.redirectWasLaunched;
+    },
+    setTutorialWasLaunched(state, payload) {
+      state.tutorialWasLaunched = payload.tutorialWasLaunched;
     },
     setWasSidebarOpened(state, payload) {
       state.wasSidebarOpened = payload.wasSidebarOpened;
