@@ -53,7 +53,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "../assets/styles/base/breakpoints.scss";
+@import "node_modules/frontend-orama-ui/lib/styles/base/breakpoints.scss";
 
 .visit-book {
   position: absolute;
