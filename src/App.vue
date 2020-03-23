@@ -16,7 +16,7 @@
     />
     <Intro v-if="!tutorialWasLaunched" class="no-pusheable" />
     <article id="app" class="app" :class="{ mini: !tutorialWasLaunched }">
-      <router-view />
+      <router-view @wasLaunched="setTutorialWasLaunched(true)" />
       <TheSidebar
         width="82%"
         duration="450ms"

@@ -33,7 +33,7 @@ export default {
       state.redirectWasLaunched = payload.redirectWasLaunched;
     },
     setTutorialWasLaunched(state, payload) {
-      state.tutorialWasLaunched = payload.tutorialWasLaunched;
+      state.tutorialWasLaunched = payload;
     },
     setWasSidebarOpened(state, payload) {
       state.wasSidebarOpened = payload.wasSidebarOpened;

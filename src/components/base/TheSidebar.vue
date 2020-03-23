@@ -85,6 +85,7 @@ export default {
     loopSiblings(iterationCallback) {
       this.$parent.$children.forEach(node => {
         if (
+          node.$el &&
           !node.$el.classList.contains("side-menu") &&
           !node.$el.classList.contains("no-pusheable")
         ) {

@@ -70,6 +70,7 @@ export default {
     launch() {
       if (!this.wasLaunched) {
         this.wasLaunched = true;
+        this.$emit("wasLaunched", true);
         this.angularVelocity = this.calculateAngularVelocity();
       }
     },
