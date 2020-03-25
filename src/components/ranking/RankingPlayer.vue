@@ -8,7 +8,7 @@
     :class="{ '--is-mini': isMini }"
   >
     <span v-if="withIndex && !isMini" class="index">{{ index + 1 }}</span>
-    <img src="node_modules/frontend-orama-ui/lib/assets/images/boy.gif" />
+    <img src="../../assets/images/boy.gif" />
     <div class="info">
       <span class="name">{{ player.name }}</span>
       <span v-if="!isMini" class="message">- {{ player.message }}</span>

@@ -6,7 +6,7 @@
     <section>
       <h2 v-if="withGreetings">{{ getGreetings }}</h2>
       <section class="image">
-        <img :src="user.photoURL" :alt="`Avatar de ${user.displayName}`" />
+        <img :src="user.photoURL" :alt="`Avatar de ${user.name}`" />
         <div class="info">
           <span class="aka">{{ level }}</span>
           <p class="points" m-b-0>
@@ -24,6 +24,7 @@
 </template>
 <script>
 import * as moment from "moment";
+import { mapState } from "vuex";
 
 export default {
   name: "Avatar",
@@ -46,8 +47,9 @@ export default {
     }
   },
   computed: {
+    ...mapState("user", ["user"]),
     getGreetings() {
-      return `${this.getGreetingTime(moment())}, ${this.username}.`;
+      return `${this.getGreetingTime(moment())}, ${this.user.name}.`;
     }
   },
   methods: {
